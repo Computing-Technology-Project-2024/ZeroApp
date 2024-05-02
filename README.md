@@ -1,1 +1,2 @@
-# Code
+- use python 3.12
+- 
