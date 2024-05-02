@@ -1,2 +1,2 @@
-- use python 3.12
+- use python 3.12.0
 - 
