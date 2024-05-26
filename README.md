@@ -1,5 +1,4 @@
 # ZeroApp
-Read the READ_ME in each project first.
 
 ## How to start
 - Create your branch first, please don't make change directly to the main branch.
