@@ -136,7 +136,7 @@ const LineChart = () => {
                 .attr("cx", x(selectedData.date))
                 .attr("cy", y(selectedData.value));
             focusText
-                .html("x:" + selectedData.date + "  -  y:" + selectedData.value)
+                .html("Hour:" + selectedData.date + "  -  Kwh:" + selectedData.value)
                 .attr("x", x(selectedData.date) + 15)
                 .attr("y", y(selectedData.value));
         }
