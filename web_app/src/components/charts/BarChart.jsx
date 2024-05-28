@@ -1,4 +1,10 @@
-function init() {
+import React, { useRef, useEffect } from 'react';
+import * as d3 from 'd3';
+
+const BarChart = () => {
+    const chartRef = useRef(null);
+
+    useEffect(() => {
     // Pie chart's properties
     var w = 700;
     var h = 400;
@@ -426,6 +432,7 @@ function init() {
         UpdatePie("2021-2022");
         year_clicked = 2021;
       });
+    });
 }
 
-window.addEventListener("load",init);
+export default BarChart;
