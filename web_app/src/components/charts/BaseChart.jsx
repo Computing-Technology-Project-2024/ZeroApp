@@ -1,7 +1,7 @@
 const BaseChart = () => {
     return (
         <div>
-
+            
         </div>
     )
 }
