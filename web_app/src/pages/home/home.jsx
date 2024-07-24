@@ -1,6 +1,6 @@
 import React from 'react';
 import LineChart from '../../components/charts/LineChart';
-import Sidebar from '../../components/charts/SideBar';
+import Sidebar from '../../components/sideBars/SideBar';
 
 
 const Home = () => {
