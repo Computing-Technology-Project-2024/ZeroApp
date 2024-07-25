@@ -13,6 +13,12 @@ Add documentation for your backend contribution here. Please update as soon as p
 ## Installing Dependencies 
     pip install -r requirements.txt
 
+## Initial Setup
+Create a virtual environment of your choice (Im using venv, please update your in .gitignore). 
+
+TO run the server using uvicorn, run this command in the root directory of the project:
+> uvicorn application.main:app --reload
+
 ## Backend structure
 Use public_api as the root directory of the project.
 
