@@ -1,6 +1,6 @@
 import requests
 
-class EcxApi(EcxApiInterface):
+class EcxApi():
     API_KEY = 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU'
     BASE_URL = 'https://api.edgeapi-v1.com/swinburn'
 
