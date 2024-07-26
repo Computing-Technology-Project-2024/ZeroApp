@@ -15,8 +15,8 @@ Create a virtual environment of your choice (Im using venv, please update your i
 > pip install -r requirements.txt
 
 
-To run the server using uvicorn, run this command in the root directory of the project:
-> uvicorn application.main:app --reload
+To run the server using uvicorn, run this command in the ZeroApp/application/public_api of the project:
+> uvicorn main:app --reload
 
 ## Backend structure
 Use public_api as the root directory of the project.
