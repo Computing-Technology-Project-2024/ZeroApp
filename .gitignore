@@ -3,6 +3,8 @@
 /venv
 venv
 
+**/__pycache__/
+
 # dependencies
 /web_app/node_modules
 /web_app/.pnp

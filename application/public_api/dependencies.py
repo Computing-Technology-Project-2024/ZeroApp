@@ -1,1 +1,1 @@
-# fastapi dependencies
+# declare global dependencies functions here
