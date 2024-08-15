@@ -1,8 +1,5 @@
 import requests
-
-# the api key and url is hard-coded for now, will switch to env vars when possible
-API_KEY = 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU'
-BASE_URL = 'https://api.edgeapi-v1.com/swinburn'
+from config import API_KEY, BASE_URL
 
 def fetch_critical_parameters(device_serialid, starttime, endtime):
     """
@@ -14,7 +11,6 @@ def fetch_critical_parameters(device_serialid, starttime, endtime):
     :return: JSON response containing critical parameters
     """
 
-    # TODO: implement dotenv
     url = f"{BASE_URL}/powerquality/interval/{device_serialid}?starttime={starttime}&endtime={endtime}"
     headers = {'x-api-key': API_KEY}
     response = requests.get(url, headers=headers)

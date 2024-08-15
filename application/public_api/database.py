@@ -1,8 +1,10 @@
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
+from config import MONGO_DETAILS, DATABASE_NAME
 
-# TODO: implement dotenv
-MONGO_DETAILS = "mongodb+srv://username:password*@test.sxv1i.mongodb.net/?retryWrites=true&w=majority&appName=Test"
-DATABASE_NAME = "the database name"
+# Test getting the env variables from config
+print(f"MONGO URL: {MONGO_DETAILS}")
+print(f"DATABASE_NAME Key: {DATABASE_NAME}")
+
 
 # Initialize Motor client with the connection string
 client = AsyncIOMotorClient(MONGO_DETAILS)

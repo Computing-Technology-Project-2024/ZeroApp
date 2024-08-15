@@ -6,3 +6,5 @@ motor
 bson
 datetime
 typing
+
+python-dotenv
