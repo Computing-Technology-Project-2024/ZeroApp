@@ -13,6 +13,8 @@ def fetch_critical_parameters(device_serialid, starttime, endtime):
     :param endtime: End time of the data interval (Unix timestamp)
     :return: JSON response containing critical parameters
     """
+
+    # TODO: implement dotenv
     url = f"{BASE_URL}/powerquality/interval/{device_serialid}?starttime={starttime}&endtime={endtime}"
     headers = {'x-api-key': API_KEY}
     response = requests.get(url, headers=headers)

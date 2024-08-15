@@ -1,10 +1,14 @@
-from motor.motor_asyncio import AsyncIOMotorClient
-from data_access.models.site import Site
+from fastapi import Depends
+from motor.motor_asyncio import AsyncIOMotorDatabase
 from bson import ObjectId
+
+from public_api.database import get_db
+from public_api.schemas.site import Site
+
 
 class SiteRepository:
 
-    def __init__(self, db):
+    def __init__(self, db: AsyncIOMotorDatabase = Depends(get_db)):
         self.collection = db.get_collection("sites")
 
     async def get_site(self, site_id: str) -> Site:
