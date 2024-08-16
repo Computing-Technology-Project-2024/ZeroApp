@@ -1,30 +1,33 @@
 import requests
-from config import API_KEY, BASE_URL
 
-def fetch_critical_parameters(device_serialid, starttime, endtime):
+from public_api.config import ECX_API_KEY, ECX_BASE_URL
+
+
+# TEMP (DELETE AFTER DEVELOPMENT): set Base Url to 'https://api.edgeapi-v1.com/swinburn'
+def fetch_critical_parameters(device_serial_id, start_time, end_time):
     """
-    Fetch critical parameters from the EdgeConX API.
+    Fetch critical parameters of a device from the EdgeConX API.
 
-    :param device_serialid: Serial ID of the device
-    :param starttime: Start time of the data interval (Unix timestamp)
-    :param endtime: End time of the data interval (Unix timestamp)
+    :param device_serial_id: Serial ID of the device
+    :param start_time: Start time of the data interval (Unix timestamp)
+    :param end_time: End time of the data interval (Unix timestamp)
     :return: JSON response containing critical parameters
     """
 
-    url = f"{BASE_URL}/powerquality/interval/{device_serialid}?starttime={starttime}&endtime={endtime}"
-    headers = {'x-api-key': API_KEY}
+    url = f"{ECX_BASE_URL}/powerquality/interval/{device_serial_id}?starttime={start_time}&endtime={end_time}"
+    headers = {'x-api-key': ECX_API_KEY}
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     return response.json()
 
 def fetch_device_parameters():
     """
-    Fetch device parameters from the EdgeConX API.
+    Fetch a list of devices from the EdgeConX API.
 
     :return: JSON response containing device parameters
     """
-    url = f"{BASE_URL}/devices"
-    headers = {'x-api-key': API_KEY}
+    url = f"{ECX_BASE_URL}/devices"
+    headers = {'x-api-key': ECX_API_KEY}
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     return response.json()
