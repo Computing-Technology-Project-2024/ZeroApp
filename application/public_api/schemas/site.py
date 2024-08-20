@@ -11,7 +11,7 @@ class Site(BaseModel):
     site_label: str
     site_address: str
     coords: {
-        "lat": float
+        "lat": float,
         "long": float
     }
     site_type: str
