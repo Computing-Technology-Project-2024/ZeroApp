@@ -10,6 +10,7 @@ class Role(Enum):
 
 class Account(BaseModel):
     _id: Optional[ObjectId] = Field(alias="_id")
+    deleted: bool
     username: str
     password_hash: str
     email: str

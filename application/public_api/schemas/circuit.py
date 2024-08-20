@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 class Circuit(BaseModel):
     _id: Optional[ObjectId] = Field(alias="_id")
     device_id: ObjectId
-    metrics: []
+    metrics: {}
 
     class Config:
         arbitrary_types_allowed = True
