@@ -11,7 +11,7 @@ class Device(BaseModel):
     install_date: datetime
     product: str
     # need clarification here too
-    metrics: []
+    metrics: {}
 
     class Config:
         arbitrary_types_allowed = True
