@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 class Site(BaseModel):
     _id: Optional[ObjectId] = Field(alias="_id")
     homeowner_id: ObjectId
+    deleted: bool
     site_label: str
     site_address: str
     coords: {
