@@ -1,11 +1,10 @@
-import SideBar from '../../components/sideBars/SideBar';
+import SideBar from '../components/sideBars/SideBar';
 
 
 const Dashboard = () => {
     return (
         <div>
-            
-            <SideBar/>
+            <p>dashboard</p>
         </div>
     )
 }
