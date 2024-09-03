@@ -1,0 +1,42 @@
+{
+  "system_id": 698905955,
+  "granularity": "hour",
+  "total_devices": 0,
+  "start_at": 1700000000,
+  "end_at": 1700086400,
+  "items": "intervals",
+  "intervals": [
+    [
+      { "end_at": 1700000000, "wh_imported": 0 },
+      { "end_at": 1700003600, "wh_imported": 0 },
+      { "end_at": 1700007200, "wh_imported": 0 },
+      { "end_at": 1700010800, "wh_imported": 0 },
+      { "end_at": 1700014400, "wh_imported": 0 },
+      { "end_at": 1700018000, "wh_imported": 0 },
+      { "end_at": 1700021600, "wh_imported": 20 },
+      { "end_at": 1700025200, "wh_imported": 40 },
+      { "end_at": 1700028800, "wh_imported": 80 },
+      { "end_at": 1700032400, "wh_imported": 120 },
+      { "end_at": 1700036000, "wh_imported": 160 },
+      { "end_at": 1700039600, "wh_imported": 200 },
+      { "end_at": 1700043200, "wh_imported": 220 },
+      { "end_at": 1700046800, "wh_imported": 240 },
+      { "end_at": 1700050400, "wh_imported": 230 },
+      { "end_at": 1700054000, "wh_imported": 210 },
+      { "end_at": 1700057600, "wh_imported": 180 },
+      { "end_at": 1700061200, "wh_imported": 140 },
+      { "end_at": 1700064800, "wh_imported": 100 },
+      { "end_at": 1700068400, "wh_imported": 60 },
+      { "end_at": 1700072000, "wh_imported": 20 },
+      { "end_at": 1700075600, "wh_imported": 0 },
+      { "end_at": 1700079200, "wh_imported": 0 },
+      { "end_at": 1700082800, "wh_imported": 0 }
+    ]
+  ],
+  "meta": {
+    "status": "normal",
+    "last_report_at": 1700086400,
+    "last_energy_at": 1700079200,
+    "operational_at": 1700000000
+  }
+}

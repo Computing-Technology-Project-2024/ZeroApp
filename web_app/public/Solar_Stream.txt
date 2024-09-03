@@ -1,0 +1,21 @@
+{
+  "data": {
+    "data": {
+      "battery_mode": "Savings Mode",
+      "battery_power": 5,
+      "battery_soc": 40,
+      "consumption_power": 15,
+      "envoy_serial_number": [
+        "1234"
+      ],
+      "generator_power": 0,
+      "grid_power": -10,
+      "grid_status": "On Grid",
+      "pv_power": 30,
+      "system_id": 123
+    },
+    "timestamp_epoch": 1679041508556,
+    "timestamp_utc": "2023-03-17 08:25:08.556",
+    "type": "response"
+  }
+}

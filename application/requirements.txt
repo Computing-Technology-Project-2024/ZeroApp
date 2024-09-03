@@ -1,2 +1,10 @@
 fastapi
 uvicorn
+requests
+pydantic
+motor
+bson
+datetime
+typing
+
+python-dotenv
