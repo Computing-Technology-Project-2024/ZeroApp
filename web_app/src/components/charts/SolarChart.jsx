@@ -115,13 +115,12 @@ const SolarChart = () => {
 
             // Legend
             svg.append("circle").attr("cx", 700).attr("cy", 50).attr("r", 6).style("fill", "steelblue");
-            svg.append("text").attr("x", 720).attr("y", 50).text("Energy Imported").style("font-size", "15px").attr("alignment-baseline", "middle");
+            svg.append("text").attr("x", 720).attr("y", 50).text("Solar Produced").style("font-size", "15px").attr("alignment-baseline", "middle");
             svg.append("circle").attr("cx", 700).attr("cy", 80).attr("r", 6).style("fill", "orange");
-            svg.append("text").attr("x", 720).attr("y", 80).text("Energy Exported").style("font-size", "15px").attr("alignment-baseline", "middle");
+            svg.append("text").attr("x", 720).attr("y", 80).text("Solar Exported").style("font-size", "15px").attr("alignment-baseline", "middle");
 
             // Mouse-over functionality
-            const bisect = d3.bisector(d => d.time).left;
-
+            
             const focus = svg.append('g').append('circle')
                 .attr('r', 8.5)
                 .attr('stroke', 'black')
@@ -148,22 +147,32 @@ const SolarChart = () => {
             }
 
             function mousemove(event) {
-                const x0 = d3.pointer(event)[0];
-                const i = bisect(importDataTransformed, x0, 1);  // Find the closest data point
-                const selectedImportData = importDataTransformed[i];
-                const selectedExportData = exportDataTransformed[i];
-                
-                if (selectedImportData && selectedExportData) {
-                    focus
-                        .attr('cx', x(selectedImportData.time) + x.bandwidth() / 2)
-                        .attr('cy', y(selectedImportData.wh_imported));
+    // Get the current x position of the mouse in terms of pixels
+    const x0 = d3.pointer(event)[0];
+    
+    // Find the closest time index from the import data
+    const timeIndex = Math.round(x0 / (width / importDataTransformed.length));
+    
+    // Ensure timeIndex is within bounds of the data array
+    const i = Math.min(timeIndex, importDataTransformed.length - 1);
 
-                    focusText
-                        .html(`Time: ${selectedImportData.time} - Imported: ${selectedImportData.wh_imported} Wh, Exported: ${selectedExportData.wh_exported} Wh`)
-                        .attr('x', x(selectedImportData.time) + x.bandwidth() / 2 + 15)
-                        .attr('y', y(selectedImportData.wh_imported));
-                }
-            }
+    const selectedImportData = importDataTransformed[i];
+    const selectedExportData = exportDataTransformed[i];
+
+    if (selectedImportData && selectedExportData) {
+        // Position the focus circle on the chart based on the selected data
+        focus
+            .attr('cx', x(selectedImportData.time) + x.bandwidth() / 2)
+            .attr('cy', y(selectedImportData.wh_imported));
+
+        // Update the text that appears next to the focus circle
+        focusText
+            .html(`Time: ${selectedImportData.time} - Imported: ${selectedImportData.wh_imported} Wh, Exported: ${selectedExportData.wh_exported} Wh`)
+            .attr('x', x(selectedImportData.time) + x.bandwidth() / 2 + 15)
+            .attr('y', y(selectedImportData.wh_imported));
+    }
+}
+
 
             function mouseout() {
                 focus.style('opacity', 0);
@@ -179,7 +188,7 @@ const SolarChart = () => {
 
     return (
         <div>
-            <h1>Solar Energy Import and Export Throughout a Day</h1>
+            <h1>Solar Energy Produces and Exported Throughout a Day</h1>
             <div id="my_dataviz" ref={chartRef}></div>
         </div>
     );
