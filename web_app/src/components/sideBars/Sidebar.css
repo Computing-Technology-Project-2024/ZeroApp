@@ -1,14 +1,12 @@
 /* Sidebar.css */
 .sidebar {
-  width: 200px;
+  width: 240px;
   height: 100vh;
   background-color: #fff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);*/
   display: flex;
   flex-direction: column;
   padding: 1%;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  float: left;
 }
 
 .logo {
