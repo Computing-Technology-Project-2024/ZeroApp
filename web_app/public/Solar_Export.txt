@@ -20,17 +20,17 @@
       { "end_at": 1700036000, "wh_exported": 80 },
       { "end_at": 1700039600, "wh_exported": 100 },
       { "end_at": 1700043200, "wh_exported": 120 },
-      { "end_at": 1700046800, "wh_exported": 130 },
-      { "end_at": 1700050400, "wh_exported": 140 },
-      { "end_at": 1700054000, "wh_exported": 150 },
-      { "end_at": 1700057600, "wh_exported": 160 },
-      { "end_at": 1700061200, "wh_exported": 150 },
-      { "end_at": 1700064800, "wh_exported": 140 },
-      { "end_at": 1700068400, "wh_exported": 120 },
-      { "end_at": 1700072000, "wh_exported": 90 },
-      { "end_at": 1700075600, "wh_exported": 60 },
-      { "end_at": 1700079200, "wh_exported": 30 },
-      { "end_at": 1700082800, "wh_exported": 10 }
+      { "end_at": 1700046800, "wh_exported": 125 },
+      { "end_at": 1700050400, "wh_exported": 135 },
+      { "end_at": 1700054000, "wh_exported": 130 },
+      { "end_at": 1700057600, "wh_exported": 120 },
+      { "end_at": 1700061200, "wh_exported": 110 },
+      { "end_at": 1700064800, "wh_exported": 50 },
+      { "end_at": 1700068400, "wh_exported": 20 },
+      { "end_at": 1700072000, "wh_exported": 20 },
+      { "end_at": 1700075600, "wh_exported": 0 },
+      { "end_at": 1700079200, "wh_exported": 0 },
+      { "end_at": 1700082800, "wh_exported": 0 }
     ]
   ],
   "meta": {

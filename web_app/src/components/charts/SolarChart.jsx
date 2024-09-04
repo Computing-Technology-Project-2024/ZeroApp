@@ -30,7 +30,7 @@ const SolarChart = () => {
                 throw new Error('Invalid data structure');
             }
 
-            // Extract and convert the data for import and export
+            // Extract and convert the data for import, export, and consumption
             const importDataTransformed = importData.intervals[0].map(item => ({
                 time: new Date(item.end_at * 1000).toLocaleTimeString(), // Convert timestamp to time string
                 wh_imported: item.wh_imported
@@ -39,6 +39,12 @@ const SolarChart = () => {
             const exportDataTransformed = exportData.intervals[0].map(item => ({
                 time: new Date(item.end_at * 1000).toLocaleTimeString(), // Convert timestamp to time string
                 wh_exported: item.wh_exported
+            }));
+
+            // Calculate solar consumption (import - export)
+            const consumptionDataTransformed = importDataTransformed.map((importItem, index) => ({
+                time: importItem.time,
+                wh_consumed: importItem.wh_imported - exportDataTransformed[index].wh_exported
             }));
 
             // Remove any existing SVG before re-drawing
@@ -65,10 +71,11 @@ const SolarChart = () => {
                 .attr("transform", "rotate(-45)")
                 .style("text-anchor", "end");
 
-            // Y-axis scale (for both wh_imported and wh_exported)
+            // Y-axis scale (for wh_imported, wh_exported, and wh_consumed)
             const maxY = d3.max([
                 ...importDataTransformed.map(d => d.wh_imported),
-                ...exportDataTransformed.map(d => d.wh_exported)
+                ...exportDataTransformed.map(d => d.wh_exported),
+                ...consumptionDataTransformed.map(d => d.wh_consumed)
             ]);
             const y = d3.scaleLinear()
                 .domain([0, maxY])
@@ -85,6 +92,7 @@ const SolarChart = () => {
                 .attr("d", d3.line()
                     .x(d => x(d.time) + x.bandwidth() / 2) // Center the line on the band
                     .y(d => y(d.wh_imported))
+                    .curve(d3.curveMonotoneX)
                 );
 
             // Create the line path for energy exported
@@ -96,6 +104,19 @@ const SolarChart = () => {
                 .attr("d", d3.line()
                     .x(d => x(d.time) + x.bandwidth() / 2) // Center the line on the band
                     .y(d => y(d.wh_exported))
+                    .curve(d3.curveMonotoneX)
+                );
+
+            // Create the line path for energy consumed (import - export)
+            svg.append("path")
+                .datum(consumptionDataTransformed)
+                .attr("fill", "none")
+                .attr("stroke", "green")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                    .x(d => x(d.time) + x.bandwidth() / 2) // Center the line on the band
+                    .y(d => y(d.wh_consumed))
+                    .curve(d3.curveMonotoneX)
                 );
 
             // X-axis label
@@ -118,9 +139,11 @@ const SolarChart = () => {
             svg.append("text").attr("x", 720).attr("y", 50).text("Solar Produced").style("font-size", "15px").attr("alignment-baseline", "middle");
             svg.append("circle").attr("cx", 700).attr("cy", 80).attr("r", 6).style("fill", "orange");
             svg.append("text").attr("x", 720).attr("y", 80).text("Solar Exported").style("font-size", "15px").attr("alignment-baseline", "middle");
+            svg.append("circle").attr("cx", 700).attr("cy", 110).attr("r", 6).style("fill", "green");
+            svg.append("text").attr("x", 720).attr("y", 110).text("Solar Consumed").style("font-size", "15px").attr("alignment-baseline", "middle");
 
             // Mouse-over functionality
-            
+
             const focus = svg.append('g').append('circle')
                 .attr('r', 8.5)
                 .attr('stroke', 'black')
@@ -147,32 +170,32 @@ const SolarChart = () => {
             }
 
             function mousemove(event) {
-    // Get the current x position of the mouse in terms of pixels
-    const x0 = d3.pointer(event)[0];
-    
-    // Find the closest time index from the import data
-    const timeIndex = Math.round(x0 / (width / importDataTransformed.length));
-    
-    // Ensure timeIndex is within bounds of the data array
-    const i = Math.min(timeIndex, importDataTransformed.length - 1);
+                // Get the current x position of the mouse in terms of pixels
+                const x0 = d3.pointer(event)[0];
 
-    const selectedImportData = importDataTransformed[i];
-    const selectedExportData = exportDataTransformed[i];
+                // Find the closest time index from the import data
+                const timeIndex = Math.round(x0 / (width / importDataTransformed.length));
 
-    if (selectedImportData && selectedExportData) {
-        // Position the focus circle on the chart based on the selected data
-        focus
-            .attr('cx', x(selectedImportData.time) + x.bandwidth() / 2)
-            .attr('cy', y(selectedImportData.wh_imported));
+                // Ensure timeIndex is within bounds of the data array
+                const i = Math.min(timeIndex, importDataTransformed.length - 1);
 
-        // Update the text that appears next to the focus circle
-        focusText
-            .html(`Time: ${selectedImportData.time} - Imported: ${selectedImportData.wh_imported} Wh, Exported: ${selectedExportData.wh_exported} Wh`)
-            .attr('x', x(selectedImportData.time) + x.bandwidth() / 2 + 15)
-            .attr('y', y(selectedImportData.wh_imported));
-    }
-}
+                const selectedImportData = importDataTransformed[i];
+                const selectedExportData = exportDataTransformed[i];
+                const selectedConsumptionData = consumptionDataTransformed[i];
 
+                if (selectedImportData && selectedExportData && selectedConsumptionData) {
+                    // Position the focus circle on the chart based on the selected data
+                    focus
+                        .attr('cx', x(selectedImportData.time) + x.bandwidth() / 2)
+                        .attr('cy', y(selectedImportData.wh_imported));
+
+                    // Update the text that appears next to the focus circle
+                    focusText
+                        .html(`Time: ${selectedImportData.time} - Imported: ${selectedImportData.wh_imported} Wh, Exported: ${selectedExportData.wh_exported} Wh, Consumed: ${selectedConsumptionData.wh_consumed} Wh`)
+                        .attr('x', x(selectedImportData.time) + x.bandwidth() / 2 + 15)
+                        .attr('y', y(selectedImportData.wh_imported));
+                }
+            }
 
             function mouseout() {
                 focus.style('opacity', 0);
@@ -188,7 +211,7 @@ const SolarChart = () => {
 
     return (
         <div>
-            <h1>Solar Energy Produces and Exported Throughout a Day</h1>
+            <h1>Solar Energy Produced, Exported, and Consumed Throughout a Day</h1>
             <div id="my_dataviz" ref={chartRef}></div>
         </div>
     );

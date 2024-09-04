@@ -70,6 +70,7 @@ const LineChart = () => {
                         .x(d => x(d.hour))
                         .y0(y(0))
                         .y(d => y(d.sumKw))
+                        .curve(d3.curveMonotoneX)
                     );
 
                 // X-axis label
