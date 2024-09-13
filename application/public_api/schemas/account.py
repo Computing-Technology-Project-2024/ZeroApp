@@ -2,7 +2,8 @@ from enum import Enum
 from typing import Optional
 
 from bson import ObjectId
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
+
 
 class Role(Enum):
     DEFAULT = 0
@@ -13,10 +14,11 @@ class Account(BaseModel):
     deleted: bool
     username: str
     password_hash: str
-    email: str
+    email: EmailStr
     mobile_number: str
     role: Role
 
     class Config:
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
+        use_enum_values = True

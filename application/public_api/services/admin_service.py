@@ -1,6 +1,6 @@
-from data_access.repositories.admin_repository import add_admin as add_admin_repo, get_all_admins as get_all_admins_repo, get_admin_by_id as get_admin_by_id_repo, remove_admin as remove_admin_repo
-from schemas.account import Account, Role
-from utils.security import hash_password
+from public_api.data_access.admin_repository import add_admin as add_admin_repo, get_all_admins as get_all_admins_repo, get_admin_by_id as get_admin_by_id_repo, remove_admin as remove_admin_repo
+from public_api.schemas.account import Account, Role
+from public_api.utils.security import hash_password
 
 async def add_admin(db, username: str, email: str, mobile_number: str, password: str) -> Account:
     password_hash = hash_password(password)

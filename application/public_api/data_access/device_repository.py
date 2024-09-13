@@ -1,6 +1,6 @@
 from fastapi import Depends
 from motor.motor_asyncio import AsyncIOMotorDatabase
-from bson import ObjectId
+from bson.objectid import ObjectId
 
 from public_api.database import get_db
 from public_api.schemas.device import Device

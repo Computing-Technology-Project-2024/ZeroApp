@@ -15,3 +15,7 @@ def get_db() -> AsyncIOMotorDatabase:
         yield db
     finally:
         client.close()
+
+def get_collection(name: str):
+    return get_db[name]
+

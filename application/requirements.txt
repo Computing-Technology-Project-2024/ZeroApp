@@ -9,6 +9,6 @@ typing
 bcrypt
 cryptography
 passlib
-python-jose
+jose
 
 python-dotenv
