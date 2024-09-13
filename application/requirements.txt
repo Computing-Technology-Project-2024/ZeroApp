@@ -6,5 +6,9 @@ motor
 bson
 datetime
 typing
+bcrypt
+cryptography
+passlib
+python-jose
 
 python-dotenv

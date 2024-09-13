@@ -1,6 +1,4 @@
 import React from 'react';
-import LineChart from '../components/charts/LineChart';
-import BarChart from '../components/charts/BarChart';
 
 import PageLayout from "../components/containers/PageLayout";
 import BaseCard from "../components/cards/BaseCard";
