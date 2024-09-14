@@ -3,11 +3,11 @@ import os
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from routers.admin import admin_router
-from routers.analytic import analytic_router
-from routers.auth import auth_router
-from routers.device import device_router
-from routers.site import site_router
+from public_api.routers.admin import admin_router
+from public_api.routers.analytic import analytic_router
+from public_api.routers.auth import auth_router
+from public_api.routers.device import device_router
+from public_api.routers.site import site_router
 
 app = FastAPI()
 

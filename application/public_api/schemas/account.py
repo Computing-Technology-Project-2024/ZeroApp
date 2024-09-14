@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Optional
 
-from bson import ObjectId
+from bson.objectid import ObjectId
 from pydantic import BaseModel, Field, EmailStr
 
 
@@ -10,7 +10,7 @@ class Role(Enum):
     ADMIN = 1
 
 class Account(BaseModel):
-    _id: Optional[ObjectId] = Field(alias="_id")
+    id: Optional[ObjectId] = Field(alias="_id")
     deleted: bool
     username: str
     password_hash: str
