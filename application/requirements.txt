@@ -9,5 +9,5 @@ bcrypt
 cryptography
 passlib
 jose
-
+pymongo
 python-dotenv

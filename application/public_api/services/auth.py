@@ -8,7 +8,7 @@ from jose import jwt
 from passlib.context import CryptContext
 
 from public_api.data_access.account_repository import get_account_by_email
-from public_api.schemas.account import Account, Role
+from public_api.schemas.account import Account
 from public_api.utils.security import verify_password
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -16,10 +16,14 @@ password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 dotenv.load_dotenv()
 
-async def authenticate_user(email: str, password: str) -> Account | None:
-    user = await get_account_by_email(email)
+# check if provided pwd matches the email's pwd
+async def authenticate_user(email: str, password: str, db) -> Account | None:
+    user = await get_account_by_email(email, db)
 
-    if not user or not verify_password(password, user.hashed_password):
+    if not user:
+        raise Exception(f"User with email: {email} doesnt exist.")
+
+    if not verify_password(password, user.hashed_password):
         return None
     return user
 
@@ -29,3 +33,10 @@ def create_token(data: dict, expires_delta: timedelta = None):
     body_data.update({"exp": expire})
 
     return jwt.encode(body_data, os.getenv("ZERO_SECRET_KEY"), algorithm=os.getenv("HASH_ALGORITHM"))
+
+def verify_access_token(token: str):
+    try:
+        payload = jwt.decode(token, os.getenv("ZERO_SECRET_KEY"), algorithms=os.getenv("HASH_ALGORITHM"))
+        return payload
+    except Exception as e:
+        raise Exception("An error occurred. ", e)
