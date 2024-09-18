@@ -22,3 +22,4 @@ class Account(BaseModel):
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
         use_enum_values = True
+
