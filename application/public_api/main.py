@@ -5,6 +5,7 @@ from routers.analytic import analytic_router
 from routers.auth import auth_router
 from routers.device import device_router
 from routers.site import site_router
+from routers.homeowner import homeowner_router
 
 app = FastAPI()
 
@@ -18,3 +19,4 @@ app.include_router(auth_router)
 app.include_router(analytic_router)
 app.include_router(device_router)
 app.include_router(site_router)
+app.include_router(homeowner_router)
