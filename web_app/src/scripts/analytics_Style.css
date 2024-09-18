@@ -1,3 +1,7 @@
+.analytics {
+    font-family: 'Nunito Sans', 'sans-serif';
+}
+
 #AddressLine {
     background-color: #00a000;   /* Green background */
     color: white;                /* White text */

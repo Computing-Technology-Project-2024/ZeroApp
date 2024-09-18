@@ -16,7 +16,7 @@ const Analytics = () => {
     };
 
     return (
-        <div>
+        <div className='analytics'>
             <p className='head'>Analytics</p>
             <p id="AddressLine">House Address</p>         
 
