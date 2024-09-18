@@ -20,14 +20,19 @@ const LineChart = () => {
             .then(rawData => {
                 console.log("Raw data fetched:", rawData);  // Debugging log
 
-                if (!rawData['2024-04-20']) {
-                    throw new Error('Data for 2024-04-20 not found');
+                // Get the first available date in the dataset (assuming rawData is keyed by date strings)
+                const availableDates = Object.keys(rawData);
+                if (availableDates.length === 0) {
+                    throw new Error('No data available');
                 }
+                
+                const selectedDate = availableDates[0]; // Select the first available date
+                console.log(`Displaying data for date: ${selectedDate}`);
 
-                // Extract and convert the sumWatt to kW for each hour (0-23)
-                const data = Object.keys(rawData['2024-04-20']).map(hour => ({
+                // Extract and convert the sumWatt to kW for each hour (0-23) for the selected date
+                const data = Object.keys(rawData[selectedDate]).map(hour => ({
                     hour: +hour,
-                    sumKw: rawData['2024-04-20'][hour].sumWatt / 1000 // Convert to kW
+                    sumKw: rawData[selectedDate][hour].sumWatt / 1000 // Convert to kW
                 }));
 
                 console.log("Parsed data (in kW):", data);  // Debugging log
@@ -88,7 +93,7 @@ const LineChart = () => {
                     .attr("x", -margin.top - height / 2 + 20)
                     .text("Power Usage (kW)");
 
-                // Legend for power usage and solar generation
+                // Legend for power usage
                 svg.append("circle").attr("cx", 700).attr("cy", 130).attr("r", 6).style("fill", "blue");
                 svg.append("text").attr("x", 720).attr("y", 130).text("Power Usage").style("font-size", "15px").attr("alignment-baseline", "middle");
 
@@ -157,7 +162,7 @@ const LineChart = () => {
 
     return (
         <div>
-            <h1>This is a Line Chart that shows power usage throughout the day in kW</h1>
+            <h1>Line Chart of Power Usage Throughout a Day (kW)</h1>
             <div id="my_dataviz" ref={chartRef}></div>
         </div>
     );
