@@ -1,6 +1,6 @@
 import requests
 
-from public_api.config import ECX_API_KEY, ECX_BASE_URL
+from config import ECX_API_KEY, ECX_BASE_URL
 
 
 # TEMP (DELETE AFTER DEVELOPMENT): set Base Url to 'https://api.edgeapi-v1.com/swinburn'
