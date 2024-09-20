@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from services.ecx_api import fetch_device_parameters, fetch_critical_parameters
+from public_api.services.ecx_api import fetch_device_parameters, fetch_critical_parameters
 import time
 
 device_router = APIRouter(
