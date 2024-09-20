@@ -70,6 +70,7 @@ const CombinedChart = () => {
             svg.append("g")
                 .attr("transform", `translate(0, ${height})`)
                 .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%H"))); // Format as hours (0-23)
+                
 
             // Y-axis scale
             const maxY = d3.max([
@@ -128,8 +129,9 @@ const CombinedChart = () => {
             svg.append("text")
                 .attr("text-anchor", "end")
                 .attr("x", width / 2 + margin.left)
-                .attr("y", height + margin.top + 40)
+                .attr("y", height + margin.bottom - 10)
                 .text("Time of day (Hours)");
+                
 
             // Y-axis label
             svg.append("text")

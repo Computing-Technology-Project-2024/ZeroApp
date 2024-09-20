@@ -15,12 +15,15 @@ const Sidebar = () => {
     setActiveItem(item);
   };
 
+  const settingsItems = [
+    { name: 'settings', icon: settings_icon, text: 'Settings', route: pageRoutes.SETTINGS },
+    { name: 'logout', icon: logout_icon, text: 'Logout', route: pageRoutes.LOGIN },
+  ];
+
   const menuItems = [
     { name: 'dashboard', icon: dash_icon, text: 'Dashboard', route: pageRoutes.DASHBOARD },
     { name: 'analytics', icon: analytics_ico, text: 'Analytics', route: pageRoutes.ANALYTICS },
-    { name: 'recommendation', icon: recon_icon, text: 'Recommendation', route: pageRoutes.RECOMMENDATIONS },
-    { name: 'settings', icon: settings_icon, text: 'Settings', route: pageRoutes.SETTINGS },
-    { name: 'logout', icon: logout_icon, text: 'Logout', route: pageRoutes.LOGIN },
+    { name: 'recommendation', icon: recon_icon, text: 'Recommendation', route: pageRoutes.RECOMMENDATIONS }
   ];
 
   return (
@@ -44,6 +47,22 @@ const Sidebar = () => {
           </ul>
         </nav>
 
+        <hr></hr>
+
+        <div className="settings">
+          <ul>
+            {settingsItems.map((item) => (
+              <li
+                key={item.name}
+                className={`menu-item ${activeItem === item.name ? 'active' : ''}`}
+              >
+                <Link to={item.route} onClick={() => handleItemClick(item.name)}>
+                <img className="img" src={item.icon} alt="icon"/> {item.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
   );
 };

@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   font-family: 'Nunito Sans', 'sans-serif';
-  font-size: 28px;
+  font-size: 32px;
   padding: 0;
 }
 
@@ -23,18 +23,17 @@
 
 .menu, .settings {
   list-style: none;
-  margin-top: 10%;
+  margin-top: 20%;
   padding: 0;
   text-align: center;
+  margin-bottom: 20%;
 }
 
 .menu-item {
   margin-bottom: 20px;
   list-style: none;
-}
-
-.menu-item img {
-  margin-right: 10px;
+  display: flex;
+  justify-content: center; /* Center the entire menu item in the sidebar */
 }
 
 .menu-item a {
@@ -44,17 +43,15 @@
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Align icon and text to the left */
   border-radius: 5px;
+  transition: background-color 0.3s ease;
+  width: 190px; /* Fixed width to ensure buttons are the same size */
 }
 
 .menu-item.active a {
   background-color: #00a000;
   color: #fff;
-  padding: 8px 12px; /* Adjust padding to limit width */
-  border-radius: 5px;
-  display: inline-flex; /* Make the background wrap around the content */
-  margin: 0 auto; /* Center the active item */
 }
 
 .menu-item.active a:hover {
@@ -65,17 +62,21 @@
   color: #00a000;
 }
 
+.menu-item img {
+  margin-right: 10px; /* Increase spacing between icon and text if needed */
+}
+
+
 .settings {
-  margin-top: auto;
+  margin-top: 30%;
   padding-bottom: 20px;
 }
 
 .hr {
   opacity: 30%;
-  margin: 20px 0;
+  margin: auto;
 }
 
 .img {
   width: 20px;
-  margin-right: 10px;
 }

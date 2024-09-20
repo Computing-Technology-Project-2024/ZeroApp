@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import BaseCard from '../components/cards/BaseCard';
-import Recommendation from "./recommendation";
-import SolarChart from '../components/charts/SolarChart';
 import CombChart from '../components/charts/CombChart';
 import CircuitsChart from '../components/charts/CircuitsChart';
-
 import '..//scripts/analytics_Style.css'
-import LineChart from '../components/charts/LineChart';
+
 
 const Analytics = () => {
     const [activeButton, setActiveButton] = useState('Day');
@@ -20,7 +17,7 @@ const Analytics = () => {
             <p className='head'>Analytics</p>
             <p id="AddressLine">House Address</p>         
 
-            <BaseCard width={400} height={400}>
+            <BaseCard width={600} height={400}>
             <div className="button-group">
                 {['Day', 'Week', 'Month', 'Year'].map(label => (
                     <button
