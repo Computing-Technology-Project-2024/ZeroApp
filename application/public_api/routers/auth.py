@@ -4,6 +4,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
+from motor.motor_asyncio import AsyncIOMotorClient
 
 from ..database import get_db
 from ..schemas.account import Account
@@ -24,7 +25,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     return temp
 
 @auth_router.post("/token")
-async def sign_in_for_token(form_data: OAuth2PasswordRequestForm = Depends(), db=Depends(get_db())):
+async def sign_in_for_token(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncIOMotorClient = Depends(get_db)):
     user = authenticate_user(form_data.username, form_data.password, db)
 
     if not user:
@@ -42,19 +43,19 @@ async def sign_in_for_token(form_data: OAuth2PasswordRequestForm = Depends(), db
     return {"access_token": access_token, "token_type": "bearer"}
 
 @auth_router.post("/sign-up")
-async def sign_up(data: SignUp, db=Depends(get_db())):
+async def sign_up(data: SignUp, db: AsyncIOMotorClient = Depends(get_db)):
     # step 1: check if email exist ? return 500
     existing_user = await get_account_using_email(data.email, db)
 
-    if not existing_user:
+    if existing_user is not None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Email already used.",
+            detail="User already exist",
         )
 
     # step 2: update db (pwd is hashed inside the add account func)
     try:
-        res = add_new_account(
+        res = await add_new_account(
             username=data.username,
             email=data.email,
             mobile_number="",
@@ -64,7 +65,7 @@ async def sign_up(data: SignUp, db=Depends(get_db())):
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="An error occurred adding new account: " + e,
+            detail=f"An error occurred adding new account: {e}",
         )
     else:
         return res
