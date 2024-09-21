@@ -8,6 +8,7 @@ typing
 bcrypt
 cryptography
 passlib
-jose
+python-jose
 pymongo
 python-dotenv
+pydantic[email]

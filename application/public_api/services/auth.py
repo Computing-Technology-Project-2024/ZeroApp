@@ -7,12 +7,13 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
 from passlib.context import CryptContext
 
+import bcrypt
+
 from public_api.data_access.account_repository import get_account_by_email
 from public_api.schemas.account import Account
 from public_api.utils.security import verify_password
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 dotenv.load_dotenv()
 
