@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/ZeroApp/static/css/main.b5a6210d.css",
+    "main.js": "/ZeroApp/static/js/main.33e7a30a.js",
+    "static/media/dash_icon.png": "/ZeroApp/static/media/dash_icon.23414fbaf0fcc0b65fba.png",
+    "static/media/settings_icon.png": "/ZeroApp/static/media/settings_icon.d2b779c9a3cc3f88f301.png",
+    "static/media/analytics_icon.png": "/ZeroApp/static/media/analytics_icon.ebed5ec2e2855d1dd5a1.png",
+    "static/media/logout_icon.png": "/ZeroApp/static/media/logout_icon.a971c157a4b60d7780b4.png",
+    "static/media/recommend_icon.png": "/ZeroApp/static/media/recommend_icon.d9315a9a323f1030a6af.png",
+    "index.html": "/ZeroApp/index.html",
+    "main.b5a6210d.css.map": "/ZeroApp/static/css/main.b5a6210d.css.map",
+    "main.33e7a30a.js.map": "/ZeroApp/static/js/main.33e7a30a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b5a6210d.css",
+    "static/js/main.33e7a30a.js"
+  ]
+}

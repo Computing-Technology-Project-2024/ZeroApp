@@ -1,0 +1,268 @@
+{
+  "2024-05-03": {
+    "0": {
+      "count": 720,
+      "sumWatt": 500,
+      "sumVar": -200,
+      "sumCurrent": 2.5,
+      "sumVoltage": 168000,
+      "sumPf": 98,
+      "avgCurrent": 0.0035,
+      "avgVoltage": 233,
+      "avgPf": 0.136
+    },
+    "1": {
+      "count": 720,
+      "sumWatt": 400,
+      "sumVar": -180,
+      "sumCurrent": 2.3,
+      "sumVoltage": 167500,
+      "sumPf": 97,
+      "avgCurrent": 0.0032,
+      "avgVoltage": 232,
+      "avgPf": 0.135
+    },
+    "2": {
+      "count": 720,
+      "sumWatt": 350,
+      "sumVar": -170,
+      "sumCurrent": 2.2,
+      "sumVoltage": 167200,
+      "sumPf": 96,
+      "avgCurrent": 0.0030,
+      "avgVoltage": 231.5,
+      "avgPf": 0.134
+    },
+    "3": {
+      "count": 720,
+      "sumWatt": 300,
+      "sumVar": -160,
+      "sumCurrent": 2.0,
+      "sumVoltage": 167000,
+      "sumPf": 95,
+      "avgCurrent": 0.0028,
+      "avgVoltage": 231,
+      "avgPf": 0.133
+    },
+    "4": {
+      "count": 720,
+      "sumWatt": 300,
+      "sumVar": -160,
+      "sumCurrent": 1.9,
+      "sumVoltage": 166800,
+      "sumPf": 94,
+      "avgCurrent": 0.0026,
+      "avgVoltage": 230.5,
+      "avgPf": 0.132
+    },
+    "5": {
+      "count": 720,
+      "sumWatt": 400,
+      "sumVar": -180,
+      "sumCurrent": 2.1,
+      "sumVoltage": 167000,
+      "sumPf": 95,
+      "avgCurrent": 0.0029,
+      "avgVoltage": 231,
+      "avgPf": 0.134
+    },
+    "6": {
+      "count": 720,
+      "sumWatt": 800,
+      "sumVar": -250,
+      "sumCurrent": 3.2,
+      "sumVoltage": 167500,
+      "sumPf": 100,
+      "avgCurrent": 0.0044,
+      "avgVoltage": 232,
+      "avgPf": 0.138
+    },
+    "7": {
+      "count": 720,
+      "sumWatt": 1000,
+      "sumVar": -300,
+      "sumCurrent": 4.0,
+      "sumVoltage": 168000,
+      "sumPf": 105,
+      "avgCurrent": 0.0055,
+      "avgVoltage": 233,
+      "avgPf": 0.140
+    },
+    "8": {
+      "count": 720,
+      "sumWatt": 1200,
+      "sumVar": -350,
+      "sumCurrent": 4.5,
+      "sumVoltage": 168500,
+      "sumPf": 110,
+      "avgCurrent": 0.0062,
+      "avgVoltage": 234,
+      "avgPf": 0.145
+    },
+    "9": {
+      "count": 720,
+      "sumWatt": 1800,
+      "sumVar": -450,
+      "sumCurrent": 6.0,
+      "sumVoltage": 169000,
+      "sumPf": 120,
+      "avgCurrent": 0.0083,
+      "avgVoltage": 235,
+      "avgPf": 0.150
+    },
+    "10": {
+      "count": 720,
+      "sumWatt": 2000,
+      "sumVar": -500,
+      "sumCurrent": 6.5,
+      "sumVoltage": 169500,
+      "sumPf": 125,
+      "avgCurrent": 0.0090,
+      "avgVoltage": 236,
+      "avgPf": 0.152
+    },
+    "11": {
+      "count": 720,
+      "sumWatt": 2200,
+      "sumVar": -550,
+      "sumCurrent": 7.0,
+      "sumVoltage": 170000,
+      "sumPf": 130,
+      "avgCurrent": 0.0097,
+      "avgVoltage": 236.5,
+      "avgPf": 0.154
+    },
+    "12": {
+      "count": 720,
+      "sumWatt": 2400,
+      "sumVar": -600,
+      "sumCurrent": 7.5,
+      "sumVoltage": 170500,
+      "sumPf": 135,
+      "avgCurrent": 0.0104,
+      "avgVoltage": 237,
+      "avgPf": 0.155
+    },
+    "13": {
+      "count": 720,
+      "sumWatt": 2500,
+      "sumVar": -625,
+      "sumCurrent": 7.8,
+      "sumVoltage": 171000,
+      "sumPf": 140,
+      "avgCurrent": 0.0108,
+      "avgVoltage": 237.5,
+      "avgPf": 0.157
+    },
+    "14": {
+      "count": 720,
+      "sumWatt": 2600,
+      "sumVar": -650,
+      "sumCurrent": 8.0,
+      "sumVoltage": 171500,
+      "sumPf": 145,
+      "avgCurrent": 0.0111,
+      "avgVoltage": 238,
+      "avgPf": 0.158
+    },
+    "15": {
+      "count": 720,
+      "sumWatt": 2400,
+      "sumVar": -600,
+      "sumCurrent": 7.5,
+      "sumVoltage": 171000,
+      "sumPf": 135,
+      "avgCurrent": 0.0104,
+      "avgVoltage": 237.5,
+      "avgPf": 0.155
+    },
+    "16": {
+      "count": 720,
+      "sumWatt": 2200,
+      "sumVar": -550,
+      "sumCurrent": 7.0,
+      "sumVoltage": 170500,
+      "sumPf": 130,
+      "avgCurrent": 0.0097,
+      "avgVoltage": 237,
+      "avgPf": 0.154
+    },
+    "17": {
+      "count": 720,
+      "sumWatt": 1800,
+      "sumVar": -450,
+      "sumCurrent": 6.0,
+      "sumVoltage": 170000,
+      "sumPf": 120,
+      "avgCurrent": 0.0083,
+      "avgVoltage": 236.5,
+      "avgPf": 0.150
+    },
+    "18": {
+      "count": 720,
+      "sumWatt": 1600,
+      "sumVar": -400,
+      "sumCurrent": 5.5,
+      "sumVoltage": 169500,
+      "sumPf": 115,
+      "avgCurrent": 0.0076,
+      "avgVoltage": 236,
+      "avgPf": 0.148
+    },
+    "19": {
+      "count": 720,
+      "sumWatt": 1200,
+      "sumVar": -350,
+      "sumCurrent": 4.0,
+      "sumVoltage": 169000,
+      "sumPf": 110,
+      "avgCurrent": 0.0062,
+      "avgVoltage": 235.5,
+      "avgPf": 0.145
+    },
+    "20": {
+      "count": 720,
+      "sumWatt": 1500,
+      "sumVar": -400,
+      "sumCurrent": 5.0,
+      "sumVoltage": 168500,
+      "sumPf": 120,
+      "avgCurrent": 0.0069,
+      "avgVoltage": 235,
+      "avgPf": 0.149
+    },
+    "21": {
+      "count": 720,
+      "sumWatt": 1200,
+      "sumVar": -350,
+      "sumCurrent": 4.0,
+      "sumVoltage": 168000,
+      "sumPf": 110,
+      "avgCurrent": 0.0062,
+      "avgVoltage": 234.5,
+      "avgPf": 0.145
+    },
+    "22": {
+      "count": 720,
+      "sumWatt": 700,
+      "sumVar": -200,
+      "sumCurrent": 3.0,
+      "sumVoltage": 167500,
+      "sumPf": 100,
+      "avgCurrent": 0.0042,
+      "avgVoltage": 234,
+      "avgPf": 0.142
+    },
+    "23": {
+      "count": 720,
+      "sumWatt": 600,
+      "sumVar": -180,
+      "sumCurrent": 2.5,
+      "sumVoltage": 167000,
+      "sumPf": 98,
+      "avgCurrent": 0.0035,
+      "avgVoltage": 233.5,
+      "avgPf": 0.136
+    }
+  }
+}
