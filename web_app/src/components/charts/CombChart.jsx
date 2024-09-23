@@ -4,18 +4,21 @@ import * as d3 from 'd3';
 const CombinedChart = () => {
     const chartRef = useRef(null);
 
-    
-
     useEffect(() => {
         const margin = { top: 20, right: 100, bottom: 60, left: 60 },
               width = 1200 - margin.left - margin.right,
               height = 600 - margin.top - margin.bottom;
 
-        // Fetch all datasets: Solar_Import.txt, Solar_Export.txt, and Day_Power_data.txt
+        // Fetch Solar Import, Solar Export, Solar Production, House Consumption, and Power Usage data from the API
         Promise.all([
             fetch(`${process.env.PUBLIC_URL}/Solar_Import.txt`),
             fetch(`${process.env.PUBLIC_URL}/Solar_Export.txt`),
-            fetch(`${process.env.PUBLIC_URL}/Day_Power_data.txt`)
+            fetch(`${process.env.PUBLIC_URL}/Solar_Production.txt`),
+            fetch(`${process.env.PUBLIC_URL}/House_Consumption.txt`),
+            fetch('https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=1714658400&endtime=1714744800', {
+                method: 'GET',
+                headers: { 'x-api-key': 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU' },
+            })
         ])
         .then(responses => {
             if (responses.some(response => !response.ok)) {
@@ -23,33 +26,40 @@ const CombinedChart = () => {
             }
             return Promise.all(responses.map(response => response.json()));
         })
-        .then(([importData, exportData, rawData]) => {
+        .then(([importData, exportData, productionData, houseConsumptionData, powerUsageData]) => {
             console.log("Import data:", importData);
             console.log("Export data:", exportData);
-            console.log("Power usage data:", rawData);
+            console.log("Solar Production data:", productionData);
+            console.log("House Consumption data:", houseConsumptionData);
+            console.log("Power usage data from API:", powerUsageData);
 
-            // Get the first available date in the power usage dataset
-            const availableDates = Object.keys(rawData);
-            if (availableDates.length === 0) {
-                throw new Error('No power usage data available');
-            }
-            const selectedDate = availableDates[0];
+            // Preprocess the power usage and house consumption data
+            const powerDataTransformed = preprocessPowerData(powerUsageData);
+            const houseConsumptionDataTransformed = preprocessHouseConsumptionData(houseConsumptionData);
 
-            // Transform data: convert energy to kWh and power usage to kW
+            // Transform the solar import/export data to kWh
             const importDataTransformed = importData.intervals[0].map(item => ({
                 time: new Date(item.end_at * 1000),
-                kwh_imported: (item.wh_imported / 1000).toFixed(2) // Convert Wh to kWh
+                kwh_imported: (item.wh_imported / 1000).toFixed(2)
             }));
 
             const exportDataTransformed = exportData.intervals[0].map(item => ({
                 time: new Date(item.end_at * 1000),
-                kwh_exported: (item.wh_exported / 1000).toFixed(2) // Convert Wh to kWh
+                kwh_exported: (item.wh_exported / 1000).toFixed(2)
             }));
 
-            const powerDataTransformed = Object.keys(rawData[selectedDate]).map(hour => ({
-                time: new Date(new Date(selectedDate).setHours(hour)),
-                sumKw: rawData[selectedDate][hour].sumWatt / 1000 // Convert to kW
+            // Transform the solar production data to kWh
+            const productionDataTransformed = productionData.intervals.map(item => ({
+                time: new Date(item.end_at * 1000),
+                kwh_produced: (item.wh_del / 1000).toFixed(2)
             }));
+
+            // Calculate total kWh for each dataset
+            const totalImport = d3.sum(importDataTransformed, d => +d.kwh_imported).toFixed(2);
+            const totalExport = d3.sum(exportDataTransformed, d => +d.kwh_exported).toFixed(2);
+            const totalProduction = d3.sum(productionDataTransformed, d => +d.kwh_produced).toFixed(2);
+            const totalPowerUsage = d3.sum(powerDataTransformed, d => +d.total_kwh).toFixed(2);
+            const totalHouseConsumption = d3.sum(houseConsumptionDataTransformed, d => +d.total_kwh).toFixed(2);
 
             // Remove any existing SVG before re-drawing
             d3.select(chartRef.current).select("svg").remove();
@@ -64,19 +74,24 @@ const CombinedChart = () => {
 
             // X-axis scale (time)
             const x = d3.scaleTime()
-                .domain([d3.min(importDataTransformed, d => d.time), d3.max(importDataTransformed, d => d.time)])
-                .range([0, width]);
+    .domain([
+        d3.min([d3.min(importDataTransformed, d => d.time), d3.min(powerDataTransformed, d => d.time), d3.min(houseConsumptionDataTransformed, d => d.time)]),
+        d3.max([d3.max(importDataTransformed, d => d.time), d3.max(powerDataTransformed, d => d.time), d3.max(houseConsumptionDataTransformed, d => d.time)])
+    ])
+    .range([0, width]);
+
 
             svg.append("g")
                 .attr("transform", `translate(0, ${height})`)
-                .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%H"))); // Format as hours (0-23)
-                
+                .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%H")));
 
-            // Y-axis scale
+            // Y-axis scale (energy and power)
             const maxY = d3.max([
                 ...importDataTransformed.map(d => d.kwh_imported),
                 ...exportDataTransformed.map(d => d.kwh_exported),
-                ...powerDataTransformed.map(d => d.sumKw)
+                ...productionDataTransformed.map(d => d.kwh_produced),
+                ...powerDataTransformed.map(d => d.total_kwh),
+                ...houseConsumptionDataTransformed.map(d => d.total_kwh)
             ]);
 
             const y = d3.scaleLinear()
@@ -112,16 +127,39 @@ const CombinedChart = () => {
                     .curve(d3.curveMonotoneX)
                 );
 
-            // Area for power usage
+            // Line for power usage (kWh)
             svg.append("path")
                 .datum(powerDataTransformed)
-                .attr("fill", "lightblue")
-                .attr("stroke", "blue")
+                .attr("fill", "none")
+                .attr("stroke", "green")
                 .attr("stroke-width", 1.5)
-                .attr("d", d3.area()
+                .attr("d", d3.line()
                     .x(d => x(d.time))
-                    .y0(y(0))
-                    .y(d => y(d.sumKw))
+                    .y(d => y(d.total_kwh))
+                    .curve(d3.curveMonotoneX)
+                );
+
+            // Line for solar production (kWh)
+            svg.append("path")
+                .datum(productionDataTransformed)
+                .attr("fill", "none")
+                .attr("stroke", "purple")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                    .x(d => x(d.time))
+                    .y(d => y(d.kwh_produced))
+                    .curve(d3.curveMonotoneX)
+                );
+
+            // Line for house consumption (kWh)
+            svg.append("path")
+                .datum(houseConsumptionDataTransformed)
+                .attr("fill", "none")
+                .attr("stroke", "red")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                    .x(d => x(d.time))
+                    .y(d => y(d.total_kwh))
                     .curve(d3.curveMonotoneX)
                 );
 
@@ -131,7 +169,6 @@ const CombinedChart = () => {
                 .attr("x", width / 2 + margin.left)
                 .attr("y", height + margin.bottom - 10)
                 .text("Time of day (Hours)");
-                
 
             // Y-axis label
             svg.append("text")
@@ -139,79 +176,90 @@ const CombinedChart = () => {
                 .attr("transform", "rotate(-90)")
                 .attr("y", -margin.left + 20)
                 .attr("x", -margin.top - height / 2 + 20)
-                .text("Energy (kWh) / Power (kW)");
+                .text("Energy (kWh)");
 
-            // Add legend
+            // Add legend with total kWh sums
+
+            // Legend with Solar Import
             svg.append("circle").attr("cx", 900).attr("cy", 50).attr("r", 6).style("fill", "steelblue");
-            svg.append("text").attr("x", 920).attr("y", 50).text("Solar Imported (kWh)").style("font-size", "15px").attr("alignment-baseline", "middle");
+            svg.append("text").attr("x", 920).attr("y", 50).text(`From Grid (kWh): ${totalImport}`).style("font-size", "15px").attr("alignment-baseline", "middle");
 
+            // Legend with Solar Export
             svg.append("circle").attr("cx", 900).attr("cy", 80).attr("r", 6).style("fill", "orange");
-            svg.append("text").attr("x", 920).attr("y", 80).text("Solar Exported (kWh)").style("font-size", "15px").attr("alignment-baseline", "middle");
+            svg.append("text").attr("x", 920).attr("y", 80).text(`Solar Exported (kWh): ${totalExport}`).style("font-size", "15px").attr("alignment-baseline", "middle");
 
-            svg.append("circle").attr("cx", 900).attr("cy", 110).attr("r", 6).style("fill", "blue");
-            svg.append("text").attr("x", 920).attr("y", 110).text("Power Usage (kW)").style("font-size", "15px").attr("alignment-baseline", "middle");
+            // Legend with Power Usage
+            svg.append("circle").attr("cx", 900).attr("cy", 110).attr("r", 6).style("fill", "green");
+            svg.append("text").attr("x", 920).attr("y", 110).text(`Power Usage (kWh): ${totalPowerUsage}`).style("font-size", "15px").attr("alignment-baseline", "middle");
 
-            // Mouse-over functionality for displaying data points
-            const focus = svg.append('g').append('circle')
-                .attr('r', 8.5)
-                .attr('stroke', 'black')
-                .attr('fill', 'none')
-                .style('opacity', 0);
+            // Legend with Solar Production
+            svg.append("circle").attr("cx", 900).attr("cy", 140).attr("r", 6).style("fill", "purple");
+            svg.append("text").attr("x", 920).attr("y", 140).text(`Solar Produced (kWh): ${totalProduction}`).style("font-size", "15px").attr("alignment-baseline", "middle");
 
-            const focusText = svg.append('g').append('text')
-                .style('opacity', 0)
-                .attr('text-anchor', 'left')
-                .attr('alignment-baseline', 'middle');
-
-            svg.append('rect')
-                .style('fill', 'none')
-                .style('pointer-events', 'all')
-                .attr('width', width)
-                .attr('height', height)
-                .on('mouseover', mouseover)
-                .on('mousemove', mousemove)
-                .on('mouseout', mouseout);
-
-            function mouseover() {
-                focus.style('opacity', 1);
-                focusText.style('opacity', 1);
-            }
-
-            function mousemove(event) {
-                const x0 = x.invert(d3.pointer(event)[0]);
-                const bisect = d3.bisector(d => d.time).left;
-
-                // Find closest points in all datasets
-                const iPower = bisect(powerDataTransformed, x0, 1);
-                const iImport = bisect(importDataTransformed, x0, 1);
-                const iExport = bisect(exportDataTransformed, x0, 1);
-                
-
-                const selectedImport = importDataTransformed[iImport - 1];
-                const selectedExport = exportDataTransformed[iExport - 1];
-                const selectedPower = powerDataTransformed[iPower - 1];
-
-                focus
-                    .attr('cx', x(selectedImport.time))
-                    .attr('cy', y(selectedImport.kwh_imported));
-
-                focusText
-                    .html(`Time: ${d3.timeFormat("%H:%M")(selectedImport.time)} <br>
-                           Imported: ${selectedImport.kwh_imported} kWh <br>
-                           Exported: ${selectedExport.kwh_exported} kWh <br>
-                           Power Usage: ${selectedPower.sumKw} kW`)
-                    .attr('x', x(selectedImport.time) + 15)
-                    .attr('y', y(selectedImport.kwh_imported));
-            }
-
-            function mouseout() {
-                focus.style('opacity', 0);
-                focusText.style('opacity', 0);
-            }
+            // Legend with House Consumption
+            svg.append("circle").attr("cx", 900).attr("cy", 170).attr("r", 6).style("fill", "red");
+            svg.append("text").attr("x", 920).attr("y", 170).text(`House Consumption (kWh): ${totalHouseConsumption}`).style("font-size", "15px").attr("alignment-baseline", "middle");
         })
         .catch(error => {
             console.error('Error fetching or processing data:', error);
         });
+
+        // Function to preprocess the power usage data from the API
+        function preprocessPowerData(rawData) {
+            const timestamps = Object.keys(rawData).sort();
+            const dataByHour = {};
+
+            timestamps.forEach((timestamp) => {
+                dataByHour[timestamp] = 0;
+            });
+
+            Object.keys(rawData).forEach(device => {
+                rawData[device].forEach(record => {
+                    const wattage = record.watt;
+                    const timestamp = record.timestamp;
+                    dataByHour[timestamp] += wattage;
+                });
+            });
+
+            const totalData = Object.keys(dataByHour).map(timestamp => {
+                const totalWattHours = dataByHour[timestamp] * 0.25;
+                return {
+                    time: new Date(timestamp * 1000),
+                    total_kwh: totalWattHours / 1000
+                };
+            });
+
+            return totalData;
+        }
+
+        // Function to preprocess house consumption data
+        function preprocessHouseConsumptionData(rawData) {
+            const timestamps = new Set();
+            const dataByHour = {};
+
+            // Loop through all devices and their records
+            Object.keys(rawData).forEach(device => {
+                rawData[device].forEach(record => {
+                    const wattage = record.watt;
+                    const timestamp = record.timestamp;
+                    if (!dataByHour[timestamp]) {
+                        dataByHour[timestamp] = 0;
+                    }
+                    dataByHour[timestamp] += wattage;
+                    timestamps.add(timestamp);
+                });
+            });
+
+            const totalData = Array.from(timestamps).sort().map(timestamp => {
+                const totalWattHours = dataByHour[timestamp] * 0.25; // Convert to Watt-hours
+                return {
+                    time: new Date(timestamp * 1000),
+                    total_kwh: totalWattHours / 1000 // Convert to kWh
+                };
+            });
+
+            return totalData;
+        }
     }, []);
 
     return <div ref={chartRef}></div>;
