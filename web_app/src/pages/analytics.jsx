@@ -14,7 +14,7 @@ const Analytics = () => {
 
     return (
         <div className='analytics'>
-            <p className='head'>Analytics Con Cac so 1</p>
+            <p className='head'>Analytics Con Cu so 2</p>
             <p id="AddressLine">House Address</p>         
 
             <BaseCard width={600} height={400}>
