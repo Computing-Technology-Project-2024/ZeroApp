@@ -1,0 +1,20 @@
+name: Trigger Update in personal_deploy
+
+on:
+  push:
+    branches:
+      - deploy-react  # This will trigger on push to the 'deploy-react' branch
+    paths:
+      - "web_app/**"  # Trigger only if changes are in the web_app folder
+
+jobs:
+  trigger-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Update in personal_deploy
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.everest-preview+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d '{"event_type": "update-repo-from-zeroapp"}' \
+            https://api.github.com/repos/PhamCongHiep2003/personal_deploy/dispatches
