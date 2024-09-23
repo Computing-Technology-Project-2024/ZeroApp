@@ -1,6 +1,5 @@
 import datetime
 from typing import Optional, Annotated
-from public_api.schemas.PyObjectId import PyObjectId
 from pydantic import BaseModel, Field, BeforeValidator
 from bson import ObjectId
 
@@ -22,7 +21,7 @@ class HomeOwnerAddress(BaseModel):
 
 class HomeOwner(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id")
-    account_id:  Optional[PyObjectId] #Optional for dev
+    account_id:  Optional[PyObjectId] = Field(default = None) #Optional for dev
     created: str
     active: bool
     #Can have list of Site Ids, maybe based on the different APIs
