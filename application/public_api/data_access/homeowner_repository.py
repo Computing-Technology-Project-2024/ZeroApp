@@ -58,3 +58,31 @@ async def update_homeowner(homeowner_id: str, homeowner_data: dict, db: AsyncIOM
     updated_homeowner = await db["homeowners"].find_one({"_id": ObjectId(homeowner_id)})
 
     return HomeOwner(**updated_homeowner)
+
+async def disable_homeowner(homeowner_id: str, db: AsyncIOMotorDatabase):
+    homeowner = await db["homeowners"].find_one({
+        "_id": ObjectId(homeowner_id),
+        "active": True
+    })
+
+    if homeowner is None:
+        return 0
+    else:
+        homeowner["active"] = False
+                
+    HomeOwner(**homeowner)
+
+    result = await db["homeowners"].update_one(
+        {"_id": ObjectId(homeowner_id)},
+        {"$set": homeowner}
+    )
+
+    if result.modified_count == 0:
+        return 0
+
+    updated_homeowner = await db["homeowners"].find_one({"_id": ObjectId(homeowner_id)})
+
+    if updated_homeowner["active"] == False:
+        return 1
+    else:
+        return 0

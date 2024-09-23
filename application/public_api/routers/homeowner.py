@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from public_api.data_access.homeowner_repository import add_homeowner, get_homeowner_by_id, update_homeowner
+from public_api.data_access.homeowner_repository import add_homeowner, get_homeowner_by_id, update_homeowner, disable_homeowner
 from public_api.database import get_db
 from public_api.schemas.homeowner import HomeOwner, HomeOwnerDetails, HomeOwnerAddress
 import datetime
@@ -27,6 +27,8 @@ async def patch_homeowner(homeowner_id: str, update_data: dict):
     updated_homeowner = await update_homeowner(homeowner_id, update_data, db)
     return updated_homeowner
 
-@homeowner_router.delete("/")
-async def delete_homeowner():
-    pass
+@homeowner_router.delete("/{homeowner_id}")
+async def delete_homeowner(homeowner_id: str):
+    db = get_db()
+    result = await disable_homeowner(homeowner_id, db)
+    return result
