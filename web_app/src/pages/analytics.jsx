@@ -36,8 +36,6 @@ const Analytics = () => {
             <p className='comp-name'>Devices Consumption</p>
             <CircuitsChart/>
             </BaseCard>
-
-            
         </div>
     );
 };

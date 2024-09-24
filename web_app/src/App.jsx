@@ -12,6 +12,7 @@ import Recommendation from "./pages/recommendation";
 import Analytics from "./pages/analytics";
 import Settings from "./pages/settings";
 
+
 const App = () => {
     const routes = [
         { path: pageRoutes.HOME, element: <Home /> },
