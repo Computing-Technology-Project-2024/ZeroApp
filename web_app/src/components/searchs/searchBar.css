@@ -1,8 +1,11 @@
 .searchbar-container {
+  position: sticky;
+  top: 0;
+
   display: flex;
   align-items: center;
   width: 100%; 
-  height: 10vh;  /* Keep a consistent height based on viewport height */
+  height: 10vh;  /* fixed height */
   min-height: 60px;  /* Ensures it doesn't shrink below this height */
   background-color: #fff;
   justify-content: space-between;
@@ -91,7 +94,57 @@
   margin-left: 10px;
 }
 
-/* Responsive adjustments */
+/* Pointer */
+.notification-icon, .toggle-icon {
+  cursor: pointer;
+}
+
+/* --------------Drop down box----------------- */
+.dropdown-menu {
+  position: fixed; 
+  top: 60px;  /* Manual position under the search bar - Can change later */
+  right: 20px; /* Position right of the screen */
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 150px;
+  padding: 10px;
+  z-index: 1000;
+
+  max-height: 300px;  /* Limit the maximum height */
+  overflow-y: scroll; /* Add scroll when content exceeds max height */
+
+  /* Hide scrollbar */
+  scrollbar-width: none;  /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  display: none;  /* For Chrome, Safari, and Opera */
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+/* -------------------Responsive adjustments---------------- */
 @media (max-width: 768px) {
   .searchbar-container {
     padding: 10px;
@@ -131,5 +184,28 @@
   .toggle-icon {
     width: 10px;
     height: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    width: 100px;  
+    top: 60px;  
+    right: 10px;  
+    max-height: 200px;  
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdown-menu {
+    width: 80px; 
+    top: 50px; 
+    right: 5px; 
+    max-height: 150px; 
+  }
+
+  .dropdown-menu li {
+    padding: 5px;  
+    font-size: 12px;
   }
 }
