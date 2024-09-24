@@ -1,152 +1,135 @@
 .searchbar-container {
-    display: flex;
-    align-items: center;
-    width: 100%; 
-    height: 8%; 
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%; 
+  height: 10vh;  /* Keep a consistent height based on viewport height */
+  min-height: 60px;  /* Ensures it doesn't shrink below this height */
+  background-color: #fff;
+  justify-content: space-between;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
 
-    padding: 10px 20px;
-    box-sizing: border-box;
+.search-container {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  flex-grow: 1;
+  max-width: 400px;
+  box-sizing: border-box;
+  min-height: 40px; /* Ensure the search container doesn't shrink below this */
+}
+
+.icon, .notification-icon {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.notification-container, .user-container {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  flex-shrink: 1;
+}
+
+.notification-badge {
+  top: -5px;
+  right: -10px;
+  background-color: #f00;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+}
+
+.user-info-wrapper {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.user-mode {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.toggle-icon {
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .searchbar-container {
+    padding: 10px;
+    justify-content: flex-start;
+    height: 10vh; /* Maintain height in reduced width */
   }
-  
-  /* Search container with outer border */
+
   .search-container {
-    display: flex;
-    align-items: center;
-
-    /* for test purpose */
-    /* border: 2px solid #ccc;
-    border-radius: 4px; */
-
-    padding: 8px 10px;
     flex-grow: 1;
-    max-width: 400px;
-    box-sizing: border-box;
+    margin-right: auto;
   }
-  
-  .icon {
-    margin-right: 10px;
-    width: 18px;
-    height: 18px;
-  }
-  
-  .search-input {
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-  }
-  
-  /* Notification and user containers are aligned to the right */
-  .right-container {
-    display:flex;
-    flex-direction: row;
-  }
-  .notification-container, .user-container {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-    flex-shrink: 1;  /* Allow shrinking */
-  }
-  
-  .notification-container {
-    margin-right: 20px;
-  }
-  
-  .notification-icon {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .notification-badge {
-    top: -5px;
-    right: -10px;
-    background-color: #f00;
-    color: #fff;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 10px;
-  }
-  
-  /* User info wrapper with user image on the left and info on the right */
 
-  .user-info-wrapper {
-    display: flex;
-    align-items: center;
-    min-width: 0;  /* Prevent overflow issues */
-  }
-  
-  .user-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-    flex-shrink: 0;  /* Prevent shrinking */
-  }
-  
-  .user-info {
-    display: flex;
-    flex-direction: column;
-    white-space: nowrap; /* Prevent text wrapping */
-  }
-  
-  .user-name {
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  
-  .user-mode {
-    font-size: 0.8rem;
-    color: #888;
-  }
-  
-  .toggle-icon {
-    width: 12px;
-    height: 12px;
+  .notification-container, .user-container {
     margin-left: 10px;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .searchbar-container {
-      padding: 10px;
-      justify-content: flex-start;  /* Align left when screen width is reduced */
-    }
-  
-    .search-container {
-      flex-grow: 1;
-      margin-right: auto;  /* Ensure it takes the maximum space */
-    }
-  
-    .notification-container, .user-container {
-      margin-left: 10px;
-    }
-  
-    .user-info-wrapper {
-      justify-content: flex-start;
-    }
-  
-    .user-info {
-      display: none;  /* Hide user info on small screens to save space */
-    }
+
+  .user-info-wrapper {
+    justify-content: flex-start;
   }
-  
-  @media (max-width: 480px) {
-    .icon, .notification-icon {
-      width: 16px;
-      height: 16px;
-    }
-  
-    .user-icon {
-      width: 30px;
-      height: 30px;
-    }
-  
-    .toggle-icon {
-      width: 10px;
-      height: 10px;
-    }
+
+  .user-info {
+    display: none;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .icon, .notification-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .user-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .toggle-icon {
+    width: 10px;
+    height: 10px;
+  }
+}
