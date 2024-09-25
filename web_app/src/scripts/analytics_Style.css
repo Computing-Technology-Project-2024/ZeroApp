@@ -1,7 +1,6 @@
 .analytics {
+    width: 100%;
     font-family: 'Nunito Sans', 'sans-serif';
-
-
 }
 
 #AddressLine {
@@ -10,9 +9,7 @@
     border-radius: 60px;          /* Rounded corners */
     padding: 5px;                /* Padding for height */
     text-align: center;          /* Center the text */
-    margin-left: auto;           /* Align with left edge of the page */
-    margin-right: auto;          /* Align with right edge of the page */
-    position: relative;          /* Positioning for full stretch */
+    width: 100%;
 }
 
 .button-group {
@@ -48,7 +45,7 @@
 }
 
 .head {
-    font-size: 2.5em;
+    font-size: 24px;
 }
 
 .loading-spinner {

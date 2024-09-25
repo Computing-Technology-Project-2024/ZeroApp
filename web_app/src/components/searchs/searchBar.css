@@ -11,6 +11,7 @@
   justify-content: space-between;
   padding: 10px 20px;
   box-sizing: border-box;
+  z-index: 50;
 }
 
 .search-container {

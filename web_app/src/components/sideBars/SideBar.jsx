@@ -8,7 +8,7 @@ import settings_icon from '../../img/settings_icon.png';
 import {Link} from "react-router-dom";
 import {pageRoutes} from "../../constants/pageRoutes";
 
-const Sidebar = () => {
+const Sidebar = ({ className }) => {
   const [activeItem, setActiveItem] = useState('dashboard');
 
   const handleItemClick = (item) => {
@@ -27,11 +27,12 @@ const Sidebar = () => {
   ];
 
   return (
-      <div className="sidebar">
+      <div className={`sidebar w-60 ${className}`}>
         <div className="logo">
           <span className="logo-zero">Zero</span>
           <span className="logo-app">App</span>
         </div>
+
         <nav className="menu">
           <ul>
             {menuItems.map((item) => (
@@ -40,7 +41,8 @@ const Sidebar = () => {
                     className={`menu-item ${activeItem === item.name ? 'active' : ''}`}
                 >
                   <Link to={item.route} onClick={() => handleItemClick(item.name)}>
-                    <img className="img" src={item.icon} alt="icon"/> {item.text}
+                    <img className="img" src={item.icon} alt="icon"/>
+                    <p>{item.text}</p>
                   </Link>
                 </li>
             ))}

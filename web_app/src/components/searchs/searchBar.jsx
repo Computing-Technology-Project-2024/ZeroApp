@@ -17,7 +17,7 @@ const searchBarItems = [
     { name: 'active_dropdown', icon: active_dropdown_icon, alt: 'Active Dropdown' }
 ];
 
-const SearchBar = () => {
+const SearchBar = ({ className }) => {
     const [isDropdownActive, setIsDropdownActive] = useState(false);
 
     const handleNotificationClick = () => {
@@ -30,8 +30,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="searchbar-container">
-
+        <div className={`searchbar-container ${className}`}>
             <Search />
 
             <div></div>

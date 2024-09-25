@@ -1,12 +1,13 @@
 .sidebar {
-  width: 240px;
   height: 100vh;
   background-color: #fff;
   display: flex;
+  z-index: 50;
   flex-direction: column;
   font-family: 'Nunito Sans', 'sans-serif';
   font-size: 32px;
   padding: 0;
+  position: sticky;
 }
 
 .logo {
@@ -63,13 +64,13 @@
 }
 
 .menu-item img {
-  margin-right: 10px; /* Increase spacing between icon and text if needed */
+  margin-right: 5px; /* Increase spacing between icon and text if needed */
 }
 
 
 .settings {
-  margin-top: 30%;
-  padding-bottom: 20px;
+  /*margin-top: 30%;*/
+  /*padding-bottom: 20px;*/
 }
 
 .hr {

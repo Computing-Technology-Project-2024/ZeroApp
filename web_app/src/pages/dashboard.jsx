@@ -20,7 +20,8 @@ const data = [
 
 const Dashboard = () => {
   return (
-    <div className="mx-auto bg-gray-100 min-h-screen">
+    <div className=" bg-gray-100 min-h-screen w-full">
+      {/* i edit mx-auto up there hehe sr about that */}
       <h3 className="text-2xl font-bold mb-4 text-left">Dashboard</h3>
       {/* Dashboard Header */}
       <div className="grid grid-cols-4 gap-6 mb-6">

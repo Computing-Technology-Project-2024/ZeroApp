@@ -4,7 +4,6 @@ import {pageRoutes} from "./constants/pageRoutes";
 
 import Dashboard from "./pages/dashboard";
 import Signup from "./pages/auth/signup";
-import Admin from "./pages/admin/admin";
 import Login from "./pages/auth/login";
 import Home from "./pages/home";
 import PageLayout from "./components/containers/PageLayout";
@@ -17,7 +16,6 @@ const App = () => {
     const routes = [
         { path: pageRoutes.HOME, element: <Home /> },
         { path: pageRoutes.DASHBOARD, element: <Dashboard /> },
-        { path: pageRoutes.ADMIN, element: <Admin /> },
         { path: pageRoutes.LOGIN, element: <Login /> },
         { path: pageRoutes.SIGNUP, element: <Signup /> },
         { path: pageRoutes.RECOMMENDATIONS, element: <Recommendation /> },

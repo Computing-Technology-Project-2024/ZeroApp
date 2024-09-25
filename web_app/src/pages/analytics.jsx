@@ -14,10 +14,13 @@ const Analytics = () => {
 
     return (
         <div className='analytics'>
-            <p className='head'>Analytics Con Cu so 2</p>
-            <p id="AddressLine">House Address</p>         
+          <div className={`mb-4`}>
+            <p className='head font-bold pb-4'>Analytics</p>
+            {/* TODO: add dynamic site address here */}
+            <p id="AddressLine">House Address</p>
+          </div>
 
-            <BaseCard width={600} height={400}>
+          <BaseCard className={`mb-4 w-[1100px]`}>
             <div className="button-group">
                 {['Day', 'Week', 'Month', 'Year'].map(label => (
                     <button
@@ -30,12 +33,12 @@ const Analytics = () => {
             </div>
             <p className='comp-name'>Energy Usage, Inport/Export</p>
             <CombChart/>
-            </BaseCard>
+          </BaseCard>
 
-            <BaseCard width={400} height={400}>
+          <BaseCard className={`w-[1100px]`}>
             <p className='comp-name'>Devices Consumption</p>
             <CircuitsChart/>
-            </BaseCard>
+          </BaseCard>
         </div>
     );
 };
