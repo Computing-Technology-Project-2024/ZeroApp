@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from public_api.services.ecx_api import fetch_sites
 from public_api.schemas.site import Site, SiteList
-from public_api.data_access.site_repository import update_all_sites, get_site, get_all_sites_from_db
+from public_api.data_access.site_repository import update_all_sites, get_site, get_all_sites_from_db, add_site
 from public_api.database import get_db
 from bson.objectid import ObjectId
 
@@ -18,8 +18,10 @@ async def get_site_by_id(site_id: str):
     return site
 
 @site_router.post("/")
-async def add_new_site():
-    pass
+async def add_new_site(site: Site):
+    db = get_db()
+    site = await add_site(site, db)
+    return site
 
 @site_router.patch("/")
 async def update_site_data():

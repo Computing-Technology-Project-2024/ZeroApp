@@ -7,6 +7,15 @@ from public_api.schemas.site import Site, SiteList
 
 collection_name = "sites"
 
+async def add_site(site: Site, db: AsyncIOMotorDatabase) -> Site:
+    
+    site_dict = site.model_dump(by_alias=True, exclude=["id"])
+
+    # Insert the homeowner into the collection
+    result = await db["sites"].insert_one(site_dict)
+
+    return Site(**site_dict, id=result.inserted_id)
+
 async def get_site(site_id: str, db: AsyncIOMotorDatabase) -> Site:
    site = await db["sites"].find_one({
        # can add where homeowner == session.homeowner or is admin for authorization
