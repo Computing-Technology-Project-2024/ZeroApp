@@ -21,6 +21,7 @@ const Analytics = () => {
 
     return (
         <div className='analytics'>
+<<<<<<< HEAD
             <p className='head'>Analytics</p>
             <p id="AddressLine">House Address</p>
 
@@ -62,6 +63,33 @@ const Analytics = () => {
                 {/* Pass both the timeframe and selectedDate to the CircuitsChart */}
                 <StackedBar timeframe={activeButton} selectedDate={selectedDate} />
             </BaseCard>
+=======
+          <div className={`mb-4`}>
+            <p className='head font-bold pb-4'>Analytics</p>
+            {/* TODO: add dynamic site address here */}
+            <p id="AddressLine">House Address</p>
+          </div>
+
+          <BaseCard className={`mb-4 w-[1100px]`}>
+            <div className="button-group">
+                {['Day', 'Week', 'Month', 'Year'].map(label => (
+                    <button
+                        key={label}
+                        className={`custom-button ${activeButton === label ? 'active' : ''}`}
+                        onClick={() => handleClick(label)}>
+                        {label}
+                    </button>
+                ))}
+            </div>
+            <p className='comp-name'>Energy Usage, Inport/Export</p>
+            <CombChart/>
+          </BaseCard>
+
+          <BaseCard className={`w-[1100px]`}>
+            <p className='comp-name'>Devices Consumption</p>
+            <CircuitsChart/>
+          </BaseCard>
+>>>>>>> deploy-react
         </div>
     );
 };
