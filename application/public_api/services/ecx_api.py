@@ -32,6 +32,13 @@ def fetch_device_parameters():
     response.raise_for_status()
     return response.json()
 
+async def fetch_sites():
+    url = f"{ECX_BASE_URL}/sites"
+    headers = {'x-api-key': ECX_API_KEY}
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    return response.json()
+
 # Example usage:
 # critical_params = ecx_api.fetch_critical_parameters('EE40400611940036', 1713621600, 1713708000)
 # device_params = ecx_api.fetch_device_parameters()
