@@ -22,6 +22,7 @@ class Site(BaseModel):
     class Config:
         arbitrary_types_allowed = True
         json_encoders = {PyObjectId: str}
+        populate_by_name=True
 
 class SiteList(BaseModel):
     sites: List[Site]

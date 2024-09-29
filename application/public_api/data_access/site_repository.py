@@ -24,9 +24,32 @@ async def get_site(site_id: str, db: AsyncIOMotorDatabase) -> Site:
    })
    return Site(**site) if site else None
 
-async def create_site(site: Site, db: AsyncIOMotorDatabase) -> Site:
-    result = await db[collection_name].insert_one(site.dict(by_alias=True))
-    return Site(**site.dict(by_alias=True, _id=result.inserted_id))
+async def update_site(site_object_id: str, site_data: dict, db: AsyncIOMotorDatabase) -> Site:
+    site = await db["sites"].find_one({
+        "_id": ObjectId(site_object_id),
+        "deleted": False
+    })
+
+    if site is None:
+        return 0
+    else:
+        for k, v in site_data.items():
+            site[k] = v
+
+    Site(**site)
+
+    result = await db["sites"].update_one(
+        {"_id": ObjectId(site_object_id)},
+        {"$set": site}
+    )
+
+    if result.modified_count == 0:
+        print(22)
+        return 0
+
+    updated_site = await db["sites"].find_one({"_id": ObjectId(site_object_id)})
+
+    return Site(**updated_site)
 
 async def update_all_sites(site_list: SiteList, db: AsyncIOMotorDatabase):
     # Will make collection if not exists
