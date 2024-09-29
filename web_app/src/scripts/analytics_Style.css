@@ -57,3 +57,51 @@
     padding: 20px;
     color: #007bff;
 }
+.control-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    float: right;
+}
+
+.date-picker {
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #e0e0e5;
+    background-color: #f0f0f5;
+    font-size: 16px;
+    width: 160px;
+    margin-right: 10px;
+}
+
+.button-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    float: right;
+}
+
+.custom-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #f0f0f5;
+    color: #555;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-button.active {
+    background-color: #00a000;
+    color: white;
+}
+
+.custom-button:hover {
+    background-color: #e0e0e5;
+}
+
+.date-picker {
+    text-align: center;
+}

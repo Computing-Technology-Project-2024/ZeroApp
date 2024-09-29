@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import * as d3 from 'd3';
 
-const StackedAreaChart = ({ timeframe, selectedDate }) => {
+const StackedBarChart = ({ timeframe, selectedDate }) => {
     const chartRef = useRef(null);
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -9,58 +9,47 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
     const [totalEnergyByCircuit, setTotalEnergyByCircuit] = useState({});
     const [lastUpdated, setLastUpdated] = useState(null);
 
-    const getTimeRange = () => {
-        const selected = new Date(selectedDate);  // Use selectedDate instead of current date
-
+    // Compute time range for API requests
+    const getTimeRange = useCallback(() => {
+        const selected = new Date(selectedDate);
         let startTime, endTime;
 
         switch (timeframe) {
             case 'Day':
-                // Set start time to the start of the selected day in AEST
                 startTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 0, 0, 0);
                 endTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 23, 59, 59);
                 break;
             case 'Week':
-                // Get the start of the week (Monday) in AEST
-                const dayOfWeek = selected.getDay(); // Day of week (0 is Sunday, 6 is Saturday)
-                const diffToMonday = (dayOfWeek === 0 ? -6 : 1) - dayOfWeek; // Calculate how many days to subtract to get to Monday
+                const dayOfWeek = selected.getDay();
+                const diffToMonday = (dayOfWeek === 0 ? -6 : 1) - dayOfWeek;
                 startTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate() + diffToMonday, 0, 0, 0);
                 endTime = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate() + 6, 23, 59, 59);
                 break;
             case 'Month':
-                // Set start time to the first day of the selected month
                 startTime = new Date(selected.getFullYear(), selected.getMonth(), 1, 0, 0, 0);
-                // Set end time to the last day of the selected month
                 endTime = new Date(selected.getFullYear(), selected.getMonth() + 1, 0, 23, 59, 59);
                 break;
             case 'Year':
-                // Set start time to January 1st of the selected year
                 startTime = new Date(selected.getFullYear(), 0, 1, 0, 0, 0);
-                // Set end time to December 31st of the selected year
                 endTime = new Date(selected.getFullYear(), 11, 31, 23, 59, 59);
                 break;
             default:
-                // Default to the selected day if no timeframe is matched
                 startTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 0, 0, 0);
                 endTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 23, 59, 59);
         }
 
-        // Convert times to UTC for the API (since the backend may expect Unix timestamps in UTC)
-        const startTimeUTC = Math.floor(startTime.getTime() / 1000); // Convert to Unix timestamp in seconds
-        const endTimeUTC = Math.floor(endTime.getTime() / 1000);
-
         return {
-            starttime: startTimeUTC,
-            endtime: endTimeUTC
+            starttime: Math.floor(startTime.getTime() / 1000),
+            endtime: Math.floor(endTime.getTime() / 1000)
         };
-    };
+    }, [timeframe, selectedDate]);
 
+    // Fetch data and process it
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
                 const { starttime, endtime } = getTimeRange();
-                console.log(`Fetching data from ${starttime} to ${endtime}`);
 
                 const response = await fetch(
                     `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${starttime}&endtime=${endtime}`,
@@ -75,23 +64,13 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 }
 
                 const result = await response.json();
-                console.log('API Response for Day:', result);
-
-                if (Object.keys(result).length === 0) {
-                    console.error('No data returned for the specified day range.');
-                    throw new Error('No data returned from API.');
-                }
-
                 const aggregatedData = preprocessData(result);
                 const energyData = calculateTotalEnergy(result);
-
-                console.log('Aggregated Data:', aggregatedData);
 
                 setData(aggregatedData);
                 setVisibleCircuits(Object.keys(aggregatedData[0]).filter(d => d !== 'timestamp'));
                 setTotalEnergyByCircuit(energyData);
-                setLoading(false);
-                setLastUpdated(new Date());  // Set the current time as the last updated time
+                setLastUpdated(new Date());
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -100,10 +79,9 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
         };
 
         fetchData();
-    }, [timeframe, selectedDate]);
+    }, [getTimeRange]);
 
-    const preprocessData = (rawData) => {
-        console.log('Raw Data before processing:', rawData);
+    const preprocessData = useCallback((rawData) => {
         const aggregatedData = {};
         const allDevices = Object.keys(rawData);
 
@@ -123,10 +101,9 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
         });
 
         return Object.values(aggregatedData).sort((a, b) => a.timestamp - b.timestamp);
+    }, []);
 
-    };
-
-    const calculateTotalEnergy = (rawData) => {
+    const calculateTotalEnergy = useCallback((rawData) => {
         const energyByCircuit = {};
         const allDevices = Object.keys(rawData);
 
@@ -139,21 +116,20 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
         });
 
         return energyByCircuit;
-    };
+    }, []);
 
+    // Memoize the chart creation to avoid unnecessary renders
     useEffect(() => {
-        if (data && visibleCircuits && data.length > 0) {  // Add a guard clause to check if data exists and is not empty
-            console.log('Chart Data:', data);
-            console.log('Visible Circuits:', visibleCircuits);
-            createStackedAreaChart(data);
-        } else {
-            console.log("Data or visible circuits are undefined or empty.");
+        if (data && visibleCircuits && data.length > 0) {
+            createStackedBarChart(data);
         }
 
-        function createStackedAreaChart(data) {
-            if (!data || data.length === 0) return;  // Further protection
-
-            d3.select(chartRef.current).select('svg').remove();
+        function createStackedBarChart(data) {
+            // Re-use SVG if it exists
+            const existingSvg = d3.select(chartRef.current).select('svg');
+            if (!existingSvg.empty()) {
+                return;
+            }
 
             const margin = { top: 20, right: 100, bottom: 100, left: 70 },
                 width = 1200 - margin.left - margin.right,
@@ -167,14 +143,18 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 .attr('transform', `translate(${margin.left},${margin.top})`);
 
             const keys = Object.keys(data[0]).filter(d => d !== 'timestamp');
-            if (keys.length === 0) return;  // If no keys are found, don't proceed
-
             const stack = d3.stack().keys(keys);
             const stackedData = stack(data);
 
-            const x = d3.scaleTime()
-                .domain(d3.extent(data, d => new Date(d.timestamp * 1000)))
-                .range([0, width]);
+            const x = d3.scaleBand()
+                .domain(data.map(d => {
+                    const timestamp = new Date(d.timestamp * 1000);
+                    return timeframe === 'Day'
+                        ? d3.timeFormat('%H')(timestamp)
+                        : d3.timeFormat('%Y-%m-%d')(timestamp);
+                }))
+                .range([0, width])
+                .padding(0.2);
 
             const y = d3.scaleLinear()
                 .domain([0, d3.max(stackedData, d => d3.max(d, d => d[1]))])
@@ -182,91 +162,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
 
             const color = d3.scaleOrdinal(d3.schemeCategory10).domain(keys);
 
-            const area = d3.area()
-                .x(d => x(new Date(d.data.timestamp * 1000)))
-                .y0(d => y(d[0]))
-                .y1(d => y(d[1]))
-                .curve(d3.curveBasis);
-                
-
-            svg.selectAll('path')
-                .data(stackedData)
-                .enter()
-                .append('path')
-                .attr('fill', d => color(d.key))
-                .style('display', d => visibleCircuits.includes(d.key) ? null : 'none')
-                .attr('d', area);                
-
-            svg.append('rect')
-                .attr('width', width)
-                .attr('height', height)
-                .style('fill', 'none')
-                .style('pointer-events', 'all')
-                .on('click', function (event) {
-                    const [mouseX] = d3.pointer(event);
-                    const xDate = x.invert(mouseX);
-                    const bisect = d3.bisector(d => new Date(d.timestamp * 1000)).left;
-                    const index = bisect(data, xDate);
-                    const closestData = data[index];
-
-                    svg.selectAll('.hover-info').remove();
-
-                    svg.append('text')
-                        .attr('class', 'hover-info')
-                        .attr('x', 10)
-                        .attr('y', 20)
-                        .text(`Time: ${d3.timeFormat('%Y-%m-%d %H:%M')(new Date(closestData.timestamp * 1000))}`);
-
-                    let yPosition = 40;
-                    visibleCircuits.forEach((circuit) => {
-                        const circuitPower = closestData[circuit] || 0;
-                        svg.append('text')
-                            .attr('class', 'hover-info')
-                            .attr('x', 10)
-                            .attr('y', yPosition)
-                            .text(`${circuit}: ${circuitPower.toFixed(2)} kW`);
-                        yPosition += 20;
-                    });
-                });                
-
-            svg.append('g')
-            .style("stroke-opacity", 0)
-                .attr('transform', `translate(0,${height})`)
-                .call(d3.axisBottom(x)
-                    .ticks(d3.timeHour.every(1))  // Control tick frequency
-                    .tickFormat(d3.timeFormat('%H'))  // Time format
-                )
-            svg.selectAll(".tick text")
-                .style("fill", "#777")
-                .style("font-size", "14px"); // Rotate labels for better fit            
-
-            //x-axis
-            svg.append('text')
-                .attr('text-anchor', 'end')
-                .attr('x', width / 2)
-                .attr('y', height + margin.bottom - 60)
-                .text('Time')
-                .style("fill", "#777")
-                .style("font-size", "14px");
-
-            //y-axis
-            svg.append('g')
-                .call(d3.axisLeft(y))
-                .style("stroke-opacity", 0)    
-            svg.selectAll(".tick text")
-                .style("fill", "#777")
-                .style("font-size", "14px");                               
-
-            svg.append('text')
-                .attr('text-anchor', 'end')
-                .attr('transform', 'rotate(-90)')
-                .attr('y', -margin.left + 20)
-                .attr('x', -height / 2 + 50)
-                .text('Power (kW/h)')
-                .style("fill", "#777")
-                .style("font-size", "14px");
-                                
-                svg.append("g")
+            svg.append("g")
                     .style("stroke-opacity", 0)
                     .attr("class", "grid")
                     .call(d3.axisLeft(y)
@@ -275,8 +171,45 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                     )
                     .selectAll("line")      // Select all the horizontal gridlines
                     .attr("stroke", "#e0e0e0") // Set the gridline color to grey
-                    .attr("stroke-opacity", 0.5);
+                    .attr("stroke-opacity", 0.5); 
 
+            svg.selectAll('g.layer')
+                .data(stackedData)
+                .enter()
+                .append('g')
+                .classed('layer', true)
+                .attr('fill', d => color(d.key))
+                .selectAll('rect')
+                .data(d => d)
+                .enter()
+                .append('rect')
+                .attr('x', d => x(timeframe === 'Day' ? d3.timeFormat('%H')(new Date(d.data.timestamp * 1000)) : d3.timeFormat('%Y-%m-%d')(new Date(d.data.timestamp * 1000))))
+                .attr('y', d => y(d[1]))
+                .attr('height', d => y(d[0]) - y(d[1]))
+                .attr('width', x.bandwidth())
+                .attr('rx', x.bandwidth() / 4)
+                .attr('ry', (d, i) => i === 0 ? 10 : 0); // Rounds only the top side
+
+                
+
+            // Add X axis
+            svg.append('g')
+                .attr('transform', `translate(0,${height})`)
+                .call(d3.axisBottom(x).tickFormat(d => d))
+                svg.selectAll(".tick text")
+                    .style("fill", "#777")
+                    .style("font-size", "14px");
+
+            // Add Y axis
+            svg.append('g')
+                .call(d3.axisLeft(y))
+                svg.selectAll(".tick text")
+                .style("fill", "#777")
+                .style("font-size", "14px");
+
+                
+
+            // Add legend
             const legend = svg.selectAll('.legend')
                 .data(keys)
                 .enter()
@@ -321,20 +254,15 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
     return (
         <div>
             {loading ? (
-                <div className="loading-spinner">Loading data, please wait...</div>
+                <div>Loading data...</div>
             ) : (
-                <>
-                <div ref={chartRef}></div>
-                {lastUpdated && (
-                    <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>
-                        <p>Click Individual Circuits in Legend to toggle view.</p>
-                        Last updated: {lastUpdated.toLocaleString()}
-                        </div>
-                )}
-            </>
+                <div>
+                    <div ref={chartRef}></div>
+                    {lastUpdated && <div>Last updated: {lastUpdated.toLocaleString()}</div>}
+                </div>
             )}
         </div>
     );
 };
 
-export default StackedAreaChart;
+export default StackedBarChart;
