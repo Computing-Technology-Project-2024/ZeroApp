@@ -8,8 +8,12 @@ from public_api.schemas.site import Site, SiteList
 collection_name = "sites"
 
 async def get_site(site_id: str, db: AsyncIOMotorDatabase) -> Site:
-    site = await db[collection_name].find_one({"_id": ObjectId(site_id)})
-    return Site(**site) if site else None
+   site = await db["sites"].find_one({
+       # can add where homeowner == session.homeowner or is admin for authorization
+        "_id": ObjectId(site_id),
+        "deleted": False
+   })
+   return Site(**site) if site else None
 
 async def create_site(site: Site, db: AsyncIOMotorDatabase) -> Site:
     result = await db[collection_name].insert_one(site.dict(by_alias=True))
@@ -38,5 +42,12 @@ async def update_all_sites(site_list: SiteList, db: AsyncIOMotorDatabase):
         "matched_count": result.matched_count,
         "modified_count": result.modified_count,
         "upserted_count": result.upserted_count,
-        "upserted_ids": upserted_ids,
+        "upserted_ids": upserted_ids
     }
+
+async def get_all_sites_from_db(filt: dict,  db: AsyncIOMotorDatabase):
+    cursor = db["sites"].find(filt)
+    documents = await cursor.to_list(length=None)
+    sites = [Site(**doc) for doc in documents] # Convert to site models
+
+    return SiteList(sites=sites) # Assign sites field in SiteList to the sites

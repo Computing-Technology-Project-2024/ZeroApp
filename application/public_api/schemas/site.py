@@ -16,8 +16,8 @@ class Site(BaseModel):
     lng: float
 
     #need clarificataion for these fields
-    site_type: str = Field(default="")
-    partner: str = Field(default="")
+    site_type: str = Field(default=None)
+    partner: str = Field(default=None)
 
     class Config:
         arbitrary_types_allowed = True
