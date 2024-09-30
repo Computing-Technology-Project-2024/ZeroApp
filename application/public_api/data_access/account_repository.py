@@ -1,15 +1,17 @@
 from typing import Optional
-
 from bson.objectid import ObjectId
 from fastapi import Depends
 from motor.motor_asyncio import AsyncIOMotorDatabase
-
 from public_api.database import get_db
 from public_api.schemas.account import Account, Role
 
-async def add_account(account: Account, db: AsyncIOMotorDatabase) -> Account:
-    result = await db["accounts"].insert_one(account.dict(by_alias=True))
-    return Account(**account.dict(by_alias=True, _id=result.inserted_id))
+
+async def add_account(account: Account, db: AsyncIOMotorDatabase) -> Account:    
+    if account.id is None:
+        account.id = ObjectId()
+    account_dict = account.model_dump(by_alias=True)
+    result = await db["accounts"].insert_one(account_dict)
+    return Account(**account_dict, id=result.inserted_id)
 
 async def get_account_by_id(admin_id: str, db: AsyncIOMotorDatabase) -> Optional[Account]:
     account = await db["accounts"].find_one({"_id": ObjectId(admin_id)})

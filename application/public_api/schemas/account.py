@@ -10,7 +10,7 @@ class Role(Enum):
     ADMIN = 1
 
 class Account(BaseModel):
-    id: Optional[ObjectId] = Field(alias="_id")
+    id: Optional[ObjectId] = Field(default=None, alias="_id")
     deleted: bool
     username: str
     password_hash: str

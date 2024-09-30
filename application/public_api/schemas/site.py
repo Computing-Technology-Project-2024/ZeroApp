@@ -1,8 +1,11 @@
 from typing import Optional
-
 from bson.objectid import ObjectId
 from pydantic import BaseModel, Field
 
+
+class Coordinates(BaseModel):
+    lat: float
+    long: float
 
 class Site(BaseModel):
     id: Optional[ObjectId] = Field(alias="_id")
@@ -10,10 +13,7 @@ class Site(BaseModel):
     deleted: bool
     site_label: str
     site_address: str
-    coords: {
-        "lat": float,
-        "long": float
-    }
+    coords: Coordinates  # Use the nested Pydantic model
     site_type: str
     partner: str
 
