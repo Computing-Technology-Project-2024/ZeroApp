@@ -13,8 +13,8 @@ async def add_account(account: Account, db: AsyncIOMotorDatabase) -> Account:
     result = await db["accounts"].insert_one(account_dict)
     return Account(**account_dict, id=result.inserted_id)
 
-async def get_account_by_id(admin_id: str, db: AsyncIOMotorDatabase) -> Optional[Account]:
-    account = await db["accounts"].find_one({"_id": ObjectId(admin_id)})
+async def get_account_by_id(account_id: str, db: AsyncIOMotorDatabase) -> Optional[Account]:
+    account = await db["accounts"].find_one({"_id": ObjectId(account_id)})
     return Account(**account) if account else None
 
 async def get_account_by_email(email: str, db: AsyncIOMotorDatabase) -> Optional[Account]:
@@ -22,8 +22,15 @@ async def get_account_by_email(email: str, db: AsyncIOMotorDatabase) -> Optional
     return Account(**account) if account else None
 
 async def get_all_admins(db: AsyncIOMotorDatabase) -> list[Account]:
-    admins = await db["accounts"].find({"role": Role.ADMIN}).to_list(length=100)
+    admins = await db["accounts"].find({"role": Role.ADMIN.value}).to_list(length=100)
     return [Account(**admin) for admin in admins]
+
+async def update_account_by_id(account_id: str, update_data: dict, db) -> bool:
+    result = await db["accounts"].update_one(
+        {"_id": ObjectId(account_id)},
+        {"$set": update_data}    
+    )
+    return result.modified_count == 1
 
 async def remove_account(account_id: str, db: AsyncIOMotorDatabase) -> bool:
     result = await db["accounts"].delete_one({"_id": ObjectId(account_id)})
