@@ -1,5 +1,5 @@
 # from bson import ObjectId
-# from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 # from typing import List
 # from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 # from ..schemas.device import Device
@@ -13,9 +13,9 @@
 # from ..database import get_db
 # from motor.motor_asyncio import AsyncIOMotorClient
 
-# device_router = APIRouter(
-#     prefix="/device",  # Define a prefix for all device routes
-# )
+device_router = APIRouter(
+    prefix="/device",  # Define a prefix for all device routes
+)
 
 
 

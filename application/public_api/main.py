@@ -9,6 +9,7 @@ from public_api.routers.auth import auth_router
 from public_api.routers.device import device_router
 from public_api.routers.site import site_router
 from public_api.routers.account import account_router
+from public_api.routers.enphrase import enphrase_router
 
 app = FastAPI()
 
@@ -43,3 +44,4 @@ app.include_router(analytic_router)
 app.include_router(device_router)
 app.include_router(site_router)
 app.include_router(account_router)
+app.include_router(enphrase_router)
