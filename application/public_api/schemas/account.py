@@ -23,3 +23,8 @@ class Account(BaseModel):
         json_encoders = {ObjectId: str}
         use_enum_values = True
 
+class CreateAccountIntermediateHandling(BaseModel):
+    username: str
+    password: str
+    email: EmailStr
+    mobile_number: str

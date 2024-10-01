@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 from bson.objectid import ObjectId
 from pydantic import BaseModel, Field
 
@@ -8,12 +8,11 @@ class Coordinates(BaseModel):
     long: float
 
 class Site(BaseModel):
-    id: Optional[ObjectId] = Field(alias="_id")
-    homeowner_id: ObjectId
-    deleted: bool
+    id: Optional[ObjectId] = Field(default=None, alias="_id")
+    homeowner_id: Union[str, ObjectId]
     site_label: str
     site_address: str
-    coords: Coordinates  # Use the nested Pydantic model
+    coords: Coordinates
     site_type: str
     partner: str
 
