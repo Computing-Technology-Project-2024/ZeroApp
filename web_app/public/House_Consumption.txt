@@ -1,0 +1,3858 @@
+{
+    "Fridge-Freezer": [
+        {
+            "timestamp": "1714658400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714659300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714660200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714661100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714663800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714664700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714665600",
+            "watt": 20,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714666500",
+            "watt": 50,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714667400",
+            "watt": 50,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714668300",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714669200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714670100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714672800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714673700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714674600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714675500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714676400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714677300",
+            "watt": 20,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714678200",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714679100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714681800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714682700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714683600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714684500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714685400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714686300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714687200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714688100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714690800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714691700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714692600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714693500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714694400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714695300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714696200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714697100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714699800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714700700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714701600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714702500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714703400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714704300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714705200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714706100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714708800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714709700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714710600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714711500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714712400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714713300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714714200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714715100",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714716000",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714716900",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714717800",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714718700",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714719600",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714720500",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714721400",
+            "watt": 30,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714722300",
+            "watt": 40,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714723200",
+            "watt": 70,
+            "cost": 0.02
+        },
+        {
+            "timestamp": "1714724100",
+            "watt": 80,
+            "cost": 0.02
+        },
+        {
+            "timestamp": "1714725000",
+            "watt": 60,
+            "cost": 0.02
+        },
+        {
+            "timestamp": "1714725900",
+            "watt": 30,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714726800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714727700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714728600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714729500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714730400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714731300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714732200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714733100",
+            "watt": 20,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714734000",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714735800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714736700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714737600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714738500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714739400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714740300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714741200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714742100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743900",
+            "watt": 10,
+            "cost": 0
+        }
+    ],
+    "Laundry": [
+        {
+            "timestamp": "1714658400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714659300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714660200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714661100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714663800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714664700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714665600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714666500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714667400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714668300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714669200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714670100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714672800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714673700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714674600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714675500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714676400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714677300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714678200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714679100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714681800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714682700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714683600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714684500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714685400",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714686300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714687200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714688100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714690800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714691700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714692600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714693500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714694400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714695300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714696200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714697100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714699800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714700700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714701600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714702500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714703400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714704300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714705200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714706100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714708800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714709700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714710600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714711500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714712400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714713300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714714200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714715100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714717800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714718700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714719600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714720500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714721400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714722300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714723200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714724100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714726800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714727700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714728600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714729500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714730400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714731300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714732200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714733100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714735800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714736700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714737600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714738500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714739400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714740300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714741200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714742100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743900",
+            "watt": 0,
+            "cost": 0
+        }
+    ],
+    "Lighting-Upstairs": [
+        {
+            "timestamp": "1714658400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714659300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714660200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714661100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714663800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714664700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714665600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714666500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714667400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714668300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714669200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714670100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714672800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714673700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714674600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714675500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714676400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714677300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714678200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714679100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714681800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714682700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714683600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714684500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714685400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714686300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714687200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714688100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714690800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714691700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714692600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714693500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714694400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714695300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714696200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714697100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714699800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714700700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714701600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714702500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714703400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714704300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714705200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714706100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714708800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714709700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714710600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714711500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714712400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714713300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714714200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714715100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714717800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714718700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714719600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714720500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714721400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714722300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714723200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714724100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714726800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714727700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714728600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714729500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714730400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714731300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714732200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714733100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714735800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714736700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714737600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714738500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714739400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714740300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714741200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714742100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743900",
+            "watt": 0,
+            "cost": 0
+        }
+    ],
+    "Air-Con-/-Split-1": [
+        {
+            "timestamp": "1714658400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714659300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714660200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714661100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714663800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714664700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714665600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714666500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714667400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714668300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714669200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714670100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714672800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714673700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714674600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714675500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714676400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714677300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714678200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714679100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714681800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714682700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714683600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714684500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714685400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714686300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714687200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714688100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714690800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714691700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714692600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714693500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714694400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714695300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714696200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714697100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714699800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714700700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714701600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714702500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714703400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714704300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714705200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714706100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714708800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714709700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714710600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714711500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714712400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714713300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714714200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714715100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714717800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714718700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714719600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714720500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714721400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714722300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714723200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714724100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714726800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714727700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714728600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714729500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714730400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714731300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714732200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714733100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714735800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714736700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714737600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714738500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714739400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714740300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714741200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714742100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743900",
+            "watt": 10,
+            "cost": 0
+        }
+    ],
+    "DHWS": [
+        {
+            "timestamp": "1714658400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714659300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714660200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714661100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714663800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714664700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714665600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714666500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714667400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714668300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714669200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714670100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714672800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714673700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714674600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714675500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714676400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714677300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714678200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714679100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714681800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714682700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714683600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714684500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714685400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714686300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714687200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714688100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689900",
+            "watt": 60,
+            "cost": 0.02
+        },
+        {
+            "timestamp": "1714690800",
+            "watt": 270,
+            "cost": 0.07
+        },
+        {
+            "timestamp": "1714691700",
+            "watt": 280,
+            "cost": 0.07
+        },
+        {
+            "timestamp": "1714692600",
+            "watt": 290,
+            "cost": 0.07
+        },
+        {
+            "timestamp": "1714693500",
+            "watt": 290,
+            "cost": 0.08
+        },
+        {
+            "timestamp": "1714694400",
+            "watt": 290,
+            "cost": 0.08
+        },
+        {
+            "timestamp": "1714695300",
+            "watt": 310,
+            "cost": 0.08
+        },
+        {
+            "timestamp": "1714696200",
+            "watt": 320,
+            "cost": 0.08
+        },
+        {
+            "timestamp": "1714697100",
+            "watt": 250,
+            "cost": 0.06
+        },
+        {
+            "timestamp": "1714698000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714699800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714700700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714701600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714702500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714703400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714704300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714705200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714706100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714708800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714709700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714710600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714711500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714712400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714713300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714714200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714715100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714717800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714718700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714719600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714720500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714721400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714722300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714723200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714724100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714726800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714727700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714728600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714729500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714730400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714731300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714732200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714733100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714735800",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714736700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714737600",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714738500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714739400",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714740300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714741200",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714742100",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743000",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743900",
+            "watt": 10,
+            "cost": 0
+        }
+    ],
+    "Kitchen": [
+        {
+            "timestamp": "1714658400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714659300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714660200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714661100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714663800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714664700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714665600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714666500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714667400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714668300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714669200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714670100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714672800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714673700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714674600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714675500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714676400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714677300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714678200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714679100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714681800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714682700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714683600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714684500",
+            "watt": 120,
+            "cost": 0.03
+        },
+        {
+            "timestamp": "1714685400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714686300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714687200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714688100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714690800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714691700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714692600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714693500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714694400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714695300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714696200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714697100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714699800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714700700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714701600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714702500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714703400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714704300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714705200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714706100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714708800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714709700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714710600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714711500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714712400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714713300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714714200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714715100",
+            "watt": 220,
+            "cost": 0.06
+        },
+        {
+            "timestamp": "1714716000",
+            "watt": 210,
+            "cost": 0.06
+        },
+        {
+            "timestamp": "1714716900",
+            "watt": 160,
+            "cost": 0.04
+        },
+        {
+            "timestamp": "1714717800",
+            "watt": 270,
+            "cost": 0.07
+        },
+        {
+            "timestamp": "1714718700",
+            "watt": 30,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714719600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714720500",
+            "watt": 170,
+            "cost": 0.04
+        },
+        {
+            "timestamp": "1714721400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714722300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714723200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714724100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714726800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714727700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714728600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714729500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714730400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714731300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714732200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714733100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714735800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714736700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714737600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714738500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714739400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714740300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714741200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714742100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743900",
+            "watt": 0,
+            "cost": 0
+        }
+    ],
+    "Lighting-Downstairs": [
+        {
+            "timestamp": "1714658400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714659300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714660200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714661100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714663800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714664700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714665600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714666500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714667400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714668300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714669200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714670100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714672800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714673700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714674600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714675500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714676400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714677300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714678200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714679100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680900",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714681800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714682700",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714683600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714684500",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714685400",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714686300",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714687200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714688100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714690800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714691700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714692600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714693500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714694400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714695300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714696200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714697100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714699800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714700700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714701600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714702500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714703400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714704300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714705200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714706100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714708800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714709700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714710600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714711500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714712400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714713300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714714200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714715100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714717800",
+            "watt": 20,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714718700",
+            "watt": 20,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714719600",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714720500",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714721400",
+            "watt": 30,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714722300",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714723200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714724100",
+            "watt": 20,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725000",
+            "watt": 30,
+            "cost": 0.01
+        },
+        {
+            "timestamp": "1714725900",
+            "watt": 10,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714726800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714727700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714728600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714729500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714730400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714731300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714732200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714733100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714735800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714736700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714737600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714738500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714739400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714740300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714741200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714742100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743900",
+            "watt": 0,
+            "cost": 0
+        }
+    ],
+    "Oven": [
+        {
+            "timestamp": "1714658400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714659300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714660200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714661100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714662900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714663800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714664700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714665600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714666500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714667400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714668300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714669200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714670100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714671900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714672800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714673700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714674600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714675500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714676400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714677300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714678200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714679100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714680900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714681800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714682700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714683600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714684500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714685400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714686300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714687200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714688100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714689900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714690800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714691700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714692600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714693500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714694400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714695300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714696200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714697100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714698900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714699800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714700700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714701600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714702500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714703400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714704300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714705200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714706100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714707900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714708800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714709700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714710600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714711500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714712400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714713300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714714200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714715100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714716900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714717800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714718700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714719600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714720500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714721400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714722300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714723200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714724100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714725900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714726800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714727700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714728600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714729500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714730400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714731300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714732200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714733100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714734900",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714735800",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714736700",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714737600",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714738500",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714739400",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714740300",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714741200",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714742100",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743000",
+            "watt": 0,
+            "cost": 0
+        },
+        {
+            "timestamp": "1714743900",
+            "watt": 0,
+            "cost": 0
+        }
+    ]
+}
