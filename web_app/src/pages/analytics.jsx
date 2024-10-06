@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BaseCard from '../components/cards/BaseCard';
+import BarCombChart from '../components/charts/BarCombChart';
 import CombChart from '../components/charts/CombChart';
 import CircuitsChart from '../components/charts/CircuitsChart';
 import StackedBar from '../components/charts/StackedBar';
@@ -48,7 +49,7 @@ const Analytics = () => {
                 </div>
                 <p className='comp-name'>Consumption, Import/Export</p>
                 {/* Pass both the timeframe and selectedDate to the CombChart */}
-                <CombChart timeframe={activeButton} selectedDate={selectedDate} />
+                <BarCombChart timeframe={activeButton} selectedDate={selectedDate}/>
             </BaseCard>
 
             <BaseCard width={400} height={400}>

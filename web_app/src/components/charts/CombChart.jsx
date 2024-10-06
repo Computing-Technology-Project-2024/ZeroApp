@@ -12,7 +12,7 @@ const CombinedChart = () => {
 
         // Fetch Solar Import, Solar Export, Solar Production, House Consumption, and Power Usage data from the API
         Promise.all([
-            fetch(`${process.env.PUBLIC_URL}/Solar_Import.txt`),
+            fetch(`${process.env.PUBLIC_URL}/Grid_Import.txt`),
             fetch(`${process.env.PUBLIC_URL}/Solar_Export.txt`),
             fetch(`${process.env.PUBLIC_URL}/Solar_Production.txt`),
             fetch('https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=1714658400&endtime=1714744800', {
