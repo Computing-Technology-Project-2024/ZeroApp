@@ -6,10 +6,12 @@ import Dashboard from "./pages/dashboard";
 import Signup from "./pages/auth/signup";
 import Login from "./pages/auth/login";
 import Home from "./pages/home";
-import PageLayout from "./components/containers/PageLayout";
 import Recommendation from "./pages/recommendation";
 import Analytics from "./pages/analytics";
 import Settings from "./pages/settings";
+import Admin from "./pages/admin";
+
+import PageLayout from "./components/containers/PageLayout";
 
 const App = () => {
     const routes = [
@@ -27,6 +29,15 @@ const App = () => {
     ];
 
     return (
+        // <PageLayout>
+        //     <Routes>
+        //       {routes.map(({ path, element }) => (
+        //         <Route path={path} element={element} key={`${path}-${element.name}`}/>
+        //       ))}
+        //     </Routes>
+        // </PageLayout>
+
+
         <Routes>
             {authRoutes.map(({ path, element }) => (
                 <Route path={path} element={element} key={`${path}-${element.name}`} />

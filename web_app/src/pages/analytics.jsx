@@ -20,7 +20,7 @@ const Analytics = () => {
             <p id="AddressLine">House Address</p>
           </div>
 
-          <BaseCard className={`mb-4 w-[1100px]`}>
+          <BaseCard className={`mb-4 w-auto`}>
             <div className="button-group">
                 {['Day', 'Week', 'Month', 'Year'].map(label => (
                     <button
@@ -31,11 +31,11 @@ const Analytics = () => {
                     </button>
                 ))}
             </div>
-            <p className='comp-name'>Energy Usage, Inport/Export</p>
+            <p className='comp-name'>Energy Usage, Import/Export</p>
             <CombChart/>
           </BaseCard>
 
-          <BaseCard className={`w-[1100px]`}>
+          <BaseCard className={`w-auto`}>
             <p className='comp-name'>Devices Consumption</p>
             <CircuitsChart/>
           </BaseCard>
