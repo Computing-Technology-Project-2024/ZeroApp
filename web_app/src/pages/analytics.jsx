@@ -22,15 +22,18 @@ const Analytics = () => {
 
     return (
         <div className='analytics'>
-            <p className='head'>Analytics</p>
+          <div className={`mb-4`}>
+            <p className='head font-bold pb-4'>Analytics</p>
+            {/* TODO: add dynamic site address here */}
             <p id="AddressLine">House Address</p>
+          </div>
 
-            <BaseCard width={600} height={400}>
+            <BaseCard className={`mb-4 w-auto`}>
                 <div className="control-group">
-                    
+
                 <p>Choose Date:</p>
                     <div className="button-group">
-                        
+
                     <DatePicker
                         selected={selectedDate}
                         onChange={handleDateChange}
@@ -52,13 +55,13 @@ const Analytics = () => {
                 <BarCombChart timeframe={activeButton} selectedDate={selectedDate}/>
             </BaseCard>
 
-            <BaseCard width={400} height={400}>
+            <BaseCard className={`mb-4 w-auto`}>
                 <p className='comp-name'>Devices Consumption</p>
                 {/* Pass both the timeframe and selectedDate to the CircuitsChart */}
                 <CircuitsChart timeframe={activeButton} selectedDate={selectedDate} />
             </BaseCard>
 
-            <BaseCard width={400} height={400}>
+            <BaseCard className={`mb-4 w-auto`}>
                 <p className='comp-name'>Devices Consumption Stacked Chart</p>
                 {/* Pass both the timeframe and selectedDate to the CircuitsChart */}
                 <StackedBar timeframe={activeButton} selectedDate={selectedDate} />
