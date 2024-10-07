@@ -12,4 +12,3 @@ python-jose
 pymongo
 python-dotenv
 pydantic[email]
-selenium
