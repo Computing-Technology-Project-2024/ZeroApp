@@ -10,7 +10,7 @@ class Role(Enum):
     ADMIN = 1
 
 class Account(BaseModel):
-    id: Optional[ObjectId] = Field(alias="_id")
+    id: Optional[ObjectId] = Field(default=None, alias="_id")
     deleted: bool
     username: str
     password_hash: str
@@ -23,3 +23,8 @@ class Account(BaseModel):
         json_encoders = {ObjectId: str}
         use_enum_values = True
 
+class CreateAccountIntermediateHandling(BaseModel):
+    username: str
+    password: str
+    email: EmailStr
+    mobile_number: str
