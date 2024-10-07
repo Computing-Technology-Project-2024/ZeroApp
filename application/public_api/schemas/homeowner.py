@@ -1,28 +1,34 @@
 import datetime
-from typing import Optional
-
+from typing import Optional, Annotated
+from pydantic import BaseModel, Field, BeforeValidator
 from bson import ObjectId
-from pydantic import BaseModel, Field
 
-# need further clarification on the bracket
-class HomeOwner(BaseModel):
-    _id: Optional[ObjectId] = Field(alias="_id")
-    account_id: ObjectId
-    created: datetime
-    active: bool
-    details: {
-        "first_name": str,
-        "last_name": str,
-        "dob": datetime.date
-    }
-    private_details: {
-        "address": {
-            "street_address": str,
-            "state": str,
-            "postal_code": str
-        }
-    }
+PyObjectId = Annotated[str, BeforeValidator(str)]
+
+class HomeOwnerDetails(BaseModel):
+    first_name: str
+    last_name: str
+    dob: str
 
     class Config:
         arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
+
+class HomeOwnerAddress(BaseModel):
+    street_address: str
+    state: str
+    postal_code: str
+
+
+class HomeOwner(BaseModel):
+    id: Optional[PyObjectId] = Field(alias="_id")
+    account_id:  Optional[PyObjectId] = Field(default = None) #Optional for dev
+    created: str
+    active: bool
+    #Can have list of Site Ids, maybe based on the different APIs
+    details: HomeOwnerDetails
+    private_details: HomeOwnerAddress
+
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {PyObjectId: str}
+        populate_by_name=True

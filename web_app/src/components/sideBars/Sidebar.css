@@ -1,13 +1,13 @@
+/* Sidebar.css */
 .sidebar {
+  width: 200px;
   height: 100vh;
   background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
-  z-index: 50;
   flex-direction: column;
-  font-family: 'Nunito Sans', 'sans-serif';
-  font-size: 32px;
-  padding: 0;
-  position: sticky;
+  padding: 1%;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .logo {
@@ -15,69 +15,67 @@
   font-weight: bold;
   color: #00a000;
   text-align: center;
-  margin: 20px 0;
+  margin-bottom: 10%;
 }
 
 .logo-zero {
   color: black;
 }
 
-.menu, .settings {
+.pages {
+  color: grey;
+}
+
+.menu, .pages, .settings {
   list-style: none;
-  margin-top: 20%;
-  padding: 0;
-  text-align: center;
-  margin-bottom: 20%;
+  margin-top: 10%;
 }
 
 .menu-item {
-  margin-bottom: 20px;
+  margin-bottom: 10%;
   list-style: none;
+  text-align: left;
   display: flex;
-  justify-content: center; /* Center the entire menu item in the sidebar */
+  align-items: center;
+}
+
+.menu-item img {
+  margin-right: 10px;
 }
 
 .menu-item a {
   text-decoration: none;
   color: #333;
   font-size: 16px;
-  padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align icon and text to the left */
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  width: 190px; /* Fixed width to ensure buttons are the same size */
-}
-
-.menu-item.active a {
-  background-color: #00a000;
-  color: #fff;
-}
-
-.menu-item.active a:hover {
-  color: #fff;
 }
 
 .menu-item a:hover {
   color: #00a000;
 }
 
-.menu-item img {
-  margin-right: 5px; /* Increase spacing between icon and text if needed */
+.menu-item.active a {
+  background-color: #00a000;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
 
-
-.settings {
-  /*margin-top: 30%;*/
-  /*padding-bottom: 20px;*/
+.menu-item.active a:hover {
+  color: #fff;
 }
 
-.hr {
-  opacity: 30%;
-  margin: auto;
+.pagestext p {
+  color: grey;
 }
 
 .img {
   width: 20px;
+}
+
+.hr {
+  opacity: 30%;
 }

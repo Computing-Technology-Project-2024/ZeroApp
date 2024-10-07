@@ -4,17 +4,17 @@ from bson import ObjectId
 from pydantic import BaseModel, Field
 
 class Circuit(BaseModel):
-    _id: Optional[ObjectId] = Field(alias="_id")
+    id: Optional[ObjectId] = Field(alias="_id")
     device_id: ObjectId
-    metrics: {}
+    metrics: []
 
     class Config:
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
 
-# TODO: need to clarify this class relationship with Circuit. Temporary only
+# One circuit has many circuitMetrics
 class CircuitMetric(BaseModel):
-    _id: ObjectId
+    id: ObjectId
     circuit_id: ObjectId
     phase: int
     watt: float

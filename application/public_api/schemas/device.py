@@ -5,20 +5,20 @@ from bson import ObjectId
 from pydantic import BaseModel, Field
 
 class Device(BaseModel):
-    _id: Optional[ObjectId] = Field(alias="_id")
+    id: Optional[ObjectId] = Field(alias="_id")
     site_id: ObjectId
     active: bool
     install_date: datetime
     product: str
     # need clarification here too
-    metrics: {}
+    metrics: []
 
     class Config:
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
 
 class DeviceMetric(BaseModel):
-    _id: ObjectId
+    id: ObjectId
     device_id: ObjectId
     start_time: datetime
     sum_watt: float
