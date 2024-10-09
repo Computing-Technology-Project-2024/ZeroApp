@@ -93,7 +93,13 @@ const CombinedBarChart = () => {
                 // Create the x-axis with single 0-23 hour range
                 svg.append("g")
                     .attr("transform", `translate(0, ${height})`)
-                    .call(d3.axisBottom(x).tickFormat(d => d))
+                    .call(d3.axisBottom(x)
+                    //.tickFormat(d => d)
+                    .tickSize(0)
+                    .tickPadding(10)
+                    )
+                    .select(".domain")
+                    .attr("stroke", "none")
                     .selectAll("text")
                     .style("fill", "#777")
                     .style("font-size", "14px");

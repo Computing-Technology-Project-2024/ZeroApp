@@ -8,6 +8,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
     const [visibleCircuits, setVisibleCircuits] = useState(null);
     const [totalEnergyByCircuit, setTotalEnergyByCircuit] = useState({});
     const [lastUpdated, setLastUpdated] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(''); // New state for error messages
 
     const getTimeRange = () => {
         const selected = new Date(selectedDate);  // Use selectedDate instead of current date
@@ -57,6 +58,16 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
 
     useEffect(() => {
         const fetchData = async () => {
+            const now = new Date();
+            const selected = new Date(selectedDate);
+            if (selected > now) {
+                setErrorMessage('Invalid date range(Please Check Selected Date)');
+                setLoading(false);
+                return;
+            } else {
+                setErrorMessage(''); // Clear any previous error messages
+            }
+
             try {
                 setLoading(true);
                 const { starttime, endtime } = getTimeRange();
@@ -262,7 +273,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 .attr('transform', 'rotate(-90)')
                 .attr('y', -margin.left + 20)
                 .attr('x', -height / 2 + 50)
-                .text('Power (kW/h)')
+                .text('Energy (kWh)')
                 .style("fill", "#777")
                 .style("font-size", "14px");
                                 
@@ -319,21 +330,21 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
     }, [data, visibleCircuits]);
 
     return (
+        
         <div>
-            {loading ? (
-                <div className="loading-spinner">Loading data, please wait...</div>
-            ) : (
-                <>
+        {loading ? (
+            <div className="loading-spinner">Loading data, please wait...</div>
+
+        ) : errorMessage ? ( 
+            <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>{errorMessage}</div>
+        ) : (
+            <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>
                 <div ref={chartRef}></div>
-                {lastUpdated && (
-                    <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>
-                        <p>Click Individual Circuits in Legend to toggle view.</p>
-                        Last updated: {lastUpdated.toLocaleString()}
-                        </div>
-                )}
-            </>
-            )}
-        </div>
+                <p>Click Individual Circuits in Legend to toggle view.</p>
+                {lastUpdated && <div>Last updated: {lastUpdated.toLocaleString()}</div>}
+            </div>
+        )}
+    </div>
     );
 };
 

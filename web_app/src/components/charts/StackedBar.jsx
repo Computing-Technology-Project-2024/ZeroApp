@@ -8,8 +8,8 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
     const [visibleCircuits, setVisibleCircuits] = useState(null);
     const [totalEnergyByCircuit, setTotalEnergyByCircuit] = useState({});
     const [lastUpdated, setLastUpdated] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(''); // New state for error messages
 
-    // Compute time range for API requests
     const getTimeRange = useCallback(() => {
         const selected = new Date(selectedDate);
         let startTime, endTime;
@@ -44,9 +44,20 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
         };
     }, [timeframe, selectedDate]);
 
-    // Fetch data and process it
     useEffect(() => {
         const fetchData = async () => {
+            const now = new Date();
+            const selected = new Date(selectedDate);
+
+            // Check if the selected date is in the future
+            if (selected > now) {
+                setErrorMessage('Invalid date range(Please Check Selected Date)');
+                setLoading(false);
+                return;
+            } else {
+                setErrorMessage(''); // Clear any previous error messages
+            }
+
             try {
                 setLoading(true);
                 const { starttime, endtime } = getTimeRange();
@@ -79,7 +90,7 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
         };
 
         fetchData();
-    }, [getTimeRange]);
+    }, [getTimeRange, selectedDate]);
 
     const preprocessData = useCallback((rawData) => {
         const aggregatedData = {};
@@ -200,10 +211,27 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
                     .style("fill", "#777")
                     .style("font-size", "14px");
 
+                    svg.append('text')
+                    .attr('text-anchor', 'end')
+                    .attr('x', width / 2)
+                    .attr('y', height + margin.bottom - 60)
+                    .text('Time')
+                    .style("fill", "#777")
+                    .style("font-size", "14px");
+
             // Add Y axis
             svg.append('g')
                 .call(d3.axisLeft(y))
                 svg.selectAll(".tick text")
+                .style("fill", "#777")
+                .style("font-size", "14px");
+
+                svg.append('text')
+                .attr('text-anchor', 'end')
+                .attr('transform', 'rotate(-90)')
+                .attr('y', -margin.left + 20)
+                .attr('x', -height / 2 + 50)
+                .text('Energy (kWh)')
                 .style("fill", "#777")
                 .style("font-size", "14px");
 
@@ -254,9 +282,12 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
     return (
         <div>
             {loading ? (
-                <div>Loading data...</div>
+                <div className="loading-spinner">Loading data, please wait...</div>
+
+            ) : errorMessage ? ( 
+                <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>{errorMessage}</div>
             ) : (
-                <div>
+                <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>
                     <div ref={chartRef}></div>
                     {lastUpdated && <div>Last updated: {lastUpdated.toLocaleString()}</div>}
                 </div>
