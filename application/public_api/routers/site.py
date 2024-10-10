@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from public_api.services.ecx_api import fetch_sites
 from public_api.schemas.site import Site, SiteList
-from public_api.data_access.site_repository import update_all_sites, get_site, get_all_sites_from_db, add_site, update_site
+from public_api.data_access.site_repository import update_all_sites, get_site, get_all_sites_from_db, add_site, update_site, disable_site
 from public_api.database import get_db
 from bson.objectid import ObjectId
 
@@ -29,6 +29,11 @@ async def update_site_data(site_object_id: str, update_data: dict):
     updated_site = await update_site(site_object_id, update_data, db)
     return updated_site
 
+@site_router.delete("/{site_object_id}")
+async def delete_site(site_object_id: str):
+    db = get_db()
+    result = await disable_site(site_object_id, db)
+    return result
 
 # Admin only functions
 @site_router.patch("/renew-sites-ecx")
