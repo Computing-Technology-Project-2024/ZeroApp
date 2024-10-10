@@ -44,7 +44,6 @@ async def update_site(site_object_id: str, site_data: dict, db: AsyncIOMotorData
     )
 
     if result.modified_count == 0:
-        print(22)
         return 0
 
     updated_site = await db["sites"].find_one({"_id": ObjectId(site_object_id)})
@@ -83,3 +82,27 @@ async def get_all_sites_from_db(filt: dict,  db: AsyncIOMotorDatabase):
     sites = [Site(**doc) for doc in documents] # Convert to site models
 
     return SiteList(sites=sites) # Assign sites field in SiteList to the sites
+
+
+async def disable_site(site_object_id: str, db: AsyncIOMotorDatabase):
+    site = await db["sites"].find_one({
+        "_id": ObjectId(site_object_id),
+        "deleted": False
+    })
+
+    if site is None:
+        return 0
+    else:
+        site["deleted"] = True
+
+    Site(**site)
+
+    result = await db["sites"].update_one(
+        {"_id": ObjectId(site_object_id)},
+        {"$set": site}
+    )
+
+    if result.modified_count == 0:
+        return 0
+    else:
+        return 1

@@ -20,10 +20,9 @@ class HomeOwnerAddress(BaseModel):
 
 
 class HomeOwner(BaseModel):
-    id: Optional[PyObjectId] = Field(alias="_id")
-    account_id:  Optional[PyObjectId] = Field(default = None) #Optional for dev
-    created: str
-    active: bool
+    id: Optional[PyObjectId] = Field(alias="_id", default=None)
+    account_id:  PyObjectId
+    deleted: bool = Field(default=False)
     #Can have list of Site Ids, maybe based on the different APIs
     details: HomeOwnerDetails
     private_details: HomeOwnerAddress
