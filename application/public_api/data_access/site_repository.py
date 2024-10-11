@@ -59,7 +59,7 @@ async def update_all_sites(site_list: SiteList, db: AsyncIOMotorDatabase):
         operations.append(
             UpdateOne(
                 {"site_id": site.site_id},
-                {"$set": site.model_dump(by_alias=True, exclude=["id"])},
+                {"$set": site.model_dump(by_alias=True, exclude_none=True)},
                 upsert=True
             )
         )

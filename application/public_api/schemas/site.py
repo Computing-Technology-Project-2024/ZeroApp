@@ -14,10 +14,12 @@ class Site(BaseModel):
     site_address: str
     lat: float
     lng: float
+    usage_rate_kwh: Optional[float] = Field(default=None)
+    daily_flat_fee: Optional[float] = Field(default=None)
 
     #need clarificataion for these fields
-    site_type: str = Field(default=None)
-    partner: str = Field(default=None)
+    site_type: Optional[str] = Field(default=None)
+    partner: Optional[str] = Field(default=None)
 
     class Config:
         arbitrary_types_allowed = True

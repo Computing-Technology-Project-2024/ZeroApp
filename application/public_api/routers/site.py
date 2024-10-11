@@ -23,6 +23,12 @@ async def add_new_site(site: Site):
     site = await add_site(site, db)
     return site
 
+#Call bottom function first
+@site_router.patch("/renew-sites-ecx")
+async def renew_all_sites_route(authentication: dict):
+    result = await renew_all_sites(authentication)
+    return result
+
 @site_router.patch("/{site_object_id}")
 async def update_site_data(site_object_id: str, update_data: dict):
     db = get_db()
@@ -36,7 +42,6 @@ async def delete_site(site_object_id: str):
     return result
 
 # Admin only functions
-@site_router.patch("/renew-sites-ecx")
 async def renew_all_sites(authentication: dict):
     db = get_db()
     # this is a big function so extra authentication (typing password or a code) would be useful. For now just code "update all"
