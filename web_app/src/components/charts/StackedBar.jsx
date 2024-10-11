@@ -205,22 +205,24 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
 
             // Add X axis
             svg.append('g')
+            .style("stroke-opacity", 0)
                 .attr('transform', `translate(0,${height})`)
                 .call(d3.axisBottom(x).tickFormat(d => d))
                 svg.selectAll(".tick text")
                     .style("fill", "#777")
                     .style("font-size", "14px");
 
-                    svg.append('text')
-                    .attr('text-anchor', 'end')
-                    .attr('x', width / 2)
-                    .attr('y', height + margin.bottom - 60)
-                    .text('Time')
-                    .style("fill", "#777")
-                    .style("font-size", "14px");
+            svg.append('text')
+                .attr('text-anchor', 'end')
+                .attr('x', width / 2)
+                .attr('y', height + margin.bottom - 60)
+                .text('Time')
+                .style("fill", "#777")
+                .style("font-size", "14px");
 
             // Add Y axis
             svg.append('g')
+            .style("stroke-opacity", 0)
                 .call(d3.axisLeft(y))
                 svg.selectAll(".tick text")
                 .style("fill", "#777")
