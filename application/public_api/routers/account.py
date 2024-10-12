@@ -1,13 +1,12 @@
-import os
-from datetime import timedelta
-from typing import Annotated, Optional, Dict
+from typing import Optional, Dict
 
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
+from fastapi import APIRouter, Depends, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
 from bson import ObjectId
 
 from ..database import get_db
+from ..schemas.account import CreateAccountIntermediateHandling
+from ..services.account_service import get_account_using_email, get_account_using_id, get_all_admins, remove_account, update_account
 from ..schemas.account import Account, CreateAccountIntermediateHandling
 from ..schemas.auth import SignUp
 from ..services.account_service import get_account_using_email, get_account_using_id, get_all_admins, remove_account, update_account, add_new_account_service

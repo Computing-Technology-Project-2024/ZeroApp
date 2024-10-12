@@ -20,11 +20,11 @@ dotenv.load_dotenv()
 # check if provided pwd matches the email's pwd
 async def authenticate_user(email: str, password: str, db) -> Account | None:
     user = await get_account_by_email(email, db)
-
+    print(user)
     if not user:
-        raise Exception(f"User with email: {email} doesnt exist.")
+        return None
 
-    if not verify_password(password, user.hashed_password):
+    if not verify_password(password, user.password_hash):
         return None
     return user
 

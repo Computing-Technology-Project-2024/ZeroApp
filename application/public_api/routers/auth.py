@@ -11,22 +11,15 @@ from ..schemas.account import Account
 from ..schemas.auth import SignUp
 from ..services.account_service import get_account_using_email, add_new_account
 from ..services.auth import oauth2_scheme, create_token, authenticate_user
-from ..utils.security import hash_password
 
 auth_router = APIRouter(
     prefix="/auth",
     tags=["authentication"]
 )
 
-@auth_router.get("/auth/users")
-async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
-    temp = Account()
-    temp.username = "Thang" + token
-    return temp
-
 @auth_router.post("/token")
 async def sign_in_for_token(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncIOMotorClient = Depends(get_db)):
-    user = authenticate_user(form_data.username, form_data.password, db)
+    user = await authenticate_user(form_data.username, form_data.password, db)
 
     if not user:
         raise HTTPException(
@@ -60,6 +53,7 @@ async def sign_up(data: SignUp, db: AsyncIOMotorClient = Depends(get_db)):
             email=data.email,
             mobile_number="",
             password=data.password,
+            is_admin=False,
             db=db
         )
     except Exception as e:
@@ -69,7 +63,3 @@ async def sign_up(data: SignUp, db: AsyncIOMotorClient = Depends(get_db)):
         )
     else:
         return res
-
-@auth_router.post("/sign-out")
-async def sign_out():
-    pass

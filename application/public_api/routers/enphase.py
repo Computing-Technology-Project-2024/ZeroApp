@@ -2,18 +2,13 @@ import base64
 from fastapi import APIRouter
 import requests
 
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from urllib.parse import urlparse, parse_qs
-
-
-enphrase_router = APIRouter(
-    prefix="/enphrase",
-    tags=["enphrase"]
+enphase_router = APIRouter(
+    prefix="/enphase",
+    tags=["enphase"]
 )
 
 # GET http://127.0.0.1:8000/enphrase/get-code (POSTMAN)
-@enphrase_router.post("/get-token")
+@enphase_router.post("/get-token")
 def get_token(code: str):
         token_url = 'https://api.enphaseenergy.com/oauth/token'
 
