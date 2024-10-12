@@ -7,6 +7,7 @@ enphase_router = APIRouter(
     tags=["enphase"]
 )
 
+# TODO: use environment variable for this. Add them in the config.py file
 # GET http://127.0.0.1:8000/enphrase/get-code (POSTMAN)
 @enphase_router.post("/get-token")
 def get_token(code: str):

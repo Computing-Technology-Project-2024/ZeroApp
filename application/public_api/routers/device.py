@@ -6,14 +6,17 @@ device_router = APIRouter(
     prefix="/device",  # Define a prefix for all device routes
 )
 
-
 """
 Get request for a specified device. Optional start and end times are added as query parameters.
 e.g. http://127.0.0.1:8000/devices/EE40400611940374?start_time=1725148800&end_time=1725152400
 EdgeConX has basic error handling on their side.
 """
 @device_router.get("/{device_id}")
-async def get_device_by_id(device_id: str, start_time: int | None = int(time.time())-3600, end_time: int | None = int(time.time())):
+async def get_device_by_id(
+    device_id: str,
+    start_time: int | None = int(time.time())-3600,
+    end_time: int | None = int(time.time())
+):
     return fetch_critical_parameters(device_id, start_time, end_time)
 
 # # API to create a new device
