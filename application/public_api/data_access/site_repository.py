@@ -1,35 +1,108 @@
 from fastapi import Depends
-from bson import ObjectId
+from pymongo import UpdateOne
+from bson.objectid import ObjectId
 from motor.motor_asyncio import AsyncIOMotorDatabase
-from typing import Optional, List
-from public_api.schemas.site import Site
+
+from public_api.schemas.site import Site, SiteList
 
 collection_name = "sites"
 
-async def add_new_site(site_data: dict, db: AsyncIOMotorDatabase) -> str:
-    result = await db["sites"].insert_one(site_data)
-    return str(result.inserted_id)
+async def add_site(site: Site, db: AsyncIOMotorDatabase) -> Site:
+    
+    site_dict = site.model_dump(by_alias=True, exclude=["id"])
 
-# Function to get a site by its ID
-async def get_site_by_id(site_id: str, db: AsyncIOMotorDatabase) -> Optional[dict]:
-    # Convert site_id to ObjectId for querying
-    site = await db["sites"].find_one({"_id": ObjectId(site_id), "deleted": False})
-    return site
+    # Insert the homeowner into the collection
+    result = await db["sites"].insert_one(site_dict)
 
-# Function to get all sites
-async def get_all_sites(db: AsyncIOMotorDatabase) -> List[dict]:
-    sites = await db["sites"].find({"deleted": False}).to_list(length=100)
-    return sites
+    return Site(**site_dict, id=result.inserted_id)
 
-# Function to update a site (partial updates with dictionary params)
-async def update_site(site_id: str, update_data: dict, db: AsyncIOMotorDatabase) -> bool:
+async def get_site(site_id: str, db: AsyncIOMotorDatabase) -> Site:
+   site = await db["sites"].find_one({
+       # can add where homeowner == session.homeowner or is admin for authorization
+        "_id": ObjectId(site_id),
+        "deleted": False
+   })
+   return Site(**site) if site else None
+
+async def update_site(site_object_id: str, site_data: dict, db: AsyncIOMotorDatabase) -> Site:
+    site = await db["sites"].find_one({
+        "_id": ObjectId(site_object_id),
+        "deleted": False
+    })
+
+    if site is None:
+        return 0
+    else:
+        for k, v in site_data.items():
+            site[k] = v
+
+    Site(**site)
+
     result = await db["sites"].update_one(
-        {"_id": ObjectId(site_id), "deleted": False}, 
-        {"$set": update_data}
+        {"_id": ObjectId(site_object_id)},
+        {"$set": site}
     )
-    return result.modified_count > 0
 
-# Function to delete (soft-delete) a site by marking it as deleted
-async def delete_site(site_id: str, db: AsyncIOMotorDatabase) -> bool:
-    result = await db["sites"].delete_one({"_id": ObjectId(site_id)})
-    return result.deleted_count > 0
+    if result.modified_count == 0:
+        return 0
+
+    updated_site = await db["sites"].find_one({"_id": ObjectId(site_object_id)})
+
+    return Site(**updated_site)
+
+async def update_all_sites(site_list: SiteList, db: AsyncIOMotorDatabase):
+    # Will make collection if not exists
+
+    operations = []
+
+    for site in site_list.sites:
+        operations.append(
+            UpdateOne(
+                {"site_id": site.site_id},
+                {"$set": site.model_dump(by_alias=True, exclude_none=True)},
+                upsert=True
+            )
+        )
+
+    result = await db["sites"].bulk_write(operations)
+
+    # Convert upserted_ids to string
+    upserted_ids = {str(k): str(v) for k, v in result.upserted_ids.items()}
+
+    return {
+        "matched_count": result.matched_count,
+        "modified_count": result.modified_count,
+        "upserted_count": result.upserted_count,
+        "upserted_ids": upserted_ids
+    }
+
+async def get_all_sites_from_db(filt: dict,  db: AsyncIOMotorDatabase):
+    cursor = db["sites"].find(filt)
+    documents = await cursor.to_list(length=None)
+    sites = [Site(**doc) for doc in documents] # Convert to site models
+
+    return SiteList(sites=sites) # Assign sites field in SiteList to the sites
+
+
+async def disable_site(site_object_id: str, db: AsyncIOMotorDatabase):
+    site = await db["sites"].find_one({
+        "_id": ObjectId(site_object_id),
+        "deleted": False
+    })
+
+    if site is None:
+        return 0
+    else:
+        site["deleted"] = True
+
+    Site(**site)
+
+    result = await db["sites"].update_one(
+        {"_id": ObjectId(site_object_id)},
+        {"$set": site}
+    )
+
+    if result.modified_count == 0:
+        return 0
+    else:
+        return 1

@@ -31,3 +31,6 @@ venv
 /web_app/yarn-error.log*
 
 /.idea
+/.vs/Final Year Code/FileContentIndex
+/.vs/Final Year Code/v17/.wsuo
+/.vs

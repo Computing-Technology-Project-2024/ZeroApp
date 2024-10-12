@@ -1,23 +1,20 @@
-# from bson import ObjectId
-from fastapi import APIRouter, Depends, HTTPException
-# from typing import List
-# from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
-# from ..schemas.device import Device
-# from ..services.device_service import (
-#     add_new_device_service,
-#     get_device_by_id_service,
-#     get_all_devices_service,
-#     update_device_service,
-#     delete_device_service
-# )
-# from ..database import get_db
-# from motor.motor_asyncio import AsyncIOMotorClient
+from fastapi import APIRouter
+from public_api.services.ecx_api import fetch_device_parameters, fetch_critical_parameters
+import time
 
 device_router = APIRouter(
     prefix="/device",  # Define a prefix for all device routes
 )
 
 
+"""
+Get request for a specified device. Optional start and end times are added as query parameters.
+e.g. http://127.0.0.1:8000/devices/EE40400611940374?start_time=1725148800&end_time=1725152400
+EdgeConX has basic error handling on their side.
+"""
+@device_router.get("/{device_id}")
+async def get_device_by_id(device_id: str, start_time: int | None = int(time.time())-3600, end_time: int | None = int(time.time())):
+    return fetch_critical_parameters(device_id, start_time, end_time)
 
 # # API to create a new device
 # @device_router.post("/", response_model=Device)

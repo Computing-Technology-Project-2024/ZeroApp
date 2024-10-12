@@ -2,6 +2,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
 from typing import Dict
 from bson import ObjectId
+from public_api.services.ecx_api import fetch_sites
+from public_api.schemas.site import Site, SiteList
+from public_api.data_access.site_repository import update_all_sites, get_site, get_all_sites_from_db, add_site, update_site, disable_site
+from public_api.database import get_db
 
 from ..database import get_db
 from ..schemas.site import Site, Coordinates
@@ -18,103 +22,57 @@ site_router = APIRouter(
     tags=["site"]
 )
 
-
-
-# API to create a new site
-"""
-POST http://localhost:8000/site
-Content-Type: application/json
-
-{
-    "homeowner_id": "60f7d4ccf82e4e06fc36eb0d",
-    "site_label": "Home",
-    "site_address": "123 Main St",
-    "coords": {
-        "lat": 40.7128,
-        "long": -74.0060
-    },
-    "site_type": "Residential",
-    "partner": "PartnerCompany"
-}
-"""
-@site_router.post("")
-async def create_site_api(site_data: Site, db: AsyncIOMotorClient = Depends(get_db)):
-    try:
-        # Convert homeowner_id from string to ObjectId if necessary
-        if isinstance(site_data.homeowner_id, str):
-            try:
-                site_data.homeowner_id = ObjectId(site_data.homeowner_id)
-            except:
-                raise HTTPException(status_code=400, detail="Invalid ObjectId for homeowner_id")
-
-        # Convert to dictionary and exclude unset fields
-        site_dict = site_data.model_dump(exclude_unset=True)
-        site_dict["_id"] = ObjectId()  # MongoDB will generate an _id
-        site_id = await add_new_site_service(site_dict, db)
-        return {"message": "Site created successfully", "site_id": site_id}
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-
-
-# API to get a site by ID
-# GET http://localhost:8000/site/60f7d4ccf82e4e06fc36eb0d
 @site_router.get("/{site_id}")
-async def get_site_by_id_api(site_id: str, db: AsyncIOMotorClient = Depends(get_db)):
-    site = await get_site_by_id_service(site_id, db)
-    if site:
-        return site
-    raise HTTPException(status_code=404, detail="Site not found")
+async def get_site_by_id(site_id: str):
+    db = get_db()
+    # Needs authentication and/or authorization here or in repo side
+    site = await get_site(site_id, db)
+    return site
 
+@site_router.post("/")
+async def add_new_site(site: Site):
+    db = get_db()
+    site = await add_site(site, db)
+    return site
 
+#Call bottom function first
+@site_router.patch("/renew-sites-ecx")
+async def renew_all_sites_route(authentication: dict):
+    result = await renew_all_sites(authentication)
+    return result
 
-# API to get all sites
-# GET http://localhost:8000/site
-@site_router.get("/")
-async def get_all_sites_api(db: AsyncIOMotorClient = Depends(get_db)):
-    sites = await get_all_sites_service(db)
-    
-    # Convert ObjectId to string before returning the data
-    for site in sites:
-        site["_id"] = str(site["_id"])
-        site["homeowner_id"] = str(site["homeowner_id"])
+@site_router.patch("/{site_object_id}")
+async def update_site_data(site_object_id: str, update_data: dict):
+    db = get_db()
+    updated_site = await update_site(site_object_id, update_data, db)
+    return updated_site
+
+@site_router.delete("/{site_object_id}")
+async def delete_site(site_object_id: str):
+    db = get_db()
+    result = await disable_site(site_object_id, db)
+    return result
+
+# Admin only functions
+async def renew_all_sites(authentication: dict):
+    db = get_db()
+    # this is a big function so extra authentication (typing password or a code) would be useful. For now just code "update all"
+    if authentication["code"] != "update all":
+        return 0
+
+    sites = await get_all_sites_from_ecx()
+    result = await update_all_sites(sites, db)
+
+    return result
+
+@site_router.get("/") # Add filter to body of request
+async def get_all_sites(filt: dict):
+    # Example filter = {"homeowner_id":null} to find sites without homeowners
+    db = get_db()
+    sites = await get_all_sites_from_db(filt, db)
     return sites
 
-
-
-# API to update a site (using dictionary input)
-"""
-PATCH http://localhost:8000/site/60f7d4ccf82e4e06fc36eb0d
-Content-Type: application/json
-{
-    "site_label": "New Label",
-    "site_address": "456 Elm St"
-}
-"""
-@site_router.patch("/{site_id}")
-async def update_site_api(site_id: str, update_data: Dict[str, str], db: AsyncIOMotorClient = Depends(get_db)):
-    # Validate homeowner_id if present in the update_data
-    if "homeowner_id" in update_data:
-        if isinstance(update_data["homeowner_id"], str):
-            try:
-                update_data["homeowner_id"] = ObjectId(update_data["homeowner_id"])
-            except:
-                raise HTTPException(status_code=400, detail="Invalid ObjectId for homeowner_id")
-
-    success = await update_site_service(site_id, update_data, db)
-    if success:
-        return {"message": "Site updated successfully"}
-    else:
-        raise HTTPException(status_code=404, detail="Site not found or not updated")
-
-
-
-# API to delete (soft-delete) a site
-# DELETE http://localhost:8000/site/60f7d4ccf82e4e06fc36eb0d
-@site_router.delete("/{site_id}")
-async def delete_site_api(site_id: str, db: AsyncIOMotorClient = Depends(get_db)):
-    success = await delete_site_service(site_id, db)
-    if success:
-        return {"message": "Site deleted successfully"}
-    else:
-        raise HTTPException(status_code=404, detail="Site not found or not deleted")
+# helpers
+async def get_all_sites_from_ecx():
+    sites_list = await fetch_sites()
+    return SiteList(sites=[Site(**site) for site in sites_list])
