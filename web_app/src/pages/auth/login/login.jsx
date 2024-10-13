@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import './login.css';
-import { Link } from 'react-router-dom';
-import { pageRoutes } from '../../constants/pageRoutes';
-
-import eyeShow_icon from '../../img/eye_show_icon.png';
-import eyeClose_icon from '../../img/eye_close_icon.png';
-import logo from '../../img/logo.png';
-import google_icon from '../../img/google_icon.png';
-import facebook_icon from '../../img/facebook_icon.png';
-import apple_icon from '../../img/apple_icon.png';
+import React, { useState, useEffect } from 'react';
+import '../login.css';
+import { pageRoutes } from '../../../constants/pageRoutes';
+import api from '../../../apis/BackendApi';
+import eyeShow_icon from '../../../img/eye_show_icon.png';
+import eyeClose_icon from '../../../img/eye_close_icon.png';
+import logo from '../../../img/logo.png';
+import google_icon from '../../../img/google_icon.png';
+import facebook_icon from '../../../img/facebook_icon.png';
+import apple_icon from '../../../img/apple_icon.png';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const loginIcons = [
   { name: 'eyeShow', icon: eyeShow_icon, alt: 'Show password' },
@@ -16,10 +18,50 @@ const loginIcons = [
 ];
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState('');
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if user is already logged in
+    const token = Cookies.get('jwt');
+    if (token) {
+      navigate(pageRoutes.DASHBOARD);
+    }
+
+    // Check for success message from signup
+    if (location.state?.message) {
+      setSuccessMessage(location.state.message);
+    }
+  }, [navigate, location]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      const response = await api.post('/auth/token', {
+        username: email,
+        password: password,
+      }, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      });
+
+      if (response.data.access_token) {
+        Cookies.set('jwt', response.data.access_token, { expires: 1 }); // Expires in 1 day
+        navigate(pageRoutes.DASHBOARD);
+      }
+    } catch (error) {
+      setError('Invalid email or password. Please try again.');
+    }
   };
 
   return (
@@ -43,6 +85,8 @@ const Login = () => {
               placeholder="Email"
               className="login-input"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-group-show">
@@ -51,6 +95,8 @@ const Login = () => {
               placeholder="Password"
               className="login-input"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <img
               src={showPassword
@@ -63,7 +109,9 @@ const Login = () => {
               onClick={togglePasswordVisibility}
             />
           </div>
-          <Link to={pageRoutes.DASHBOARD}><button type="submit" className="login-button">Login</button></Link>
+          {successMessage && <p className="success-message">{successMessage}</p>}
+          {error && <p className="error-message">{error}</p>}
+          <button type="submit" className="login-button" onClick={handleSubmit}>Login</button>
         </form>
 
         <div className="divider">

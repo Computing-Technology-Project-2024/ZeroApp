@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardCard from '../components/cards/DashboardCard';
+import DashboardCard from '../../components/cards/DashboardCard';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 // Sample data for the chart

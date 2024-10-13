@@ -18,6 +18,7 @@ venv
 
 # production
 /build
+/web_app/build
 
 # misc
 /web_app/.DS_Store

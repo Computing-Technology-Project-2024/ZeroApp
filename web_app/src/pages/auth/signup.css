@@ -123,3 +123,13 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: green;
+    margin-bottom: 10px;
+}

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { pageRoutes } from '../../constants/pageRoutes';
 import './searchBar.css';
 import Search from '../searchFunc/search';
 
@@ -19,6 +21,7 @@ const searchBarItems = [
 
 const SearchBar = ({ className }) => {
     const [isDropdownActive, setIsDropdownActive] = useState(false);
+    const navigate = useNavigate();
 
     const handleNotificationClick = () => {
         alert('Notification icon clicked');
@@ -28,6 +31,11 @@ const SearchBar = ({ className }) => {
         // Toggle between dropdown and active dropdown icons
         setIsDropdownActive(!isDropdownActive);
     };
+    
+    const handleSignOut = () => {
+        Cookies.remove('jwt');
+        navigate(pageRoutes.LOGIN);
+    };
 
     return (
         <div className={`searchbar-container ${className}`}>
@@ -35,7 +43,7 @@ const SearchBar = ({ className }) => {
 
             <div></div>
 
-            <div className='right-container'> 
+            <div className='right-container'>
                 {/* ------------------------------Notification Icon----------------------- */}
                 <div className="notification-container" onClick={handleNotificationClick}>
                     <img
@@ -82,7 +90,7 @@ const SearchBar = ({ className }) => {
                             <div className="dropdown-menu">
                                 <ul>
                                     <li>Settings</li>
-                                    <li>Logout</li>
+                                    <li onClick={handleSignOut}>Sign Out</li>
                                 </ul>
                             </div>
                         )}

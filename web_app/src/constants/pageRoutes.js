@@ -4,4 +4,5 @@ export const pageRoutes = {
     ADMIN: "/admin",
     LOGIN: "/login",
     SIGNUP: "/signup",
+    SIGNOUT: "/signout",
 }
