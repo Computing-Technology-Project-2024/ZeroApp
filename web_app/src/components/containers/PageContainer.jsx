@@ -1,8 +1,8 @@
 import React from 'react';
 
-const PageContainer = ({children}) => {
+const PageContainer = ({children, className}) => {
     return (
-        <div className="flex bg-container-gray h-full w-full p-[50px]">
+        <div className={`bg-container-gray h-full p-[50px] ${className}`}>
             {children}
         </div>
     );

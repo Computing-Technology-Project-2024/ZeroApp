@@ -1,0 +1,104 @@
+.analytics {
+    width: 100%;
+    font-family: 'Nunito Sans', 'sans-serif';
+}
+
+#AddressLine {
+    background-color: #00a000;   /* Green background */
+    color: white;                /* White text */
+    border-radius: 60px;          /* Rounded corners */
+    padding: 5px;                /* Padding for height */
+    text-align: center;          /* Center the text */
+    width: 100%;
+}
+
+.button-group {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;            /* Add spacing from the top */
+    justify-content: center;      /* Center the button group */
+    float: right;
+}
+
+.custom-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #f0f0f5;  /* Light gray for inactive */
+    color: #555;  /* Dark gray text for inactive */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-button.active {
+    background-color: #00a000;  /* Green background for active */
+    color: white;               /* White text for active */
+}
+
+.custom-button:hover {
+    background-color: #e0e0e5;  /* Slight hover effect for inactive buttons */
+}
+
+.comp-name {
+    font-size: 2em;
+}
+
+.head {
+    font-size: 24px;
+}
+
+.loading-spinner {
+    text-align: center;
+    font-size: 1.5em;
+    padding: 20px;
+    color: #007bff;
+}
+.control-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    float: right;
+}
+
+.date-picker {
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #e0e0e5;
+    background-color: #f0f0f5;
+    font-size: 16px;
+    width: 160px;
+    margin-right: 10px;
+}
+
+.button-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    float: right;
+}
+
+.custom-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #f0f0f5;
+    color: #555;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-button.active {
+    background-color: #00a000;
+    color: white;
+}
+
+.custom-button:hover {
+    background-color: #e0e0e5;
+}
+
+.date-picker {
+    text-align: center;
+}
