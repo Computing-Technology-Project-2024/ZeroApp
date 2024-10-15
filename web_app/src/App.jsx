@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useState } from 'react';
 
 import { pageRoutes } from "./constants/pageRoutes";
 
@@ -14,12 +15,16 @@ import Admin from "./pages/admin";
 import PageLayout from "./components/containers/PageLayout";
 
 const App = () => {
+    // -------TEST ADMIN STORE ADDRESS STATE---------
+    const [addressList, setAddressList] = useState([]);
+    const [isAdminMode, setIsAdminMode] = useState(false); // Admin Mode state
+
     const routes = [
         { path: pageRoutes.HOME, element: <Home /> },
-        { path: pageRoutes.DASHBOARD, element: <Dashboard /> },
+        { path: pageRoutes.DASHBOARD, element: <Dashboard setAddressList={setAddressList} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode}/> },
         { path: pageRoutes.ADMIN, element: <Admin /> },
         { path: pageRoutes.RECOMMENDATIONS, element: <Recommendation /> },
-        { path: pageRoutes.ANALYTICS, element: <Analytics /> },
+        { path: pageRoutes.ANALYTICS, element: <Analytics  addressList={addressList} isAdminMode={isAdminMode}/> },
         { path: pageRoutes.SETTINGS, element: <Settings /> },
     ];
 
