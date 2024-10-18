@@ -136,27 +136,24 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
         }
 
         function createStackedBarChart(data) {
-            // Re-use SVG if it exists
-            const existingSvg = d3.select(chartRef.current).select('svg');
-            if (!existingSvg.empty()) {
-                return;
-            }
-
+            // Remove existing SVG to refresh the chart
+            d3.select(chartRef.current).select('svg').remove();
+        
             const margin = { top: 20, right: 100, bottom: 100, left: 70 },
                 width = 1200 - margin.left - margin.right,
                 height = 600 - margin.top - margin.bottom;
-
+        
             const svg = d3.select(chartRef.current)
                 .append('svg')
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
                 .append('g')
                 .attr('transform', `translate(${margin.left},${margin.top})`);
-
+        
             const keys = Object.keys(data[0]).filter(d => d !== 'timestamp');
             const stack = d3.stack().keys(keys);
             const stackedData = stack(data);
-
+        
             const x = d3.scaleBand()
                 .domain(data.map(d => {
                     const timestamp = new Date(d.timestamp * 1000);
@@ -165,12 +162,12 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
                         : d3.timeFormat('%Y-%m-%d')(timestamp);
                 }))
                 .range([0, width])
-                .padding(0.2);
-
+                .padding(0.1);
+        
             const y = d3.scaleLinear()
                 .domain([0, d3.max(stackedData, d => d3.max(d, d => d[1]))])
                 .range([height, 0]);
-
+        
             const color = d3.scaleOrdinal(d3.schemeCategory10).domain(keys);
 
             svg.append("g")
@@ -182,8 +179,21 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
                     )
                     .selectAll("line")      // Select all the horizontal gridlines
                     .attr("stroke", "#e0e0e0") // Set the gridline color to grey
-                    .attr("stroke-opacity", 0.5); 
-
+                    .attr("stroke-opacity", 0.5);
+        
+            // Tooltip div
+            const tooltip = d3.select(chartRef.current)
+                .append('div')
+                .attr('class', 'tooltip')
+                .style('position', 'absolute')
+                .style('background', '#fff')
+                .style('padding', '10px')
+                .style('border', '1px solid #ddd')
+                .style('border-radius', '4px')
+                .style('pointer-events', 'none')
+                .style('box-shadow', '0px 0px 8px rgba(0, 0, 0, 0.1)')
+                .style('opacity', 0);
+        
             svg.selectAll('g.layer')
                 .data(stackedData)
                 .enter()
@@ -199,19 +209,43 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
                 .attr('height', d => y(d[0]) - y(d[1]))
                 .attr('width', x.bandwidth())
                 .attr('rx', x.bandwidth() / 4)
-                .attr('ry', (d, i) => i === 0 ? 10 : 0); // Rounds only the top side
-
-                
-
+                .attr('ry', (d, i) => i === 0 ? 10 : 0)
+                .on('mouseover', (event, d) => {
+                    const timestamp = new Date(d.data.timestamp * 1000);
+                    const formattedTime = timeframe === 'Day'
+                        ? d3.timeFormat('%H')(timestamp)  // Show hour
+                        : d3.timeFormat('%Y-%m-%d')(timestamp); // Show date
+                    const details = keys
+                        .filter(key => d.data[key]) // Filter keys with data
+                        .map(key => `${key}: ${d.data[key].toFixed(2)} kWh`)
+                        .join('<br>');
+        
+                    tooltip
+                        .style('opacity', 1)
+                        .html(`<strong>Time:</strong> ${formattedTime}<br>${details}`);
+                })
+                .on('mousemove', (event) => {
+                    tooltip
+                        .style('left', (event.pageX - 200) + 'px')
+                        .style('top', (event.pageY - 20) + 'px');
+                })
+                .on('mouseout', () => {
+                    tooltip.style('opacity', 0);
+                });
+        
             // Add X axis
             svg.append('g')
-            .style("stroke-opacity", 0)
+                .style("stroke-opacity", 0)
                 .attr('transform', `translate(0,${height})`)
-                .call(d3.axisBottom(x).tickFormat(d => d))
-                svg.selectAll(".tick text")
-                    .style("fill", "#777")
-                    .style("font-size", "14px");
-
+                .call(d3.axisBottom(x).tickFormat(d => {
+                    return timeframe === 'Day' ? d : d3.timeFormat('%a %d')(new Date(d));
+                }))
+                .selectAll("text")
+                .style("fill", "#777")
+                .style("font-size", "14px")
+                .attr("transform", timeframe === 'Day')
+                .style("text-anchor", timeframe === 'Day');
+        
             svg.append('text')
                 .attr('text-anchor', 'end')
                 .attr('x', width / 2)
@@ -219,25 +253,23 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
                 .text('Time')
                 .style("fill", "#777")
                 .style("font-size", "14px");
-
+        
             // Add Y axis
             svg.append('g')
             .style("stroke-opacity", 0)
                 .call(d3.axisLeft(y))
-                svg.selectAll(".tick text")
+                .selectAll("text")
                 .style("fill", "#777")
                 .style("font-size", "14px");
-
-                svg.append('text')
+        
+            svg.append('text')
                 .attr('text-anchor', 'end')
                 .attr('transform', 'rotate(-90)')
                 .attr('y', -margin.left + 20)
                 .attr('x', -height / 2 + 50)
                 .text('Energy (kWh)')
                 .style("fill", "#777")
-                .style("font-size", "14px");
-
-                
+                .style("font-size", "14px");           
 
             // Add legend
             const legend = svg.selectAll('.legend')

@@ -77,7 +77,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                     `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${starttime}&endtime=${endtime}`,
                     {
                         method: 'GET',
-                        headers: { 'x-api-key': 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU' },
+                        headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },
                     }
                 );
 
@@ -240,16 +240,21 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                     });
                 });                
 
-            svg.append('g')
-            .style("stroke-opacity", 0)
-                .attr('transform', `translate(0,${height})`)
-                .call(d3.axisBottom(x)
-                    .ticks(d3.timeHour.every(1))  // Control tick frequency
-                    .tickFormat(d3.timeFormat('%H'))  // Time format
-                )
+                svg.append('g')
+    .style("stroke-opacity", 0)
+    .attr('transform', `translate(0,${height})`)
+    .call(d3.axisBottom(x)
+        .ticks(timeframe === 'Year' ? d3.timeMonth.every(1) :
+               timeframe === 'Month' || timeframe === 'Week' ? d3.timeDay.every(1) : 
+               d3.timeHour.every(1))  // Monthly ticks for 'Year', daily ticks for 'Month' and 'Week', hourly for 'Day'
+        .tickFormat(timeframe === 'Year' ? d3.timeFormat('%b') :  // Month abbreviation for 'Year'
+                    timeframe === 'Month' ? d3.timeFormat('%d') : // Day for 'Month'
+                    timeframe === 'Week' ? d3.timeFormat('%b %d') : // Month Day for 'Week'
+                    d3.timeFormat('%H'))  // Hour for 'Day'
+    )
             svg.selectAll(".tick text")
                 .style("fill", "#777")
-                .style("font-size", "14px"); // Rotate labels for better fit            
+                .style("font-size", "14px");           
 
             //x-axis
             svg.append('text')

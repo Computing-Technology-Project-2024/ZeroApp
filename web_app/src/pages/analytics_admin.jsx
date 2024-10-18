@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import BaseCard from '../components/cards/BaseCard';
 import BarCombChart from '../components/charts/BarCombChart';
 import CircuitsChart from '../components/charts/CircuitsChart';
-import StackedBar from '../components/charts/StackedBar';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../scripts/analytics_Style.css';
@@ -84,7 +83,7 @@ const Analytics_admin = () => {
                             dateFormat="yyyy/MM/dd"
                             className="date-picker"
                         />
-                        {['Day', 'Week', 'Month', 'Year'].map(label => (
+                        {['Day', 'Week', 'Month'].map(label => (
                             <button
                                 key={label}
                                 className={`custom-button ${activeButton === label ? 'active' : ''}`}
@@ -101,11 +100,6 @@ const Analytics_admin = () => {
             <BaseCard width={400} height={400}>
                 <p className='comp-name'>Devices Consumption</p>
                 <CircuitsChart timeframe={activeButton} selectedDate={selectedDate} />
-            </BaseCard>
-
-            <BaseCard width={400} height={400}>
-                <p className='comp-name'>Devices Consumption Stacked Chart</p>
-                <StackedBar timeframe={activeButton} selectedDate={selectedDate} />
             </BaseCard>
         </div>
     );
