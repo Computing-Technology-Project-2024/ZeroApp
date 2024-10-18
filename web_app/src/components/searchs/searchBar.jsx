@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
 import './searchBar.css';
-import Search from '../searchFunc/search';
+import { Link } from 'react-router-dom';
+import { pageRoutes } from '../../constants/pageRoutes';
 
-import noti_icon from '../../img/noti_icon.png';
+import Search from '../searchFunc/search';
 import userImg from '../../img/userImg.png';
 import dropdown_icon from '../../img/dropdown_icon.png';
 import active_dropdown_icon from '../../img/active_dropdown_icon.png';
@@ -11,7 +12,6 @@ import active_dropdown_icon from '../../img/active_dropdown_icon.png';
 
 const searchBarItems = [
     // { name: 'search', icon: search_icon, alt: 'Search', action: () => console.log('Search clicked') },
-    { name: 'notification', icon: noti_icon, alt: 'Notifications' },
     { name: 'user', icon: userImg, alt: 'User' },
     { name: 'dropdown', icon: dropdown_icon, alt: 'Dropdown' },
     { name: 'active_dropdown', icon: active_dropdown_icon, alt: 'Active Dropdown' }
@@ -19,10 +19,6 @@ const searchBarItems = [
 
 const SearchBar = ({ className }) => {
     const [isDropdownActive, setIsDropdownActive] = useState(false);
-
-    const handleNotificationClick = () => {
-        alert('Notification icon clicked');
-    };
 
     const handleToggleClick = () => {
         // Toggle between dropdown and active dropdown icons
@@ -35,29 +31,18 @@ const SearchBar = ({ className }) => {
 
             <div></div>
 
-            <div className='right-container'> 
-                {/* ------------------------------Notification Icon----------------------- */}
-                <div className="notification-container" onClick={handleNotificationClick}>
-                    <img
-                        src={searchBarItems.find(item => item.name === 'notification').icon}
-                        alt={searchBarItems.find(item => item.name === 'notification').alt}
-                        className="notification-icon"
-                    />
-
-                    {/* number of notifications */}
-                    <p className="notification-badge">6</p>
-
-                </div>
-
+            <div className='right-container'>
                 {/* ------------------------User Information------------------------ */}
                 <div className="user-container">
                     {/* User img will be retrieved from the database in the future */}
                     <div className="user-info-wrapper">
-                        <img
-                            src={searchBarItems.find(item => item.name === 'user').icon}
-                            alt={searchBarItems.find(item => item.name === 'user').alt}
-                            className="user-icon"
-                        />
+                        <Link to={pageRoutes.SETTINGS}>
+                            <img
+                                src={searchBarItems.find(item => item.name === 'user').icon}
+                                alt={searchBarItems.find(item => item.name === 'user').alt}
+                                className="user-icon"
+                            />
+                        </Link>
                         <div className="user-info">
                             <p className="user-name">Moni Roy</p>
                             <p className="user-mode">User</p>
