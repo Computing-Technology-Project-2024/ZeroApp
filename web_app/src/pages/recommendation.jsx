@@ -12,6 +12,9 @@ const data = [
   { name: '6', uv: 349, pv: 430, amt: 2400 },
 ]; // replace this with api data
 
+
+// test api data
+
 const Recommendation = () => {
   return (
     <div className="container mx-auto">
@@ -21,7 +24,7 @@ const Recommendation = () => {
       <div className="flex flex-col md:flex-row gap-6">
         
         {/* Left Side - Speedometer */}
-        <div className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md overflow-hidden">
+        <div className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md">
           <h5 className="text-lg font-medium">Wednesday</h5>
           <p className="text-sm">22 May</p>
           <div className="mt-4">

@@ -17,6 +17,7 @@ const PageLayout = ({ children }) => {
           </PageContainer>
         </div>
       </main>
+      
     );
 };
 
