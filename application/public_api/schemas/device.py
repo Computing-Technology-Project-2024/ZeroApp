@@ -1,26 +1,11 @@
 import datetime
-
-from typing import Optional
+from typing import List, Optional, Union
 from bson import ObjectId
 from pydantic import BaseModel, Field
 
-class Device(BaseModel):
-    id: Optional[ObjectId] = Field(alias="_id")
-    site_id: ObjectId
-    active: bool
-    install_date: datetime
-    product: str
-    # need clarification here too
-    metrics: []
-
-    class Config:
-        arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
-
 class DeviceMetric(BaseModel):
-    id: ObjectId
-    device_id: ObjectId
-    start_time: datetime
+    date: datetime.date
+    count: int
     sum_watt: float
     sum_current: float
     sum_voltage: float
@@ -33,3 +18,15 @@ class DeviceMetric(BaseModel):
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
 
+
+class Device(BaseModel):
+    id: Optional[ObjectId] = Field(default=None, alias="_id")
+    site_id: Union[str, ObjectId]
+    active: bool
+    install_date: datetime.date
+    product: str
+    device_metric: List[DeviceMetric]  # List of DeviceMetric objects
+
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}

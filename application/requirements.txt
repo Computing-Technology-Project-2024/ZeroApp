@@ -12,3 +12,4 @@ python-jose
 pymongo
 python-dotenv
 pydantic[email]
+python-multipart
