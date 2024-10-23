@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
+
+import logo from '../../img/logo.png';
 import dash_icon from '../../img/dash_icon.png';
 import analytics_ico from '../../img/analytics_icon.png';
 import recon_icon from '../../img/recommend_icon.png';
@@ -37,8 +39,9 @@ const Sidebar = () => {
   return (
       <div className="sidebar">
         <div className="logo">
-          <span className="logo-zero">Zero</span>
-          <span className="logo-app">App</span>
+          {/* <span className="logo-zero">Zero</span>
+          <span className="logo-app">App</span> */}
+          <img src={logo} alt="Logo"/>
         </div>
         <nav className="menu">
           <ul>
