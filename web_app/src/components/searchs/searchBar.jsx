@@ -25,7 +25,6 @@ const SearchBar = ({ className }) => {
         setIsDropdownActive(!isDropdownActive);
     };
 
-const SearchBar = () => {
     return (
         <div className={`searchbar-container ${className}`}>
             <Search />

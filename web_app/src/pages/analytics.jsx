@@ -70,18 +70,19 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
                 </ModalBox>
             )}
 
+            {/* SOME ERROR HERE */}
             <BaseCard className={`mb-4 w-auto`}>
                 <div className="control-group">
 
                     <p>Choose Date:</p>
                     <div className="button-group">
 
-                        <DatePicker
+                        {/* <DatePicker
                             selected={selectedDate}
                             onChange={handleDateChange}
                             dateFormat="yyyy/MM/dd"
                             className="date-picker"
-                        />
+                        /> */}
                         {['Day', 'Week', 'Month', 'Year'].map(label => (
                             <button
                                 key={label}

@@ -5,7 +5,7 @@ import {pageRoutes} from "./constants/pageRoutes";
 
 import Dashboard from "./pages/dashboard";
 import Signup from "./pages/auth/signup";
-import Admin from "./pages/admin/admin";
+import Admin from "./pages/admin";
 import Login from "./pages/auth/login";
 import Home from "./pages/home";
 import PageLayout from "./components/containers/PageLayout";
