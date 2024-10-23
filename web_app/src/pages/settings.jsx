@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import InputField from '../components/settingsInput/inputField';
 
 const Settings = () => {
   const [firstName, setFirstName] = useState('');
@@ -8,6 +9,9 @@ const Settings = () => {
   const [position, setPosition] = useState('');
   const [gender, setGender] = useState('Male');
   const [photo, setPhoto] = useState(null);
+
+  const [supplierRate, setSupplierRate] = useState('');
+  const [usageRate, setUsageRate] = useState('');
 
   const handlePhotoUpload = (event) => {
     const file = event.target.files[0];
@@ -47,83 +51,96 @@ const Settings = () => {
           <span className="text-green-500 mt-2 cursor-pointer">Upload Photo</span>
         </div>
 
-        {/* Form Inputs */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-600 mb-1">First Name</label>
-            <input
+         {/* Form Inputs */}
+         <div className="grid grid-cols-2 gap-4">
+            <InputField
+              label="First Name"
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               placeholder="Enter your first name"
             />
-          </div>
-          <div>
-            <label className="block text-gray-600 mb-1">Last Name</label>
-            <input
+            <InputField
+              label="Last Name"
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               placeholder="Enter your last name"
             />
-          </div>
-          <div>
-            <label className="block text-gray-600 mb-1">Your Email</label>
-            <input
+            <InputField
+              label="Your Email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               placeholder="Enter your email"
             />
-          </div>
-          <div>
-            <label className="block text-gray-600 mb-1">Phone Number</label>
-            <input
+            <InputField
+              label="Phone Number"
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               placeholder="Enter your phone number"
             />
-          </div>
-          {/* <div>
-            <label className="block text-gray-600 mb-1">Position</label>
-            <input
+            <InputField
+              label="Position"
               type="text"
               value={position}
               onChange={(e) => setPosition(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               placeholder="Enter your position"
             />
-          </div> */}
-          {/* <div>
-            <label className="block text-gray-600 mb-1">Gender</label>
-            <select
+            <InputField
+              label="Gender"
+              type="select"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-            >
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-          </div> */}
-        </div>
+              options={['Male', 'Female', 'Other']}
+            />
+          </div>
 
-        {/* Submit Button */}
-        <div className="mt-8">
-          <button
-            onClick={handleSubmit}
-            className="w-full bg-green-500 text-white p-3 rounded-lg font-semibold text-lg hover:bg-green-600 transition-all duration-300"
-          >
-            Add Now
-          </button>
+          {/* Submit Button */}
+          <div className="mt-8">
+            <button
+              onClick={handleSubmit}
+              className="w-full bg-green-500 text-white p-3 rounded-lg font-semibold text-lg hover:bg-green-600 transition-all duration-300"
+            >
+              Add Now
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Section to Customize User Preferences */}
+      <h3 className="text-2xl font-bold mb-4 text-left mt-8">Consumption Preferences</h3>
+      <div className="flex items-center justify-center bg-gray-100 mx-auto">
+        <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-screen">
+          <div className="grid grid-cols-2 gap-4">
+            <InputField
+              label="Supplier Rate"
+              type="text"
+              value={supplierRate}
+              onChange={(e) => setSupplierRate(e.target.value)}
+              placeholder="kWh"
+            />
+            <InputField
+              label="Usage Rate"
+              type="text"
+              value={usageRate}
+              onChange={(e) => setUsageRate(e.target.value)}
+              placeholder="kWh"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="mt-8">
+            <button
+              onClick={handleSubmitPreference}
+              className="w-full bg-green-500 text-white p-3 rounded-lg font-semibold text-lg hover:bg-green-600 transition-all duration-300"
+            >
+              Submit Preferences
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
