@@ -63,7 +63,7 @@
 }
 
 .menu-item.active a {
-  background-color: #00a000;
+  background-color: #35AA3F;
   color: #fff;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .menu-item a:hover {
-  color: #00a000;
+  color: #35AA3F;
 }
 
 .menu-item img {

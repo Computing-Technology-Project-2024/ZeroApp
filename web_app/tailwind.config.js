@@ -10,7 +10,7 @@ module.exports = {
       },
       colors: {
         'container-gray': '#F5F6FA',
-        'custom-green' : '#00a000',
+        'custom-green' : '#35AA3F',
         'custom-green-dark': '#2E9936',
         'custom-purple': '#9999cc',
       }
