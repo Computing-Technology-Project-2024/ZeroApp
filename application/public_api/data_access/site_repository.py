@@ -106,3 +106,12 @@ async def disable_site(site_object_id: str, db: AsyncIOMotorDatabase):
         return 0
     else:
         return 1
+
+
+async def assign_sites(new_account_id: str, site_ids: dict, db: AsyncIOMotorDatabase):
+    update_data = {"account_id": new_account_id}
+
+    for index, site_id in site_ids.items():
+        result = await update_site(site_id, update_data, db)
+
+    return 1

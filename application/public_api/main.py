@@ -44,7 +44,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(analytic_router)
 app.include_router(device_router)
-# app.include_router(site_router)
+app.include_router(site_router)
 app.include_router(account_router)
 app.include_router(enphase_router)
 app.include_router(homeowner_router)

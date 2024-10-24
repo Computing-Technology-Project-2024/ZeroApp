@@ -11,10 +11,10 @@ class Coordinates(BaseModel):
 
 class Site(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
-    homeowner_id: Optional[PyObjectId] = Field(default=None)
+    account_id: Optional[PyObjectId] = Field(default=None)
     site_id: Optional[int] = Field(default=None)
     deleted: bool = Field(default=False)
-    site_label: Optional[str]
+    site_label: Optional[str] = Field(default=None)
     site_address: str
     lat: float
     lng: float
