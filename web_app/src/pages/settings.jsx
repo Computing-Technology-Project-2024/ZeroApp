@@ -81,27 +81,13 @@ const Settings = () => {
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Enter your phone number"
             />
-            <InputField
-              label="Position"
-              type="text"
-              value={position}
-              onChange={(e) => setPosition(e.target.value)}
-              placeholder="Enter your position"
-            />
-            <InputField
-              label="Gender"
-              type="select"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-              options={['Male', 'Female', 'Other']}
-            />
           </div>
 
           {/* Submit Button */}
           <div className="mt-8">
             <button
               onClick={handleSubmit}
-              className="w-full bg-green-500 text-white p-3 rounded-lg font-semibold text-lg hover:bg-green-600 transition-all duration-300"
+              className="w-full bg-custom-green text-white p-2 rounded-lg font-semibold text-lg hover:bg-green-600 transition-all duration-300"
             >
               Add Now
             </button>
@@ -133,8 +119,8 @@ const Settings = () => {
           {/* Submit Button */}
           <div className="mt-8">
             <button
-              onClick={handleSubmitPreference}
-              className="w-full bg-green-500 text-white p-3 rounded-lg font-semibold text-lg hover:bg-green-600 transition-all duration-300"
+              onClick={handleSubmit}
+              className="w-full bg-custom-green text-white p-2 rounded-lg font-semibold text-lg hover:bg-green-600 transition-all duration-300"
             >
               Submit Preferences
             </button>

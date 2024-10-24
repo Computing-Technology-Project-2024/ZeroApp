@@ -252,13 +252,13 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
     }, [data, visibleCircuits]);
 
     return (
-        <div>
+        <div className="">
             {loading ? (
                 <div>Loading data...</div>
             ) : (
                 <div>
                     <div ref={chartRef}></div>
-                    {lastUpdated && <div>Last updated: {lastUpdated.toLocaleString()}</div>}
+                    {lastUpdated && <div className={`text-[#777] mt-[10px]`}>Last updated: {lastUpdated.toLocaleString()}</div>}
                 </div>
             )}
         </div>

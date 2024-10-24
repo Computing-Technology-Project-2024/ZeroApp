@@ -6,7 +6,7 @@
 #AddressLine {
     background-color: #00a000;   /* Green background */
     color: white;                /* White text */
-    border-radius: 60px;          /* Rounded corners */
+    /*border-radius: 60px;          !* Rounded corners *!*/
     padding: 5px;                /* Padding for height */
     text-align: center;          /* Center the text */
     width: 100%;

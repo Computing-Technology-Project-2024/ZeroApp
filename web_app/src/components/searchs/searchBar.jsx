@@ -11,7 +11,6 @@ import active_dropdown_icon from '../../img/active_dropdown_icon.png';
 
 
 const searchBarItems = [
-    // { name: 'search', icon: search_icon, alt: 'Search', action: () => console.log('Search clicked') },
     { name: 'user', icon: userImg, alt: 'User' },
     { name: 'dropdown', icon: dropdown_icon, alt: 'Dropdown' },
     { name: 'active_dropdown', icon: active_dropdown_icon, alt: 'Active Dropdown' }
@@ -26,7 +25,7 @@ const SearchBar = ({ className }) => {
     };
 
     return (
-        <div className={`searchbar-container ${className}`}>
+        <div className={`searchbar-container shadow-sm ${className}`}>
             <Search />
 
             <div></div>

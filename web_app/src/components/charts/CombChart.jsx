@@ -28,11 +28,6 @@ const CombinedChart = () => {
                 return Promise.all(responses.map(response => response.json()));
             })
             .then(([importData, exportData, productionData, powerUsageData]) => {
-                console.log("Import data:", importData);
-                console.log("Export data:", exportData);
-                console.log("Solar Production data:", productionData);
-                console.log("Power usage data from API:", powerUsageData);
-
                 // Preprocess the power usage and house consumption data
                 const powerDataTransformed = preprocessHouseConsumptionData(powerUsageData);
 

@@ -215,7 +215,7 @@ const CombinedBarChart = () => {
                     .attr("text-anchor", "end")
                     .attr("x", width / 2)
                     .attr("y", height + margin.bottom - 60)
-                    .text("Time")
+                    .text("Time (hour)")
                     .style("fill", "#777")
                     .style("font-size", "14px");
 

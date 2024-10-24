@@ -4,13 +4,11 @@ import Search from '../components/searchFunc/search';
 
 import BaseCard from '../components/cards/BaseCard';
 import BarCombChart from '../components/charts/BarCombChart';
-import CombChart from '../components/charts/CombChart';
 import CircuitsChart from '../components/charts/CircuitsChart';
 import StackedBar from '../components/charts/StackedBar';
 import DatePicker from 'react-datepicker'; // Import DatePicker
 import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import '../scripts/analytics_Style.css';
-import { color } from 'd3';
 
 const Analytics = ({ addressList = [], isAdminMode }) => {
     const [activeButton, setActiveButton] = useState('Day');
@@ -35,12 +33,13 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
 
     return (
         <div className='analytics'>
-            <div className={`mb-4`}>
+            <div className={`mb-4 w-full`}>
                 <p className='head font-bold pb-4'>Analytics</p>
 
                 {/* TODO: add dynamic site address here */}
-                <p id="AddressLine">{selectedAddress.site_address}
-                    {isAdminMode && (
+                <p className={`h-8 rounded-lg`} id="AddressLine">{selectedAddress.site_address}
+                    {
+                      isAdminMode && (
                         <span
                             style={{ color: "white", cursor: "pointer", marginLeft: "10px", textDecoration: "underline" }}
                             onClick={() => setIsModalOpen(true)}
@@ -70,19 +69,15 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
                 </ModalBox>
             )}
 
-            {/* SOME ERROR HERE */}
             <BaseCard className={`mb-4 w-auto`}>
                 <div className="control-group">
-
-                    <p>Choose Date:</p>
-                    <div className="button-group">
-
-                        {/* <DatePicker
+                   <div className="button-group">
+                        <DatePicker
                             selected={selectedDate}
                             onChange={handleDateChange}
                             dateFormat="yyyy/MM/dd"
                             className="date-picker"
-                        /> */}
+                        />
                         {['Day', 'Week', 'Month', 'Year'].map(label => (
                             <button
                                 key={label}
@@ -93,19 +88,19 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
                         ))}
                     </div>
                 </div>
-                <p className='comp-name'>Consumption, Import/Export</p>
+                <p className='comp-name'>Total daily energy import and export</p>
                 {/* Pass both the timeframe and selectedDate to the CombChart */}
                 <BarCombChart timeframe={activeButton} selectedDate={selectedDate} />
             </BaseCard>
 
             <BaseCard className={`mb-4 w-auto`}>
-                <p className='comp-name'>Devices Consumption</p>
+                <p className='comp-name'>Total circuits consumption</p>
                 {/* Pass both the timeframe and selectedDate to the CircuitsChart */}
                 <CircuitsChart timeframe={activeButton} selectedDate={selectedDate} />
             </BaseCard>
 
-            <BaseCard className={`mb-4 w-auto`}>
-                <p className='comp-name'>Devices Consumption Stacked Chart</p>
+            <BaseCard className={`w-auto mb-[50px]`}>
+                <p className='comp-name'>Total circuits consumption</p>
                 {/* Pass both the timeframe and selectedDate to the CircuitsChart */}
                 <StackedBar timeframe={activeButton} selectedDate={selectedDate} />
             </BaseCard>

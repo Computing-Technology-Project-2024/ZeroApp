@@ -12,9 +12,6 @@ const data = [
   { name: '6', uv: 349, pv: 430, amt: 2400 },
 ]; // replace this with api data
 
-
-// test api data
-
 const Recommendation = () => {
   return (
     <div className="container mx-auto">

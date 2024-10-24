@@ -60,7 +60,6 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
             try {
                 setLoading(true);
                 const { starttime, endtime } = getTimeRange();
-                console.log(`Fetching data from ${starttime} to ${endtime}`);
 
                 const response = await fetch(
                     `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${starttime}&endtime=${endtime}`,
@@ -75,7 +74,6 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 }
 
                 const result = await response.json();
-                console.log('API Response for Day:', result);
 
                 if (Object.keys(result).length === 0) {
                     console.error('No data returned for the specified day range.');
@@ -84,8 +82,6 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
 
                 const aggregatedData = preprocessData(result);
                 const energyData = calculateTotalEnergy(result);
-
-                console.log('Aggregated Data:', aggregatedData);
 
                 setData(aggregatedData);
                 setVisibleCircuits(Object.keys(aggregatedData[0]).filter(d => d !== 'timestamp'));
@@ -99,11 +95,10 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
             }
         };
 
-        fetchData();
+        void fetchData();
     }, [timeframe, selectedDate]);
 
     const preprocessData = (rawData) => {
-        console.log('Raw Data before processing:', rawData);
         const aggregatedData = {};
         const allDevices = Object.keys(rawData);
 
@@ -143,11 +138,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
 
     useEffect(() => {
         if (data && visibleCircuits && data.length > 0) {  // Add a guard clause to check if data exists and is not empty
-            console.log('Chart Data:', data);
-            console.log('Visible Circuits:', visibleCircuits);
             createStackedAreaChart(data);
-        } else {
-            console.log("Data or visible circuits are undefined or empty.");
         }
 
         function createStackedAreaChart(data) {
@@ -187,7 +178,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 .y0(d => y(d[0]))
                 .y1(d => y(d[1]))
                 .curve(d3.curveBasis);
-                
+
 
             svg.selectAll('path')
                 .data(stackedData)
@@ -195,7 +186,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 .append('path')
                 .attr('fill', d => color(d.key))
                 .style('display', d => visibleCircuits.includes(d.key) ? null : 'none')
-                .attr('d', area);                
+                .attr('d', area);
 
             svg.append('rect')
                 .attr('width', width)
@@ -227,7 +218,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                             .text(`${circuit}: ${circuitPower.toFixed(2)} kW`);
                         yPosition += 20;
                     });
-                });                
+                });
 
             svg.append('g')
             .style("stroke-opacity", 0)
@@ -238,34 +229,34 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 )
             svg.selectAll(".tick text")
                 .style("fill", "#777")
-                .style("font-size", "14px"); // Rotate labels for better fit            
+                .style("font-size", "14px"); // Rotate labels for better fit
 
             //x-axis
             svg.append('text')
                 .attr('text-anchor', 'end')
                 .attr('x', width / 2)
                 .attr('y', height + margin.bottom - 60)
-                .text('Time')
+                .text('Time (hour)')
                 .style("fill", "#777")
                 .style("font-size", "14px");
 
             //y-axis
             svg.append('g')
                 .call(d3.axisLeft(y))
-                .style("stroke-opacity", 0)    
+                .style("stroke-opacity", 0)
             svg.selectAll(".tick text")
                 .style("fill", "#777")
-                .style("font-size", "14px");                               
+                .style("font-size", "14px");
 
             svg.append('text')
                 .attr('text-anchor', 'end')
                 .attr('transform', 'rotate(-90)')
                 .attr('y', -margin.left + 20)
                 .attr('x', -height / 2 + 50)
-                .text('Power (kW/h)')
+                .text('Energy (kW/h)')
                 .style("fill", "#777")
                 .style("font-size", "14px");
-                                
+
                 svg.append("g")
                     .style("stroke-opacity", 0)
                     .attr("class", "grid")
