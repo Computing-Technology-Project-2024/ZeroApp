@@ -40,7 +40,6 @@ async def patch_account(account_data: dict, db: AsyncIOMotorClient = Depends(get
     """
     { 
         account_data: {
-            username: "",
             password: "",
             email: "",
             mobile_number: "",
@@ -52,19 +51,23 @@ async def patch_account(account_data: dict, db: AsyncIOMotorClient = Depends(get
     hashed_pw = hash_password(account_data["password"])
 
     new_acc_data = {
-        "username": account_data["username"],
         "password_hash": hashed_pw,
         "email": account_data["email"],
         "mobile_number": account_data["mobile_number"],
-        "activted": True
+        "activated": True
     }
 
     account_shell = await db["accounts"].find_one({
         "authorization_code": account_data["authorization_code"],
-        "deleted": False
+        "deleted": False,
+        "activated": False
     })
 
-    updated_account = await update_account(account_shell["_id"], new_acc_data, db)
+    if account_shell is not None:
+        updated_account = await update_account(account_shell["_id"], new_acc_data, db)
+    else:
+        return "Error activating"
+
     return updated_account
 
 @account_router.patch("/{account_id}")

@@ -14,7 +14,6 @@ class Account(BaseModel):
     # Create empty shell to be activated later
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     deleted: bool = Field(default=False)
-    username: Optional[str] = Field(default=None)
     password_hash: Optional[str] = Field(default=None)
     email: Optional[str] = Field(default=None)
     mobile_number: Optional[str] = Field(default=None)
