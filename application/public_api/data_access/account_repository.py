@@ -2,6 +2,9 @@ from typing import Optional
 from bson.objectid import ObjectId
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from public_api.schemas.account import Account, Role
+from public_api.data_access.site_repository import assign_sites
+import string
+import secrets
 
 async def add_account(account: Account, db: AsyncIOMotorDatabase) -> Account:
     account_dict = account.model_dump(by_alias=True, exclude=["id"])
@@ -76,3 +79,36 @@ async def update_account(account_object_id: str, account_data: dict, db: AsyncIO
     updated_account = await db["accounts"].find_one({"_id": ObjectId(account_object_id)})
 
     return Account(**updated_account)
+
+async def create_account_shell(account_info: Account, site_ids: dict, db: AsyncIOMotorDatabase) -> str:
+    
+    tries = 5
+
+    alphabet = string.ascii_letters + string.digits
+
+    error = ""
+
+    while tries > 0:
+        
+        auth_code = ''.join(secrets.choice(alphabet) for i in range(12))
+    
+        account_info.authorization_code = auth_code
+        account = account_info.model_dump(by_alias=True, exclude=["id"])
+
+        try:
+            result = await db["accounts"].insert_one(account)
+            new_account = Account(**account, id=result.inserted_id)
+            new_account_id = new_account.id
+            res = await assign_sites(new_account_id, site_ids, db)
+            if (res==1):
+                return new_account.authorization_code
+            else:
+                return "Account creation error"
+        except Exception as e:
+            if "duplicate key error" in str(e):
+                tries = tries - 1
+                continue
+            else:
+                return e
+
+    return "Account creation error"

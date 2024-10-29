@@ -33,8 +33,8 @@ async def add_new_site(site: Site, db: AsyncIOMotorClient = Depends(get_db)):
 
 # Call bottom function first
 @site_router.patch("/renew-sites-ecx")
-async def renew_all_sites_route(authentication: dict):
-    result = await renew_all_sites(authentication)
+async def renew_all_sites_route(authentication: dict, db: AsyncIOMotorClient = Depends(get_db)):
+    result = await renew_all_sites(authentication, db)
     return result
 
 @site_router.patch("/{site_object_id}")
@@ -48,7 +48,7 @@ async def delete_site(site_object_id: str, db: AsyncIOMotorClient = Depends(get_
     return result
 
 # Admin only functions
-async def renew_all_sites(authentication: dict, db: AsyncIOMotorClient = Depends(get_db)):
+async def renew_all_sites(authentication: dict, db: AsyncIOMotorClient):
     # this is a big function so extra authentication (typing password or a code) would be useful.
     # For now just code "update all"
     if authentication["code"] != "update all":
