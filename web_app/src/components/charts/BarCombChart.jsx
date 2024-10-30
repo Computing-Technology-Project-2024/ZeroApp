@@ -1,10 +1,60 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 
-const CombinedBarChart = () => {
+const CombinedBarChart = ({ timeframe, selectedDate }) => {
     const chartRef = useRef(null);
 
+
+    const getTimeRange = () => {
+        const selected = new Date(selectedDate);  // Use selectedDate instead of current date
+
+        let startTime, endTime;
+
+        switch (timeframe) {
+            case 'Day':
+                // Set start time to the start of the selected day in AEST
+                startTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 0, 0, 0);
+                endTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 23, 59, 59);
+                break;
+            case 'Week':
+                // Get the start of the week (Monday) in AEST
+                const dayOfWeek = selected.getDay(); // Day of week (0 is Sunday, 6 is Saturday)
+                const diffToMonday = (dayOfWeek === 0 ? -6 : 1) - dayOfWeek; // Calculate how many days to subtract to get to Monday
+                startTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate() + diffToMonday, 0, 0, 0);
+                endTime = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate() + 6, 23, 59, 59);
+                break;
+            case 'Month':
+                // Set start time to the first day of the selected month
+                startTime = new Date(selected.getFullYear(), selected.getMonth(), 1, 0, 0, 0);
+                // Set end time to the last day of the selected month
+                endTime = new Date(selected.getFullYear(), selected.getMonth() + 1, 0, 23, 59, 59);
+                break;
+            default:
+                // Default to the selected day if no timeframe is matched
+                startTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 0, 0, 0);
+                endTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 23, 59, 59);
+        }
+
+        // Convert times to UTC for the API (since the backend may expect Unix timestamps in UTC)
+        const startTimeUTC = Math.floor(startTime.getTime() / 1000); // Convert to Unix timestamp in seconds
+        const endTimeUTC = Math.floor(endTime.getTime() / 1000);
+
+        return {
+            starttime: startTimeUTC,
+            endtime: endTimeUTC
+        };
+    };
+
+
+
+
+    
+
     useEffect(() => {
+
+        const { starttime, endtime } = getTimeRange();
+        const siteID = 2385;
+
         const margin = { top: 20, right: 100, bottom: 100, left: 60 },
             width = 1200 - margin.left - margin.right,
             height = 650 - margin.top - margin.bottom;
@@ -14,9 +64,9 @@ const CombinedBarChart = () => {
             fetch(`${process.env.PUBLIC_URL}/Grid_Import.txt`),
             fetch(`${process.env.PUBLIC_URL}/Solar_Export.txt`),
             fetch(`${process.env.PUBLIC_URL}/Solar_Production.txt`),
-            fetch('https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=1714658400&endtime=1714744800', {
+            fetch(`https://api.edgeapi-v1.com/swinburn/getloaddata/interval/${siteID}?starttime=${starttime}&endtime=${endtime}`, {
                 method: 'GET',
-                headers: { 'x-api-key': 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU' },
+                headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },
             })
         ])
             .then(responses => {
@@ -274,7 +324,7 @@ const CombinedBarChart = () => {
                 total_kwh: wattHours / 1000
             }));
         }
-    }, []);
+    }, [timeframe, selectedDate]);
 
     return <div ref={chartRef}></div>;
 };

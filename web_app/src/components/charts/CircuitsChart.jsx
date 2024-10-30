@@ -34,12 +34,6 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 // Set end time to the last day of the selected month
                 endTime = new Date(selected.getFullYear(), selected.getMonth() + 1, 0, 23, 59, 59);
                 break;
-            case 'Year':
-                // Set start time to January 1st of the selected year
-                startTime = new Date(selected.getFullYear(), 0, 1, 0, 0, 0);
-                // Set end time to December 31st of the selected year
-                endTime = new Date(selected.getFullYear(), 11, 31, 23, 59, 59);
-                break;
             default:
                 // Default to the selected day if no timeframe is matched
                 startTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 0, 0, 0);
@@ -71,10 +65,11 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
             try {
                 setLoading(true);
                 const { starttime, endtime } = getTimeRange();
+                const siteID = 2385;
                 console.log(`Fetching data from ${starttime} to ${endtime}`);
 
                 const response = await fetch(
-                    `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${starttime}&endtime=${endtime}`,
+                    `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/${siteID}?starttime=${starttime}&endtime=${endtime}`,
                     {
                         method: 'GET',
                         headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },

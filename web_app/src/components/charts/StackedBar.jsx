@@ -66,7 +66,7 @@ const StackedBarChart = ({ timeframe, selectedDate }) => {
                     `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${starttime}&endtime=${endtime}`,
                     {
                         method: 'GET',
-                        headers: { 'x-api-key': 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU' },
+                        headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },
                     }
                 );
 
