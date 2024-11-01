@@ -7,11 +7,12 @@ import analytics_ico from '../../img/analytics_icon.png';
 import recon_icon from '../../img/recommend_icon.png';
 import logout_icon from '../../img/logout_icon.png';
 import settings_icon from '../../img/settings_icon.png';
-import {Link} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 import {pageRoutes} from "../../constants/pageRoutes";
 
 const Sidebar = ({ className }) => {
-  const [activeItem, setActiveItem] = useState('dashboard');
+  const { pathname: path } = useLocation();
+  const [activeItem, setActiveItem] = useState(path.slice(1));
 
   const handleItemClick = (item) => {
     setActiveItem(item);
@@ -25,7 +26,7 @@ const Sidebar = ({ className }) => {
   const menuItems = [
     { name: 'dashboard', icon: dash_icon, text: 'Dashboard', route: pageRoutes.DASHBOARD },
     { name: 'analytics', icon: analytics_ico, text: 'Analytics', route: pageRoutes.ANALYTICS },
-    { name: 'recommendation', icon: recon_icon, text: 'Recommendation', route: pageRoutes.RECOMMENDATIONS }
+    { name: 'recommendations', icon: recon_icon, text: 'Recommendation', route: pageRoutes.RECOMMENDATIONS }
   ];
 
   return (
@@ -45,7 +46,7 @@ const Sidebar = ({ className }) => {
                 >
                   <Link to={item.route} onClick={() => handleItemClick(item.name)}>
                     <img className="img" src={item.icon} alt="icon"/>
-                    <p>{item.text}</p>
+                    <p className={``} >{item.text}</p>
                   </Link>
                 </li>
             ))}
@@ -62,7 +63,8 @@ const Sidebar = ({ className }) => {
                 className={`menu-item ${activeItem === item.name ? 'active' : ''}`}
               >
                 <Link to={item.route} onClick={() => handleItemClick(item.name)}>
-                <img className="img" src={item.icon} alt="icon"/> {item.text}
+                  <img className="img" src={item.icon} alt="icon"/>
+                  <p className={``}>{item.text}</p>
                 </Link>
               </li>
             ))}

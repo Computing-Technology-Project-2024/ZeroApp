@@ -21,9 +21,6 @@ const SolarChart = () => {
             return Promise.all([responses[0].json(), responses[1].json()]);
         })
         .then(([importData, exportData]) => {
-            console.log("Import data fetched:", importData);
-            console.log("Export data fetched:", exportData);
-
             if (!importData.intervals || !exportData.intervals ||
                 !Array.isArray(importData.intervals[0]) ||
                 !Array.isArray(exportData.intervals[0])) {

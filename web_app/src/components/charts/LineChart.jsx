@@ -18,8 +18,6 @@ const LineChart = () => {
                 return response.json();
             })
             .then(rawData => {
-                console.log("Raw data fetched:", rawData);  // Debugging log
-
                 // Get the first available date in the dataset (assuming rawData is keyed by date strings)
                 const availableDates = Object.keys(rawData);
                 if (availableDates.length === 0) {
@@ -27,15 +25,12 @@ const LineChart = () => {
                 }
                 
                 const selectedDate = availableDates[0]; // Select the first available date
-                console.log(`Displaying data for date: ${selectedDate}`);
 
                 // Extract and convert the sumWatt to kW for each hour (0-23) for the selected date
                 const data = Object.keys(rawData[selectedDate]).map(hour => ({
                     hour: +hour,
                     sumKw: rawData[selectedDate][hour].sumWatt / 1000 // Convert to kW
                 }));
-
-                console.log("Parsed data (in kW):", data);  // Debugging log
 
                 // Remove any existing SVG before re-drawing
                 d3.select(chartRef.current).select("svg").remove();
