@@ -347,17 +347,17 @@ const Dashboard = () => {
 
           {/* Consumption Chart */}
           <div className="p-6 bg-white rounded-lg shadow-md mb-6">
-            <h2 className="text-xl font-bold mb-1">Today's Hourly Consumption Summary</h2>
-            <h3 className="text-s font-light mb-2">*Total consumption and associated cost of all devices</h3>
 
             <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold mb-1">Today's Hourly Consumption Summary</h2>
               <button
                 onClick={exportChartDataToCSV}
                 className="px-4 py-2 bg-custom-green text-white rounded hover:bg-custom-green-dark transition-colors duration-300"
               >
-                Export Chart Data to CSV
+                Export to CSV
               </button>
             </div>
+            <h3 className="text-s font-light mt-1">*Total consumption and associated cost of all devices</h3>
 
             {/* Responsive container for the chart */}
             <div className="h-80 w-full bg-gray-100 rounded-lg">
