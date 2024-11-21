@@ -8,6 +8,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
     const [visibleCircuits, setVisibleCircuits] = useState(null);
     const [totalEnergyByCircuit, setTotalEnergyByCircuit] = useState({});
     const [lastUpdated, setLastUpdated] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(''); // New state for error messages
 
     const getTimeRange = () => {
         const selected = new Date(selectedDate);  // Use selectedDate instead of current date
@@ -33,12 +34,6 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 // Set end time to the last day of the selected month
                 endTime = new Date(selected.getFullYear(), selected.getMonth() + 1, 0, 23, 59, 59);
                 break;
-            case 'Year':
-                // Set start time to January 1st of the selected year
-                startTime = new Date(selected.getFullYear(), 0, 1, 0, 0, 0);
-                // Set end time to December 31st of the selected year
-                endTime = new Date(selected.getFullYear(), 11, 31, 23, 59, 59);
-                break;
             default:
                 // Default to the selected day if no timeframe is matched
                 startTime = new Date(selected.getFullYear(), selected.getMonth(), selected.getDate(), 0, 0, 0);
@@ -57,15 +52,27 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
 
     useEffect(() => {
         const fetchData = async () => {
+            const now = new Date();
+            const selected = new Date(selectedDate);
+            if (selected > now) {
+                setErrorMessage('Invalid date range(Please Check Selected Date)');
+                setLoading(false);
+                return;
+            } else {
+                setErrorMessage(''); // Clear any previous error messages
+            }
+
             try {
                 setLoading(true);
                 const { starttime, endtime } = getTimeRange();
+                const siteID = 2385;
+                console.log(`Fetching data from ${starttime} to ${endtime}`);
 
                 const response = await fetch(
-                    `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${starttime}&endtime=${endtime}`,
+                    `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/${siteID}?starttime=${starttime}&endtime=${endtime}`,
                     {
                         method: 'GET',
-                        headers: { 'x-api-key': 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU' },
+                        headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },
                     }
                 );
 
@@ -220,16 +227,21 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                     });
                 });
 
-            svg.append('g')
-            .style("stroke-opacity", 0)
-                .attr('transform', `translate(0,${height})`)
-                .call(d3.axisBottom(x)
-                    .ticks(d3.timeHour.every(1))  // Control tick frequency
-                    .tickFormat(d3.timeFormat('%H'))  // Time format
-                )
+                svg.append('g')
+    .style("stroke-opacity", 0)
+    .attr('transform', `translate(0,${height})`)
+    .call(d3.axisBottom(x)
+        .ticks(timeframe === 'Year' ? d3.timeMonth.every(1) :
+               timeframe === 'Month' || timeframe === 'Week' ? d3.timeDay.every(1) : 
+               d3.timeHour.every(1))  // Monthly ticks for 'Year', daily ticks for 'Month' and 'Week', hourly for 'Day'
+        .tickFormat(timeframe === 'Year' ? d3.timeFormat('%b') :  // Month abbreviation for 'Year'
+                    timeframe === 'Month' ? d3.timeFormat('%d') : // Day for 'Month'
+                    timeframe === 'Week' ? d3.timeFormat('%b %d') : // Month Day for 'Week'
+                    d3.timeFormat('%H'))  // Hour for 'Day'
+    )
             svg.selectAll(".tick text")
                 .style("fill", "#777")
-                .style("font-size", "14px"); // Rotate labels for better fit
+                .style("font-size", "14px");           
 
             //x-axis
             svg.append('text')
@@ -253,7 +265,7 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
                 .attr('transform', 'rotate(-90)')
                 .attr('y', -margin.left + 20)
                 .attr('x', -height / 2 + 50)
-                .text('Energy (kW/h)')
+                .text('Energy (kWh)')
                 .style("fill", "#777")
                 .style("font-size", "14px");
 
@@ -310,21 +322,21 @@ const StackedAreaChart = ({ timeframe, selectedDate }) => {
     }, [data, visibleCircuits]);
 
     return (
+        
         <div>
-            {loading ? (
-                <div className="loading-spinner">Loading data, please wait...</div>
-            ) : (
-                <>
+        {loading ? (
+            <div className="loading-spinner">Loading data, please wait...</div>
+
+        ) : errorMessage ? ( 
+            <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>{errorMessage}</div>
+        ) : (
+            <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>
                 <div ref={chartRef}></div>
-                {lastUpdated && (
-                    <div style={{ marginTop: '10px', fontStyle: 'italic', color: '#777' }}>
-                        <p>Click Individual Circuits in Legend to toggle view.</p>
-                        Last updated: {lastUpdated.toLocaleString()}
-                        </div>
-                )}
-            </>
-            )}
-        </div>
+                <p>Click Individual Circuits in Legend to toggle view.</p>
+                {lastUpdated && <div>Last updated: {lastUpdated.toLocaleString()}</div>}
+            </div>
+        )}
+    </div>
     );
 };
 

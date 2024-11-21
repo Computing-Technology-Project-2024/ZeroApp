@@ -11,6 +11,7 @@ import Home from "./pages/home";
 import PageLayout from "./components/containers/PageLayout";
 import Recommendation from "./pages/recommendation";
 import Analytics from "./pages/analytics";
+import Analyticsadmin from "./pages/analytics_admin";
 import Settings from "./pages/settings";
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         { path: pageRoutes.ADMIN, element: <Admin /> },
         { path: pageRoutes.RECOMMENDATIONS, element: <Recommendation /> },
         { path: pageRoutes.ANALYTICS, element: <Analytics  addressList={addressList} isAdminMode={isAdminMode}/> },
+        { path: pageRoutes.ANALYTICSADMIN, element: <Analyticsadmin /> },
         { path: pageRoutes.SETTINGS, element: <Settings /> },
     ];
 
