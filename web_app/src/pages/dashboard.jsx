@@ -19,7 +19,7 @@ const Dashboard = () => {
           `https://api.edgeapi-v1.com/swinburn/sites`,
           {
             method: 'GET',
-            headers: { 'x-api-key': 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU' },
+            headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },
           }
       );
 
@@ -54,12 +54,11 @@ const Dashboard = () => {
   useEffect(() => {
     if (currentTimestamp && midnightTimestamp && !fetchedConsumptionData) {
       const apiUrl = `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${midnightTimestamp}&endtime=${currentTimestamp}`;
-      const apiKey = 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU';
-
+      
       fetch(apiUrl, {
         method: 'GET',
         headers: {
-          'x-api-key': apiKey,
+          'x-api-key': process.env.REACT_APP_XCONN_API,
         },
       })
           .then((response) => response.json())
@@ -79,7 +78,7 @@ const Dashboard = () => {
     fetch(apiUrl, {
       method: 'GET',
       headers: {
-        'x-api-key': apiKey,
+        'x-api-key': process.env.REACT_APP_XCONN_API,
       },
     })
         .then((response) => response.json())
@@ -330,14 +329,14 @@ const Dashboard = () => {
               statusIcon="⏳"
             />
             <DashboardCard
-              title="Total Consumption"
+              title="Net Zero Status"
               value={`${finalTotals.totalConsumptionkWh} kW`}
               statusText="↑ 8.5% Up from yesterday"
               statusColor="green"
               statusIcon="⚡"
             />
             <DashboardCard
-              title="Total Consumption Cost"
+              title="Carbon Footprint Reduce"
               value={`$${finalTotals.totalCost}`}
               statusText="↑ 8.5% Up from yesterday"
               statusColor="green"
