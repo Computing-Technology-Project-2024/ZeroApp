@@ -7,10 +7,8 @@ import { AreaChart, Area, XAxis, YAxis, Label, CartesianGrid, Tooltip, Responsiv
 //Basically, if Admin, fetch all data to display a list of address and able to change address in Analytics.
 //If User, then show the previous display that Kim did.
 
-const Dashboard = () => {
+const Dashboard = ({ setAddressList, isAdminMode, setIsAdminMode }) => {
   const [addresses, setAddresses] = useState([]);
-  const [addressList, setAddressList] = useState([]);
-  const [isAdminMode, setIsAdminMode] = useState(false);
 
   // Define fetchAddresses as a useCallback hook to prevent it from being re-created on every render.
   const fetchAddresses = useCallback(async () => {
@@ -73,7 +71,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     const apiUrl = `https://api.edgeapi-v1.com/swinburn/devices`;
-    const apiKey = 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU';
 
     fetch(apiUrl, {
       method: 'GET',

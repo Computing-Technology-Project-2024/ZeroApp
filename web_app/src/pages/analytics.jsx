@@ -32,13 +32,12 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
 
     return (
         <div className='analytics'>
-            <div className={`mb-4 w-full`}>
+            <div className={`mb-4`}>
                 <p className='head font-bold pb-4'>Analytics</p>
 
                 {/* TODO: add dynamic site address here */}
-                <p className={`h-8 rounded-lg`} id="AddressLine">{selectedAddress.site_address}
-                    {
-                      isAdminMode && (
+                <p id="AddressLine">{selectedAddress.site_address}
+                    {isAdminMode && (
                         <span
                             style={{ color: "white", cursor: "pointer", marginLeft: "10px", textDecoration: "underline" }}
                             onClick={() => setIsModalOpen(true)}
