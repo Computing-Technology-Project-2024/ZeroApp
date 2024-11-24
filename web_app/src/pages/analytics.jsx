@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import ModalBox from '../components/cards/ModalCard';
 import Search from '../components/searchFunc/search';
-
+import DashboardCard from '../components/cards/DashboardCard';
 import BaseCard from '../components/cards/BaseCard';
 import BarCombChart from '../components/charts/BarCombChart';
 import CircuitsChart from '../components/charts/CircuitsChart';
 import DatePicker from 'react-datepicker'; // Import DatePicker
+import NetZeroStatus from '../components/charts/NetZeroStatus';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import '../scripts/analytics_Style.css';
 
@@ -34,6 +35,7 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
         <div className='analytics'>
             <div className={`mb-4 w-full`}>
                 <p className='head font-bold pb-4'>Analytics</p>
+                
 
                 {/* TODO: add dynamic site address here */}
                 <p className={`h-8 rounded-lg`} id="AddressLine">{selectedAddress.site_address}
@@ -46,6 +48,7 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
                             Change
                         </span>
                     )}
+                <p>House address</p>
                 </p>
             </div>
 
@@ -97,7 +100,22 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
                 {/* Pass both the timeframe and selectedDate to the CircuitsChart */}
                 <CircuitsChart timeframe={activeButton} selectedDate={selectedDate} />
             </BaseCard>
+
+            <div className="grid grid-cols-2 gap-6 mb-6 ">
+                    <BaseCard >
+                    <h2 className=" NetZero text-xl font-semibold text-center">Net Zero Status </h2>
+                    <div className="flex flex-col items-center justify-center h-full">
+                        <NetZeroStatus className="NetZero" />
+                </div>
+                    </BaseCard>
+                    <BaseCard>
+                    <h2 className="NetZero text-xl font-semibold text-center">Carbon Footprint</h2>
+                    
+                    </BaseCard>
+                </div>
         </div>
+
+        
     );
 };
 
