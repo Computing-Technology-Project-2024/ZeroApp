@@ -6,8 +6,8 @@ export default function Speedometer({value}) {
     <div>
       <ReactSpeedometer
          value={value}
-         minValue={0}
-         maxValue={100}
+         minValue={-50}
+         maxValue={50}
          segments={5}
          segmentColors={['#ff4e4e', '#ff8a4e', '#f5d84e', '#a2f54e', '#5ec24e']}
          needleColor="#000"

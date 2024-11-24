@@ -1,0 +1,402 @@
+{
+    "system_id": 1935668,
+    "granularity": "day",
+    "total_devices": 0,
+    "start_date": "2024-02-02T00:00:00+11:00",
+    "end_date": "2024-02-03T00:00:00+11:00",
+    "items": "intervals",
+    "intervals": [
+        [
+            {
+                "end_at": 1706793300,
+                "wh_imported": 11
+            },
+            {
+                "end_at": 1706794200,
+                "wh_imported": 19
+            },
+            {
+                "end_at": 1706795100,
+                "wh_imported": 17
+            },
+            {
+                "end_at": 1706796000,
+                "wh_imported": 13
+            },
+            {
+                "end_at": 1706796900,
+                "wh_imported": 15
+            },
+            {
+                "end_at": 1706797800,
+                "wh_imported": 18
+            },
+            {
+                "end_at": 1706798700,
+                "wh_imported": 16
+            },
+            {
+                "end_at": 1706799600,
+                "wh_imported": 11
+            },
+            {
+                "end_at": 1706800500,
+                "wh_imported": 18
+            },
+            {
+                "end_at": 1706801400,
+                "wh_imported": 17
+            },
+            {
+                "end_at": 1706802300,
+                "wh_imported": 15
+            },
+            {
+                "end_at": 1706803200,
+                "wh_imported": 13
+            },
+            {
+                "end_at": 1706804100,
+                "wh_imported": 19
+            },
+            {
+                "end_at": 1706805000,
+                "wh_imported": 18
+            },
+            {
+                "end_at": 1706805900,
+                "wh_imported": 12
+            },
+            {
+                "end_at": 1706806800,
+                "wh_imported": 17
+            },
+            {
+                "end_at": 1706807700,
+                "wh_imported": 17
+            },
+            {
+                "end_at": 1706808600,
+                "wh_imported": 16
+            },
+            {
+                "end_at": 1706809500,
+                "wh_imported": 11
+            },
+            {
+                "end_at": 1706810400,
+                "wh_imported": 20
+            },
+            {
+                "end_at": 1706811300,
+                "wh_imported": 52
+            },
+            {
+                "end_at": 1706812200,
+                "wh_imported": 28
+            },
+            {
+                "end_at": 1706813100,
+                "wh_imported": 19
+            },
+            {
+                "end_at": 1706814000,
+                "wh_imported": 127
+            },
+            {
+                "end_at": 1706814900,
+                "wh_imported": 197
+            },
+            {
+                "end_at": 1706815800,
+                "wh_imported": 19
+            },
+            {
+                "end_at": 1706816700,
+                "wh_imported": 18
+            },
+            {
+                "end_at": 1706817600,
+                "wh_imported": 14
+            },
+            {
+                "end_at": 1706818500,
+                "wh_imported": 9
+            },
+            {
+                "end_at": 1706819400,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706820300,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706821200,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706822100,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706823000,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706823900,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706824800,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706825700,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706826600,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706827500,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706828400,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706829300,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706830200,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706831100,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706832000,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706832900,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706833800,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706834700,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706835600,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706836500,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706837400,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706838300,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706839200,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706840100,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706841000,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706841900,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706842800,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706843700,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706844600,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706845500,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706846400,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706847300,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706848200,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706849100,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706850000,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706850900,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706851800,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706852700,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706853600,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706854500,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706855400,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706856300,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706857200,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706858100,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706859000,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706859900,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706860800,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706861700,
+                "wh_imported": 44
+            },
+            {
+                "end_at": 1706862600,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706863500,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706864400,
+                "wh_imported": 0
+            },
+            {
+                "end_at": 1706865300,
+                "wh_imported": 1
+            },
+            {
+                "end_at": 1706866200,
+                "wh_imported": 18
+            },
+            {
+                "end_at": 1706867100,
+                "wh_imported": 22
+            },
+            {
+                "end_at": 1706868000,
+                "wh_imported": 19
+            },
+            {
+                "end_at": 1706868900,
+                "wh_imported": 19
+            },
+            {
+                "end_at": 1706869800,
+                "wh_imported": 13
+            },
+            {
+                "end_at": 1706870700,
+                "wh_imported": 18
+            },
+            {
+                "end_at": 1706871600,
+                "wh_imported": 18
+            },
+            {
+                "end_at": 1706872500,
+                "wh_imported": 16
+            },
+            {
+                "end_at": 1706873400,
+                "wh_imported": 11
+            },
+            {
+                "end_at": 1706874300,
+                "wh_imported": 18
+            },
+            {
+                "end_at": 1706875200,
+                "wh_imported": 17
+            },
+            {
+                "end_at": 1706876100,
+                "wh_imported": 14
+            },
+            {
+                "end_at": 1706877000,
+                "wh_imported": 14
+            },
+            {
+                "end_at": 1706877900,
+                "wh_imported": 17
+            },
+            {
+                "end_at": 1706878800,
+                "wh_imported": 18
+            }
+        ]
+    ],
+    "meta": {
+        "status": "comm",
+        "last_report_at": 1714885939,
+        "last_energy_at": 1714885554,
+        "operational_at": 1598922900
+    }
+}

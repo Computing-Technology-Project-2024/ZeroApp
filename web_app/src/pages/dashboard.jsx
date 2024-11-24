@@ -1,11 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import DashboardCard from '../components/cards/DashboardCard';
 import { AreaChart, Area, XAxis, YAxis, Label, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import EnphaseExportDataDay from './data/exportDataDay.json'; 
+import EnphaseImportDataDay from './data/importDataDay.json';
+import EnphaseImportDataMonth from './data/importDataMonth.json';
+import EnphaseExportDataMonth from './data/exportDataMonth.json';
+import dayjs from 'dayjs';
 
 // ----------------------------------------------------------
 //The idea is to implement a toggle button for Admin-User mode for testing purpose first.
 //Basically, if Admin, fetch all data to display a list of address and able to change address in Analytics.
 //If User, then show the previous display that Kim did.
+
+
+//remember to edit charts to separate components, this code is dirty as fuck
 
 const Dashboard = () => {
   const [addresses, setAddresses] = useState([]);
@@ -19,7 +27,7 @@ const Dashboard = () => {
           `https://api.edgeapi-v1.com/swinburn/sites`,
           {
             method: 'GET',
-            headers: { 'x-api-key': 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU' },
+            headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },
           }
       );
 
@@ -43,18 +51,206 @@ const Dashboard = () => {
   const [fetchedDataDevices, setFetchedDataDevices] = useState(null);
   const [showMore, setShowMore] = useState(false);
   const [processedData, setProcessedData] = useState(null);
-  const [finalTotals, setFinalTotals] = useState({ totalCost: 0, totalConsumptionkWh: 0 });
+  const [consumptionTotals, setConsumptionTotals] = useState({ totalCost: 0, totalConsumptionkWh: 0 });
+  const [IETotals, setIETotals] = useState({ totalImport: 0, totalExport: 0, netzero_status: 0, carbon_emission_reduced: 0 });
+
+
+  //EnPhase 
+  // !Note: Because the Enphase system data is not up to date and experiencing trouble with live data, data is fetched from the period between 02/02/2024 - 03/02/2024 for sample code
+  // Which can then be simply modified later with live date in the request to get real time data.
 
   const currentTimestamp = Math.floor(Date.now() / 1000);
   const now = new Date();
   const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const midnightTimestamp = Math.floor(midnight.getTime() / 1000);
 
+// Total Import / Export from Enphase Data Handling section
+  const [ExportDataDay, setExportDataDay] = useState([]);
+  const [ImportDataDay, setImportDataDay] = useState([]);
+
+  useEffect(() => {
+    const hourlyData = {};
+
+    // Check if EnphaseExportData and intervals are available
+    if (EnphaseExportDataDay && EnphaseExportDataDay.intervals && EnphaseExportDataDay.intervals[0]) {
+      // Flatten the nested intervals array
+      const flattenedIntervals = EnphaseExportDataDay.intervals[0];
+
+      // Iterate over each interval in the flattened array
+      flattenedIntervals.forEach(item => {
+        // Ensure item.end_at is a valid Unix timestamp in seconds
+        const timestamp = item.end_at;
+
+        // Use dayjs.unix() for converting Unix timestamp in seconds to a formatted date string
+        const hour = dayjs.unix(timestamp).format('YYYY-MM-DD HH');
+
+        if (!hourlyData[hour]) {
+          hourlyData[hour] = 0;
+        }
+        hourlyData[hour] += item.wh_exported;
+      });
+
+      // Convert the hourly data object into an array of objects
+      const formattedData = Object.keys(hourlyData).map(hour => ({
+        date: hour,
+        wh_exported: hourlyData[hour],
+      }));
+
+      // Set the formatted data for the chart
+      setExportDataDay(formattedData);
+    } else {
+      console.error("Invalid EnphaseExportData format");
+    }
+  }, []); 
+
+  useEffect(() => {
+    const hourlyData = {};
+  
+    // Check if import data and intervals are available
+    if (EnphaseImportDataDay && EnphaseImportDataDay.intervals && EnphaseImportDataDay.intervals[0]) {
+      // Flatten the nested intervals array
+      const flattenedIntervals = EnphaseImportDataDay.intervals[0];
+  
+      // Iterate over each interval in the flattened array
+      flattenedIntervals.forEach(item => {
+        // Ensure item.end_at is a valid Unix timestamp in seconds
+        const timestamp = item.end_at;
+  
+        // Use dayjs.unix() for converting Unix timestamp in seconds to a formatted date string
+        const hour = dayjs.unix(timestamp).format('YYYY-MM-DD HH');
+  
+        if (!hourlyData[hour]) {
+          hourlyData[hour] = 0;
+        }
+        hourlyData[hour] += item.wh_imported; // Using wh_imported instead of wh_exported
+      });
+  
+      // Convert the hourly data object into an array of objects
+      const formattedData = Object.keys(hourlyData).map(hour => ({
+        date: hour,
+        wh_imported: hourlyData[hour], // Using wh_imported instead of wh_exported
+      }));
+  
+      // Set the formatted data for the chart
+      setImportDataDay(formattedData); // Assuming you have setImportData to set import data state
+    } else {
+      console.error("Invalid EnphaseImportData format");
+    }
+  }, []);
+  
+
+  //merge data for chart rendering:
+  const [MergedData, setMergedData] = useState([]);
+
+  useEffect(() => {
+    // Merge the two datasets
+    const merged = ExportDataDay.map(exportItem => {
+      const matchingImport = ImportDataDay.find(importItem => importItem.date === exportItem.date);
+      return {
+        ...exportItem,
+        wh_imported: matchingImport ? matchingImport.wh_imported : 0, // If no matching import, set 0
+      };
+    });
+
+    // Set the merged data
+    setMergedData(merged);
+  }, [ExportDataDay, ImportDataDay]);
+
+  //Calculate total import/export: 
+  const calculateIETotals = () => {
+    let totalExport = 0;
+    let totalImport = 0;
+  
+    // Calculate total export (sum of wh_exported for all data points)
+    ExportDataDay.forEach(item => {
+      totalExport += item.wh_exported;
+    });
+  
+    // Calculate total import (sum of wh_imported for all data points)
+    ImportDataDay.forEach(item => {
+      totalImport += item.wh_imported;
+    });
+
+    //convert from WH to KWH
+    const totalExportKWh = totalExport / 1000;  
+    const totalImportKWh = totalImport / 1000; 
+
+    //calculate net-zero status:
+
+    const netzero_status = totalExportKWh - totalImportKWh;
+
+    //calculate total emission reduced - produced (produced should be minus)
+    const carbon_emission_reduced = netzero_status * 0.86 //unit: kg
+  
+    // Return the total import and export for the day
+    return {
+      totalExportKWh: parseFloat(totalExportKWh.toFixed(2)),
+      totalImportKWh: parseFloat(totalImportKWh.toFixed(2)),
+      netzero_status: parseFloat(netzero_status.toFixed(2)),
+      carbon_emission_reduced: parseFloat(carbon_emission_reduced.toFixed(2))
+    };
+  };
+
+  useEffect(() => {
+    if (ImportDataDay && ExportDataDay) {
+      //calculate total watts and costs
+      const totals = calculateIETotals();
+      setIETotals(totals);
+    }
+  }, [ImportDataDay, ExportDataDay]);
+
+  // calculate monthly import, export total
+  const [IETotalsMonth, setIETotalsMonth] = useState({ totalImport: 0, totalExport: 0, netzero_status: 0, carbon_emission_reduced: 0 });
+
+  const calculateIETotalsMonth = () => {
+    let totalExport = 0;
+    let totalImport = 0;
+
+    // Calculate total export
+    const totalExp = EnphaseExportDataMonth.export.reduce((acc, curr) => acc + curr, 0);
+    totalExport = totalExp;
+  
+    // Calculate total import
+    const totalImp = EnphaseImportDataMonth.import.reduce((acc, curr) => acc + curr, 0);
+    totalImport = totalImp;
+
+    //convert from WH to KWH
+    const totalExportKWh = totalExport / 1000;  
+    const totalImportKWh = totalImport / 1000; 
+
+    //calculate net-zero status:
+
+    const netzero_status = totalExportKWh - totalImportKWh;
+
+    //calculate total emission reduced - produced (produced should be minus)
+    const carbon_emission_reduced = netzero_status * 0.86 //unit: kg
+  
+    // Return the total import and export for the day
+    return {
+      totalExportKWh: parseFloat(totalExportKWh.toFixed(2)),
+      totalImportKWh: parseFloat(totalImportKWh.toFixed(2)),
+      netzero_status: parseFloat(netzero_status.toFixed(2)),
+      carbon_emission_reduced: parseFloat(carbon_emission_reduced.toFixed(2))
+    };
+  };
+  
+  useEffect(() => {
+    // Calculate total export
+    if (EnphaseExportDataMonth && Array.isArray(EnphaseExportDataMonth.export) && EnphaseImportDataMonth && Array.isArray(EnphaseImportDataMonth.import)) {
+      const totals = calculateIETotalsMonth();
+      setIETotalsMonth(totals);
+    } else {
+      console.error("Export/Import data is invalid or not loaded.");
+    }}, [EnphaseExportDataMonth, EnphaseExportDataMonth]);
+
+    console.log(IETotalsMonth.totalExportKWh);
+  
+
   //API call to get data from midnight to current time:
   useEffect(() => {
     if (currentTimestamp && midnightTimestamp && !fetchedConsumptionData) {
       const apiUrl = `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${midnightTimestamp}&endtime=${currentTimestamp}`;
-      const apiKey = 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU';
+      const apiKey = process.env.REACT_APP_XCONN_API;
 
       fetch(apiUrl, {
         method: 'GET',
@@ -74,7 +270,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const apiUrl = `https://api.edgeapi-v1.com/swinburn/devices`;
-    const apiKey = 'JjsFazxTPd7GVoPYGdEI34HrudDZHq695FqKKnmU';
+    const apiKey = process.env.REACT_APP_XCONN_API;
 
     fetch(apiUrl, {
       method: 'GET',
@@ -154,8 +350,8 @@ const Dashboard = () => {
   };
 
   // Function to calculate final total consumption and total cost
-  const calculateFinalTotals = (processedData) => {
-    const finalTotals = processedData.reduce(
+  const calculateConsumptionTotals = (processedData) => {
+    const consumptionTotals = processedData.reduce(
       (acc, curr) => {
         acc.totalWatt += curr.totalWatt;
         acc.totalCost += curr.totalCost;
@@ -165,10 +361,10 @@ const Dashboard = () => {
     );
 
     // Convert total watts to kWh (1 kWh = 1000 watts)
-    const totalConsumptionkWh = finalTotals.totalWatt / 1000;
+    const totalConsumptionkWh = consumptionTotals.totalWatt / 1000;
 
     return {
-      totalCost: parseFloat(finalTotals.totalCost.toFixed(2)),  // Round total cost to 2 decimal places
+      totalCost: parseFloat(consumptionTotals.totalCost.toFixed(2)),  // Round total cost to 2 decimal places
       totalConsumptionkWh: totalConsumptionkWh,  // Round total consumption to 2 decimal places
     };
   };
@@ -181,24 +377,59 @@ const Dashboard = () => {
       setProcessedData(processed);
 
       //calculate total watts and costs
-      const totals = calculateFinalTotals(processed);
-      setFinalTotals(totals);
+      const totals = calculateConsumptionTotals(processed);
+      setConsumptionTotals(totals);
     }
   }, [fetchedConsumptionData]);
 
   // Custom Tooltip to show total cost in the tooltip
-  const CustomTooltip = ({ active, payload}) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="custom-tooltip p-2 bg-white rounded shadow-lg">
-          <p className="intro text-custom-purple">{`Total Watt: ${payload[0].value}W`}</p>
-          <p className="desc text-custom-green">{`Total Cost: $${payload[0].payload.totalCost}`}</p> {/* Display total cost */}
-        </div>
-      );
-    }
+  // const CustomTooltipConsumption = ({ active, payload}) => {
+  //   if (active && payload && payload.length) {
+  //     return (
+  //       <div className="custom-tooltip p-2 bg-white rounded shadow-lg">
+  //         <p className="intro text-custom-purple">{`Total Watt: ${payload[0].value}W`}</p>
+  //         <p className="desc text-custom-green">{`Total Cost: $${payload[0].payload.totalCost}`}</p> {/* Display total cost */}
+  //       </div>
+  //     );
+  //   }
 
-    return null;
-  };
+  //   return null;
+  // };
+
+//CustomTooltiop for Import/Export Data
+// Custom Tooltip Component
+const CustomTooltipIE = ({ payload, label, active }) => {
+  if (active && payload && payload.length) {
+    // Manually convert the label (e.g., "2024-02-02 06") into a valid ISO 8601 date string
+    const formattedLabel = label.replace(" ", "T") + ":00"; // Convert "2024-02-02 06" -> "2024-02-02T06:00:00"
+    
+    // Create a new Date object from the formatted label
+    const date = new Date(formattedLabel);
+    
+    // Check if the date is valid
+    if (isNaN(date)) {
+      return null;  // Return null if the date is invalid
+    } 
+
+    // Format the date using toLocaleDateString or other formats
+    const formattedDate = date.toLocaleString();  // You can customize this format as needed
+    // Access the WH exported value from the payload
+    const totalKWhExported = payload[0].value / 1000;
+    const totalKWhImported = payload[1].value / 1000;
+    const netzero_status = totalKWhExported - totalKWhImported;
+
+    return (
+      <div className="bg-white p-2 rounded shadow-lg">
+        <p className="text-sm ">{`Date: ${formattedDate}`}</p>
+        <p className="text-sm font-semibold text-custom-green">{`Total Exported: ${totalKWhExported} KW/h`}</p>
+        <p className="text-sm font-semibold text-red-500">{`Total Imported: ${totalKWhImported} KW/h`}</p>
+        <p className="text-sm font-semibold text-green-500">{`Net-Zero Status: ${netzero_status} KW/h`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 
   //function to convert to normal time:
@@ -314,41 +545,96 @@ const Dashboard = () => {
         //------------USER MODE------------------
         <div>
           {/* Dashboard Header */}
+          <h2>Month: 02/02/2024-02/03/2024 </h2>
           <div className="grid grid-cols-4 gap-6 mb-6">
             <DashboardCard
               title="Power Imported From Grid"
-              value="2.5kWh"
-              statusText="↑ 8.5% Up from yesterday"
-              statusColor="green"
-              statusIcon="🔋"
-            />
-            <DashboardCard
-              title="Power Exported From Grid"
-              value="2.5 kWh"
-              statusText="↓ 4.3% Down from yesterday"
-              statusColor="red"
-              statusIcon="⏳"
-            />
-            <DashboardCard
-              title="Total Consumption"
-              value={`${finalTotals.totalConsumptionkWh} kW`}
-              statusText="↑ 8.5% Up from yesterday"
+              value={`${IETotalsMonth.totalImportKWh} kWh`}
+              statusText=" 8.5% increase from last month"
               statusColor="green"
               statusIcon="⚡"
             />
             <DashboardCard
-              title="Total Consumption Cost"
-              value={`$${finalTotals.totalCost}`}
-              statusText="↑ 8.5% Up from yesterday"
+              title="Power Exported From Grid"
+              value={`${IETotalsMonth.totalExportKWh} kWh`}
+              statusText="↑ 8.5% increase from last month"
+              statusColor="green"
+              statusIcon="⚡"
+            />
+            <DashboardCard
+              title="Carbon Emission Reduced"
+              value={`${IETotalsMonth.carbon_emission_reduced} kg`}
+              statusText={`Positive Carbon Emission Reduction!`}
+              statusColor="green"
+              statusIcon="🔋"
+            />
+            <DashboardCard
+              title="Net Zero Status"
+              value={`${IETotalsMonth.netzero_status}`}
+              statusText="↑ Positive Net Zero Status!"
               statusColor="green"
               statusIcon="💰"
             />
           </div>
 
-          {/* Consumption Chart */}
-          <div className="p-6 bg-white rounded-lg shadow-md mb-6">
-
-            <div className="flex justify-between items-center mb-4">
+        {/* Import/Export Visualization */}
+        <div className="p-6 bg-white rounded-lg shadow-md mb-6">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold mb-1"> Today's Energy Import/Export</h2>
+      </div>
+      <h3 className="text-s font-light mt-1">*Source: Enphase</h3>
+      {/* Responsive container for the chart */}
+      <div className="h-80 w-full bg-gray-100 rounded-lg">
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart
+            data={MergedData}  // Use the processed data for the chart
+            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+          >
+            <defs>
+                  <linearGradient id="colorExport" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#35AA3F" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#35AA3F" stopOpacity={0} />
+                  </linearGradient>
+                  <linearGradient id="colorImport" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#FF5733" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#FF5733" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="date" />
+                <YAxis>
+                  <Label
+                    value="Total Wh (Wh)"
+                    angle={-90}
+                    position="insideLeft"
+                    style={{ textAnchor: 'middle' }}
+                  />
+                </YAxis>
+                <CartesianGrid strokeDasharray="3 3" />
+                <Tooltip content={<CustomTooltipIE />} />
+                <Area
+                  type="monotone"
+                  dataKey="wh_exported"
+                  name="Export"
+                  stroke="#35AA3F"
+                  fillOpacity={1}
+                  fill="url(#colorExport)"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="wh_imported"
+                  name="Import"
+                  stroke="#FF5733"
+                  fillOpacity={1}
+                  fill="url(#colorImport)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+      </div>
+    </div>
+{/* 
+  Consumption Chart */}
+  {/* <div className="p-6 bg-white rounded-lg shadow-md mb-6">
+            <div className="flex justify-between items-center mb-1">
               <h2 className="text-xl font-bold mb-1">Today's Hourly Consumption Summary</h2>
               <button
                 onClick={exportChartDataToCSV}
@@ -357,10 +643,10 @@ const Dashboard = () => {
                 Export to CSV
               </button>
             </div>
-            <h3 className="text-s font-light mt-1">*Total consumption and associated cost of all devices</h3>
+            <h3 className="text-s font-light">*Total consumption and associated cost of all devices</h3> */}
 
             {/* Responsive container for the chart */}
-            <div className="h-80 w-full bg-gray-100 rounded-lg">
+            {/* <div className="h-80 w-full bg-gray-100 rounded-lg">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart
                   data={processedData}  // Use the processed data for the chart
@@ -382,8 +668,8 @@ const Dashboard = () => {
                     />
                   </YAxis>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <Tooltip content={<CustomTooltip />} /> {/* Custom Tooltip */}
-                  <Area
+                  <Tooltip content={<CustomTooltipConsumption />} /> Custom Tooltip */}
+                  {/* <Area
                     type="monotone"
                     dataKey="totalWatt"
                     name="Total Watt"
@@ -393,10 +679,9 @@ const Dashboard = () => {
                   />
                 </AreaChart>
               </ResponsiveContainer>
-
               <h3 className="mt-1 font-extralight italic">*Data updated from 00:00 to {normalTime}</h3>
             </div>
-          </div>
+          </div> */}
 
           {/* Devices Table */}
           <div className="p-6 bg-white rounded-lg shadow-md">

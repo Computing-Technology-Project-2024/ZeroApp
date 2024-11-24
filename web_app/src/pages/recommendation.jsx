@@ -24,12 +24,12 @@ const Recommendation = () => {
         <div className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md">
           <h5 className="text-lg font-medium">Wednesday</h5>
           <p className="text-sm">22 May</p>
-          <div className="mt-4">
+          <div className="mt-4 flex flex-col items-center">
             <Speedometer value={12.8}/>
-            <p className="text-center mt-4">2% more to reach your goal!</p>
+            {/* //replace with net-zero status indicator */}
+            <p className="text-center mt-4">2% more to reach your goal!</p> 
             <p className="mt-4 text-sm text-gray-600">
-              Do you know solar panels can produce energy even without direct sunlight? Solar panels generate
-              30%-50% and 10%-20% of their full potential on cloudy and rainy days, respectively.
+              Understanding Net Zero Status
             </p>
           </div>
         </div>
