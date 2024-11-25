@@ -21,7 +21,7 @@ const App = () => {
 
     const routes = [
         { path: pageRoutes.HOME, element: <Home /> },
-        { path: pageRoutes.DASHBOARD, element: <Dashboard /> },
+        { path: pageRoutes.DASHBOARD, element: <Dashboard setAddressList={setAddressList} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode}/> },
         { path: pageRoutes.ADMIN, element: <Admin /> },
         { path: pageRoutes.RECOMMENDATIONS, element: <Recommendation /> },
         { path: pageRoutes.ANALYTICS, element: <Analytics  addressList={addressList} isAdminMode={isAdminMode}/> },
@@ -36,16 +36,16 @@ const App = () => {
 
     return (
       <Routes>
-          {authRoutes.map(({ path, element }) => (
-            <Route path={path} element={element} key={`${path}-${element.name}`} />
-          ))}
-
-          <Route element={<PageLayout />}>
-              {routes.map(({ path, element }) => (
+            {authRoutes.map(({ path, element }) => (
                 <Route path={path} element={element} key={`${path}-${element.name}`} />
-              ))}
-          </Route>
-      </Routes>
+            ))}
+
+            <Route element={<PageLayout />}>
+                {routes.map(({ path, element }) => (
+                    <Route path={path} element={element} key={`${path}-${element.name}`} />
+                ))}
+            </Route>
+        </Routes>
 
     );
 };

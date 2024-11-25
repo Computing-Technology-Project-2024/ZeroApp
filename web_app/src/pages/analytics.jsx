@@ -32,15 +32,25 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
 
     return (
         <div className='analytics'>
-            <div className={`mb-4 w-full`}>
+            <div className={`mb-4`}>
                 <p className='head font-bold pb-4'>Analytics</p>
 
                 {/* TODO: add dynamic site address here */}
-                <p className={`h-8 rounded-lg`} id="AddressLine">{selectedAddress.site_address}
-                    {
-                      isAdminMode && (
+                <p id="AddressLine">
+                    {/* this is just a placeholder */}
+                    {addressList.length === 0 ? (
+                        <span>5A Naismith St, Footscray VIC 3011, Australia</span>
+                    ) : (
+                        selectedAddress.site_address
+                    )}
+                    {isAdminMode && addressList.length > 0 && (
                         <span
-                            style={{ color: "white", cursor: "pointer", marginLeft: "10px", textDecoration: "underline" }}
+                            style={{
+                                color: "white",
+                                cursor: "pointer",
+                                marginLeft: "10px",
+                                textDecoration: "underline",
+                            }}
                             onClick={() => setIsModalOpen(true)}
                         >
                             Change
@@ -53,6 +63,7 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
             {isAdminMode && (
                 <ModalBox isOpen={isModalOpen} handleClose={() => setIsModalOpen(false)}>
                     <Search />
+
                     <div className="address-list">
                         {addressList.map((address) => (
                             <div
@@ -70,7 +81,7 @@ const Analytics = ({ addressList = [], isAdminMode }) => {
 
             <BaseCard className={`mb-4 w-auto`}>
                 <div className="control-group">
-                   <div className="button-group">
+                    <div className="button-group">
                         <DatePicker
                             selected={selectedDate}
                             onChange={handleDateChange}

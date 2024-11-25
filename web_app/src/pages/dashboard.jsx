@@ -15,10 +15,8 @@ import dayjs from 'dayjs';
 
 //remember to edit charts to separate components, this code is dirty as fuck
 
-const Dashboard = () => {
+const Dashboard = ({ setAddressList, isAdminMode, setIsAdminMode }) => {
   const [addresses, setAddresses] = useState([]);
-  const [addressList, setAddressList] = useState([]);
-  const [isAdminMode, setIsAdminMode] = useState(false);
 
   // Define fetchAddresses as a useCallback hook to prevent it from being re-created on every render.
   const fetchAddresses = useCallback(async () => {
@@ -27,6 +25,7 @@ const Dashboard = () => {
           `https://api.edgeapi-v1.com/swinburn/sites`,
           {
             method: 'GET',
+            headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },
             headers: { 'x-api-key': process.env.REACT_APP_XCONN_API },
           }
       );
@@ -250,12 +249,11 @@ const Dashboard = () => {
   useEffect(() => {
     if (currentTimestamp && midnightTimestamp && !fetchedConsumptionData) {
       const apiUrl = `https://api.edgeapi-v1.com/swinburn/getloaddata/interval/2385?starttime=${midnightTimestamp}&endtime=${currentTimestamp}`;
-      const apiKey = process.env.REACT_APP_XCONN_API;
-
+      
       fetch(apiUrl, {
         method: 'GET',
         headers: {
-          'x-api-key': apiKey,
+          'x-api-key': process.env.REACT_APP_XCONN_API,
         },
       })
           .then((response) => response.json())
@@ -270,12 +268,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     const apiUrl = `https://api.edgeapi-v1.com/swinburn/devices`;
-    const apiKey = process.env.REACT_APP_XCONN_API;
 
     fetch(apiUrl, {
       method: 'GET',
       headers: {
-        'x-api-key': apiKey,
+        'x-api-key': process.env.REACT_APP_XCONN_API,
       },
     })
         .then((response) => response.json())

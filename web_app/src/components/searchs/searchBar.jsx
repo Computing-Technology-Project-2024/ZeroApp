@@ -65,8 +65,8 @@ const SearchBar = ({ className }) => {
                         {isDropdownActive && (
                             <div className="dropdown-menu">
                                 <ul>
-                                    <li>Settings</li>
-                                    <li>Logout</li>
+                                    <li><Link to={pageRoutes.SETTINGS}>Settings</Link></li>
+                                    <li><Link to={pageRoutes.LOGIN}>Logout</Link></li>
                                 </ul>
                             </div>
                         )}

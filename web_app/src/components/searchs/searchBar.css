@@ -30,13 +30,6 @@
   height: 18px;
 }
 
-.search-input {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-}
-
 .right-container {
   display: flex;
   flex-direction: row;
