@@ -7,9 +7,9 @@ import {Outlet} from 'react-router-dom';
 
 const PageLayout = ({ children }) => {
   return (
-        <main className=" h-screen overflow-y-auto flex flex-grow w-full">
+        <main className="bg-container-gray h-screen overflow-y-auto flex flex-grow w-full">
             <Sidebar className={`fixed top-0 left-0 w-60`}/>
-            <div className="ml-60 h-full overflow-y-auto bg-container-gray w-[calc(100%-240px)]">
+            <div className="ml-60 h-full bg-container-gray w-[calc(100vw-240px)]">
                 <SearchBar className={``}/>
                 <PageContainer className={``}>
                     {children}
