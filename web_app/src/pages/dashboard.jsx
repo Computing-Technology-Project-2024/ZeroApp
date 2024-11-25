@@ -12,9 +12,6 @@ import dayjs from 'dayjs';
 //Basically, if Admin, fetch all data to display a list of address and able to change address in Analytics.
 //If User, then show the previous display that Kim did.
 
-
-//remember to edit charts to separate components, this code is dirty as fuck
-
 const Dashboard = ({ setAddressList, isAdminMode, setIsAdminMode }) => {
   const [addresses, setAddresses] = useState([]);
 
