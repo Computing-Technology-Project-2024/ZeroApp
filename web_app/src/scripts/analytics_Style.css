@@ -177,3 +177,39 @@
     background-color: #f0f0f0;
 }
 
+/* --------------------------------------- */
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove gap within each container */
+    margin-right: 20px; /* Space between capsules */
+  }
+  
+  .input-label {
+    background-color: #35AA3F;
+    color: white;
+    padding: 8px 10px; 
+    border-radius: 5px 0 0 5px; /* Rounded corners on the left side */
+    font-weight: bold;
+    height: 40px; /* Set a fixed height */
+    display: flex;
+    align-items: center; /* Center the text vertically */
+  }
+  
+  .input-field {
+    width: 100px;
+    padding: 0 8px; /* Adjust padding for consistent alignment */
+    border: 1px solid #ccc;
+    border-left: none; /* Remove the border between label and input */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the right side */
+    height: 40px; /* Match the height of the label */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: #ccc;
+  }
+  
